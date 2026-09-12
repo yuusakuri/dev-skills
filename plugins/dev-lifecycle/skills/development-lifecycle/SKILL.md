@@ -41,6 +41,7 @@ what to look for — see `docs/catalog.md` for the repository and install comman
 | 2 | Decision record | A choice is hard or expensive to reverse | `architecture-decision-record` |
 | 2 | Interface design | Defining an API, schema, event, or public library surface | `api-design-reviewer` |
 | 2 | Data model | Designing or reshaping a database schema | `database-schema-designer` |
+| 2 | Tech choice | Picking between frameworks, platforms, or vendors | `tech-stack-evaluator` |
 | 2 | Security design | Auth, secrets, PII, payments, or untrusted input is involved | `threat-model` |
 | 2 | Visual direction | Building or reshaping a user interface | `example-skills:frontend-design` |
 | 3 | Planning | You have a spec and need an executable plan | `superpowers:writing-plans` |
@@ -51,6 +52,7 @@ what to look for — see `docs/catalog.md` for the repository and install comman
 | 4 | Parallel work | 2+ independent tasks with no shared state | `superpowers:dispatching-parallel-agents` |
 | 4 | Schema change | Changing a schema or migrating stored data | `migration-architect` |
 | 4 | Restructuring | Paying down or tracking structural debt | `tech-debt-tracker` |
+| 4 | Secrets & config | Handling env vars, secrets, credentials, or rotation | `env-secrets-manager` |
 | 4 | MCP server | Exposing an API or service to an agent | `example-skills:mcp-builder` |
 | 5 | Debugging | Any bug, test failure, or unexplained behavior | `superpowers:systematic-debugging` |
 | 5 | Slowness | Something is too slow or uses too much resource | `performance-profiler`, `database-optimization` |
@@ -61,11 +63,13 @@ what to look for — see `docs/catalog.md` for the repository and install comman
 | 6 | Accessibility | The change affects a user interface | `a11y-audit` |
 | 7 | Review (asking) | Work is ready to be checked | `superpowers:requesting-code-review`, `pr-review-expert` |
 | 7 | Review (receiving) | Feedback has arrived | `superpowers:receiving-code-review` |
+| 7 | Adversarial review | You suspect the review has been too agreeable | `adversarial-reviewer` |
 | 7 | Security review | Auditing a diff for vulnerabilities | `senior-security`, `security-guidance` |
 | 7 | Dependencies | Adding, upgrading, or triaging a vulnerable dependency | `dependency-auditor` |
 | 8 | Instrumentation | Shipping something whose health must be observable | `observability-designer`, `slo-architect` |
 | 8 | Runbooks | An alert needs a documented response | `runbook-generator` |
 | 8 | Integration | Tests pass and the branch needs to land | `superpowers:finishing-a-development-branch` |
+| 8 | Progressive rollout | Shipping behind a flag, canary, or kill switch | `feature-flags-architect` |
 | 8 | Release gate | Deciding whether to ship | `ship-gate`, `launch-readiness` |
 | 8 | Release notes | Communicating what changed | `changelog-generator` |
 | 9 | Incident (outage) | Something is broken in production **now** | `incident-commander` |
@@ -102,15 +106,24 @@ When unsure which size a task is, assume the larger one and say so.
 
 ## When a row has no installed skill
 
-Two phases are covered less well by the community collections than the rest, so say so
-rather than pretending otherwise:
+One phase is covered less well by the community collections than the rest. Stated
+plainly rather than papered over:
 
-- **Behavior-preserving refactoring.** `tech-debt-tracker` tracks debt but does not
-  walk a safe refactor. The rule to apply directly: never mix a refactor and a
-  behavior change in one commit, and never refactor code whose behavior no test pins.
-- **Flaky tests.** `ci-cd-pipeline-builder` builds pipelines but does not diagnose
-  intermittent failures. The rule: a flake is real non-determinism (time, ordering,
-  concurrency, waiting, shared state) — never retry it into green.
+- **Behavior-preserving refactoring.** `superpowers:test-driven-development` has a
+  REFACTOR step, but it is scoped to cleaning up code you have just written while the
+  tests are already green. `tech-debt-tracker` tracks debt without walking a safe
+  restructure. What neither covers is **changing the shape of existing code that no
+  test pins**. Two rules apply directly: never mix a refactor and a behavior change in
+  one commit, and write characterization tests — which capture what the code currently
+  does, bugs included — before touching untested code.
+
+**Flaky tests are better covered than they look.** `superpowers:systematic-debugging`
+bundles `condition-based-waiting.md`, which handles the largest single cause: tests
+that guess at timing with `sleep`/`setTimeout` and so pass locally but fail under load
+or in CI. Reach for it first. It does not cover test ordering and shared state, unseeded
+randomness, unordered collection comparison, or local-versus-CI environment differences —
+for those, the rule is that a flake is real non-determinism, so find its source and
+never retry it into green.
 
 If no row fits at all, say which phase the task is in and proceed with the phase's
 principle above rather than guessing at a skill.

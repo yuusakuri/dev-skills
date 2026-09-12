@@ -65,112 +65,416 @@
       "id": "0-orientation",
       "title": "Orientation",
       "entries": [
-        { "skill": "codebase-onboarding", "source": "alireza", "path": "engineering/skills/codebase-onboarding", "plugin": "engineering-advanced-skills", "role": "Map an unfamiliar codebase before changing it" }
+        {
+          "skill": "codebase-onboarding",
+          "source": "alireza",
+          "path": "engineering/skills/codebase-onboarding",
+          "plugin": "engineering-advanced-skills",
+          "role": "Map an unfamiliar codebase before changing it"
+        }
       ]
     },
     {
       "id": "1-requirements",
       "title": "Requirements",
       "entries": [
-        { "skill": "brainstorming", "source": "superpowers", "path": "skills/brainstorming", "plugin": "superpowers", "role": "Explore intent and design before any code" },
-        { "skill": "prd-template", "source": "pm", "path": "skills/prd-template", "plugin": "pm-essentials", "role": "Turn agreement into a written PRD with acceptance criteria" },
-        { "skill": "epic-design", "source": "alireza", "path": "engineering-team/skills/epic-design", "plugin": "engineering-skills", "role": "Decompose a large requirement into epics and stories" }
+        {
+          "skill": "brainstorming",
+          "source": "superpowers",
+          "path": "skills/brainstorming",
+          "plugin": "superpowers",
+          "role": "Explore intent and design before any code"
+        },
+        {
+          "skill": "prd-template",
+          "source": "pm",
+          "path": "skills/prd-template",
+          "plugin": "pm-essentials",
+          "role": "Turn agreement into a written PRD with acceptance criteria"
+        },
+        {
+          "skill": "epic-design",
+          "source": "alireza",
+          "path": "engineering-team/skills/epic-design",
+          "plugin": "engineering-skills",
+          "role": "Decompose a large requirement into epics and stories"
+        }
       ]
     },
     {
       "id": "2-design",
       "title": "Architecture and design",
       "entries": [
-        { "skill": "senior-architect", "source": "alireza", "path": "engineering-team/skills/senior-architect", "plugin": "engineering-skills", "role": "System design and architectural trade-offs" },
-        { "skill": "architecture-decision-record", "source": "pm", "path": "skills/architecture-decision-record", "plugin": "pm-engineering", "role": "Record a hard-to-reverse decision as an ADR" },
-        { "skill": "api-design-reviewer", "source": "alireza", "path": "engineering/skills/api-design-reviewer", "plugin": "engineering-advanced-skills", "role": "Contract review with linting and breaking-change detection scripts" },
-        { "skill": "database-schema-designer", "source": "alireza", "path": "engineering/skills/database-schema-designer", "plugin": "engineering-advanced-skills", "role": "Data model design" },
-        { "skill": "threat-model", "source": "pm", "path": "skills/threat-model", "plugin": "pm-security", "role": "Identify threats and mitigations at design time" },
-        { "skill": "frontend-design", "source": "anthropic", "path": "skills/frontend-design", "plugin": "example-skills", "role": "Deliberate visual direction for a UI" }
+        {
+          "skill": "senior-architect",
+          "source": "alireza",
+          "path": "engineering-team/skills/senior-architect",
+          "plugin": "engineering-skills",
+          "role": "System design and architectural trade-offs"
+        },
+        {
+          "skill": "architecture-decision-record",
+          "source": "pm",
+          "path": "skills/architecture-decision-record",
+          "plugin": "pm-engineering",
+          "role": "Record a hard-to-reverse decision as an ADR"
+        },
+        {
+          "skill": "api-design-reviewer",
+          "source": "alireza",
+          "path": "engineering/skills/api-design-reviewer",
+          "plugin": "engineering-advanced-skills",
+          "role": "Contract review with linting and breaking-change detection scripts"
+        },
+        {
+          "skill": "database-schema-designer",
+          "source": "alireza",
+          "path": "engineering/skills/database-schema-designer",
+          "plugin": "engineering-advanced-skills",
+          "role": "Data model design"
+        },
+        {
+          "skill": "threat-model",
+          "source": "pm",
+          "path": "skills/threat-model",
+          "plugin": "pm-security",
+          "role": "Identify threats and mitigations at design time"
+        },
+        {
+          "skill": "frontend-design",
+          "source": "anthropic",
+          "path": "skills/frontend-design",
+          "plugin": "example-skills",
+          "role": "Deliberate visual direction for a UI"
+        },
+        {
+          "skill": "tech-stack-evaluator",
+          "source": "alireza",
+          "path": "engineering-team/skills/tech-stack-evaluator",
+          "plugin": "engineering-skills",
+          "role": "Choose between frameworks or platforms with TCO and ecosystem-health analysis"
+        }
       ]
     },
     {
       "id": "3-planning",
       "title": "Planning",
       "entries": [
-        { "skill": "writing-plans", "source": "superpowers", "path": "skills/writing-plans", "plugin": "superpowers", "role": "Turn a spec into an executable plan" },
-        { "skill": "senior-qa", "source": "alireza", "path": "engineering-team/skills/senior-qa", "plugin": "engineering-skills", "role": "Decide what to test and at which level" },
-        { "skill": "using-git-worktrees", "source": "superpowers", "path": "skills/using-git-worktrees", "plugin": "superpowers", "role": "Isolated workspace before implementing" }
+        {
+          "skill": "writing-plans",
+          "source": "superpowers",
+          "path": "skills/writing-plans",
+          "plugin": "superpowers",
+          "role": "Turn a spec into an executable plan"
+        },
+        {
+          "skill": "senior-qa",
+          "source": "alireza",
+          "path": "engineering-team/skills/senior-qa",
+          "plugin": "engineering-skills",
+          "role": "Decide what to test and at which level"
+        },
+        {
+          "skill": "using-git-worktrees",
+          "source": "superpowers",
+          "path": "skills/using-git-worktrees",
+          "plugin": "superpowers",
+          "role": "Isolated workspace before implementing"
+        }
       ]
     },
     {
       "id": "4-implementation",
       "title": "Implementation",
       "entries": [
-        { "skill": "test-driven-development", "source": "superpowers", "path": "skills/test-driven-development", "plugin": "superpowers", "role": "Red-green-refactor for every feature and bugfix" },
-        { "skill": "tdd-guide", "source": "alireza", "path": "engineering-team/skills/tdd-guide", "plugin": "engineering-skills", "role": "Alternative TDD walkthrough" },
-        { "skill": "executing-plans", "source": "superpowers", "path": "skills/executing-plans", "plugin": "superpowers", "role": "Work a written plan with review checkpoints" },
-        { "skill": "subagent-driven-development", "source": "superpowers", "path": "skills/subagent-driven-development", "plugin": "superpowers", "role": "Drive plan tasks through subagents" },
-        { "skill": "dispatching-parallel-agents", "source": "superpowers", "path": "skills/dispatching-parallel-agents", "plugin": "superpowers", "role": "Independent tasks in parallel" },
-        { "skill": "migration-architect", "source": "alireza", "path": "engineering/skills/migration-architect", "plugin": "engineering-advanced-skills", "role": "Schema and data migration sequencing" },
-        { "skill": "tech-debt-tracker", "source": "alireza", "path": "engineering/skills/tech-debt-tracker", "plugin": "engineering-advanced-skills", "role": "Track and prioritize restructuring work" },
-        { "skill": "mcp-builder", "source": "anthropic", "path": "skills/mcp-builder", "plugin": "example-skills", "role": "Build an MCP server" }
+        {
+          "skill": "test-driven-development",
+          "source": "superpowers",
+          "path": "skills/test-driven-development",
+          "plugin": "superpowers",
+          "role": "Red-green-refactor for every feature and bugfix"
+        },
+        {
+          "skill": "tdd-guide",
+          "source": "alireza",
+          "path": "engineering-team/skills/tdd-guide",
+          "plugin": "engineering-skills",
+          "role": "Alternative TDD walkthrough"
+        },
+        {
+          "skill": "executing-plans",
+          "source": "superpowers",
+          "path": "skills/executing-plans",
+          "plugin": "superpowers",
+          "role": "Work a written plan with review checkpoints"
+        },
+        {
+          "skill": "subagent-driven-development",
+          "source": "superpowers",
+          "path": "skills/subagent-driven-development",
+          "plugin": "superpowers",
+          "role": "Drive plan tasks through subagents"
+        },
+        {
+          "skill": "dispatching-parallel-agents",
+          "source": "superpowers",
+          "path": "skills/dispatching-parallel-agents",
+          "plugin": "superpowers",
+          "role": "Independent tasks in parallel"
+        },
+        {
+          "skill": "migration-architect",
+          "source": "alireza",
+          "path": "engineering/skills/migration-architect",
+          "plugin": "engineering-advanced-skills",
+          "role": "Schema and data migration sequencing"
+        },
+        {
+          "skill": "tech-debt-tracker",
+          "source": "alireza",
+          "path": "engineering/skills/tech-debt-tracker",
+          "plugin": "engineering-advanced-skills",
+          "role": "Track and prioritize restructuring work"
+        },
+        {
+          "skill": "mcp-builder",
+          "source": "anthropic",
+          "path": "skills/mcp-builder",
+          "plugin": "example-skills",
+          "role": "Build an MCP server"
+        },
+        {
+          "skill": "env-secrets-manager",
+          "source": "alireza",
+          "path": "engineering/skills/env-secrets-manager",
+          "plugin": "engineering-advanced-skills",
+          "role": "Environment-variable hygiene, secret handling, drift and rotation readiness"
+        }
       ]
     },
     {
       "id": "5-quality",
       "title": "Debugging and performance",
       "entries": [
-        { "skill": "systematic-debugging", "source": "superpowers", "path": "skills/systematic-debugging", "plugin": "superpowers", "role": "Any bug or test failure, before proposing fixes" },
-        { "skill": "performance-profiler", "source": "alireza", "path": "engineering/skills/performance-profiler", "plugin": "engineering-advanced-skills", "role": "Profile before optimizing" },
-        { "skill": "database-optimization", "source": "toolkit", "path": "skills/database-optimization", "plugin": null, "role": "Query and index tuning (command-based repo; see note)" },
-        { "skill": "ci-cd-pipeline-builder", "source": "alireza", "path": "engineering/skills/ci-cd-pipeline-builder", "plugin": "engineering-advanced-skills", "role": "Pipeline design and CI health" },
-        { "skill": "chaos-engineering", "source": "alireza", "path": "engineering/skills/chaos-engineering", "plugin": "engineering-advanced-skills", "role": "Fault injection and resilience testing" }
+        {
+          "skill": "systematic-debugging",
+          "source": "superpowers",
+          "path": "skills/systematic-debugging",
+          "plugin": "superpowers",
+          "role": "Any bug or test failure, before proposing fixes"
+        },
+        {
+          "skill": "performance-profiler",
+          "source": "alireza",
+          "path": "engineering/skills/performance-profiler",
+          "plugin": "engineering-advanced-skills",
+          "role": "Profile before optimizing"
+        },
+        {
+          "skill": "database-optimization",
+          "source": "toolkit",
+          "path": "skills/database-optimization",
+          "plugin": null,
+          "role": "Query and index tuning (command-based repo; see note)"
+        },
+        {
+          "skill": "ci-cd-pipeline-builder",
+          "source": "alireza",
+          "path": "engineering/skills/ci-cd-pipeline-builder",
+          "plugin": "engineering-advanced-skills",
+          "role": "Pipeline design and CI health"
+        },
+        {
+          "skill": "chaos-engineering",
+          "source": "alireza",
+          "path": "engineering/skills/chaos-engineering",
+          "plugin": "engineering-advanced-skills",
+          "role": "Fault injection and resilience testing"
+        }
       ]
     },
     {
       "id": "6-verification",
       "title": "Verification",
       "entries": [
-        { "skill": "verification-before-completion", "source": "superpowers", "path": "skills/verification-before-completion", "plugin": "superpowers", "role": "Evidence before claiming done" },
-        { "skill": "webapp-testing", "source": "anthropic", "path": "skills/webapp-testing", "plugin": "example-skills", "role": "Real-browser verification via Playwright" },
-        { "skill": "a11y-audit", "source": "alireza", "path": "engineering-team/a11y-audit/skills/a11y-audit", "plugin": "a11y-audit", "role": "WCAG 2.2 A/AA audit and remediation" }
+        {
+          "skill": "verification-before-completion",
+          "source": "superpowers",
+          "path": "skills/verification-before-completion",
+          "plugin": "superpowers",
+          "role": "Evidence before claiming done"
+        },
+        {
+          "skill": "webapp-testing",
+          "source": "anthropic",
+          "path": "skills/webapp-testing",
+          "plugin": "example-skills",
+          "role": "Real-browser verification via Playwright"
+        },
+        {
+          "skill": "a11y-audit",
+          "source": "alireza",
+          "path": "engineering-team/a11y-audit/skills/a11y-audit",
+          "plugin": "a11y-audit",
+          "role": "WCAG 2.2 A/AA audit and remediation"
+        }
       ]
     },
     {
       "id": "7-review",
       "title": "Review",
       "entries": [
-        { "skill": "requesting-code-review", "source": "superpowers", "path": "skills/requesting-code-review", "plugin": "superpowers", "role": "Get work checked before merging" },
-        { "skill": "receiving-code-review", "source": "superpowers", "path": "skills/receiving-code-review", "plugin": "superpowers", "role": "Assess feedback rigorously, not performatively" },
-        { "skill": "pr-review-expert", "source": "alireza", "path": "engineering/skills/pr-review-expert", "plugin": "engineering-advanced-skills", "role": "Structured PR review" },
-        { "skill": "senior-security", "source": "alireza", "path": "engineering-team/skills/senior-security", "plugin": "engineering-skills", "role": "Security audit of a change" },
-        { "skill": "security-guidance", "source": "alireza", "path": "engineering/security-guidance/skills/security-guidance", "plugin": "security-guidance", "role": "Secure-coding guidance during review" },
-        { "skill": "dependency-auditor", "source": "alireza", "path": "engineering/skills/dependency-auditor", "plugin": "engineering-advanced-skills", "role": "Dependency and advisory triage" }
+        {
+          "skill": "requesting-code-review",
+          "source": "superpowers",
+          "path": "skills/requesting-code-review",
+          "plugin": "superpowers",
+          "role": "Get work checked before merging"
+        },
+        {
+          "skill": "receiving-code-review",
+          "source": "superpowers",
+          "path": "skills/receiving-code-review",
+          "plugin": "superpowers",
+          "role": "Assess feedback rigorously, not performatively"
+        },
+        {
+          "skill": "pr-review-expert",
+          "source": "alireza",
+          "path": "engineering/skills/pr-review-expert",
+          "plugin": "engineering-advanced-skills",
+          "role": "Structured PR review"
+        },
+        {
+          "skill": "senior-security",
+          "source": "alireza",
+          "path": "engineering-team/skills/senior-security",
+          "plugin": "engineering-skills",
+          "role": "Security audit of a change"
+        },
+        {
+          "skill": "security-guidance",
+          "source": "alireza",
+          "path": "engineering/security-guidance/skills/security-guidance",
+          "plugin": "security-guidance",
+          "role": "Secure-coding guidance during review"
+        },
+        {
+          "skill": "dependency-auditor",
+          "source": "alireza",
+          "path": "engineering/skills/dependency-auditor",
+          "plugin": "engineering-advanced-skills",
+          "role": "Dependency and advisory triage"
+        },
+        {
+          "skill": "adversarial-reviewer",
+          "source": "alireza",
+          "path": "engineering-team/skills/adversarial-reviewer",
+          "plugin": "engineering-skills",
+          "role": "Deliberately critical review that breaks the self-review monoculture"
+        }
       ]
     },
     {
       "id": "8-release",
       "title": "Release",
       "entries": [
-        { "skill": "observability-designer", "source": "alireza", "path": "engineering/skills/observability-designer", "plugin": "engineering-advanced-skills", "role": "Logs, metrics, traces before shipping" },
-        { "skill": "slo-architect", "source": "alireza", "path": "engineering/skills/slo-architect", "plugin": "engineering-advanced-skills", "role": "SLOs, error budgets, alert thresholds" },
-        { "skill": "runbook-generator", "source": "alireza", "path": "engineering/skills/runbook-generator", "plugin": "engineering-advanced-skills", "role": "Operational runbooks for each alert" },
-        { "skill": "finishing-a-development-branch", "source": "superpowers", "path": "skills/finishing-a-development-branch", "plugin": "superpowers", "role": "Integrate completed work" },
-        { "skill": "ship-gate", "source": "alireza", "path": "engineering/skills/ship-gate", "plugin": "engineering-advanced-skills", "role": "Go/no-go release gate" },
-        { "skill": "changelog-generator", "source": "alireza", "path": "engineering/skills/changelog-generator", "plugin": "engineering-advanced-skills", "role": "Changelog and release notes" },
-        { "skill": "launch-readiness", "source": "pm", "path": "skills/launch-readiness", "plugin": "pm-delivery", "role": "Launch readiness checklist" }
+        {
+          "skill": "observability-designer",
+          "source": "alireza",
+          "path": "engineering/skills/observability-designer",
+          "plugin": "engineering-advanced-skills",
+          "role": "Logs, metrics, traces before shipping"
+        },
+        {
+          "skill": "slo-architect",
+          "source": "alireza",
+          "path": "engineering/skills/slo-architect",
+          "plugin": "engineering-advanced-skills",
+          "role": "SLOs, error budgets, alert thresholds"
+        },
+        {
+          "skill": "runbook-generator",
+          "source": "alireza",
+          "path": "engineering/skills/runbook-generator",
+          "plugin": "engineering-advanced-skills",
+          "role": "Operational runbooks for each alert"
+        },
+        {
+          "skill": "finishing-a-development-branch",
+          "source": "superpowers",
+          "path": "skills/finishing-a-development-branch",
+          "plugin": "superpowers",
+          "role": "Integrate completed work"
+        },
+        {
+          "skill": "ship-gate",
+          "source": "alireza",
+          "path": "engineering/skills/ship-gate",
+          "plugin": "engineering-advanced-skills",
+          "role": "Go/no-go release gate"
+        },
+        {
+          "skill": "changelog-generator",
+          "source": "alireza",
+          "path": "engineering/skills/changelog-generator",
+          "plugin": "engineering-advanced-skills",
+          "role": "Changelog and release notes"
+        },
+        {
+          "skill": "launch-readiness",
+          "source": "pm",
+          "path": "skills/launch-readiness",
+          "plugin": "pm-delivery",
+          "role": "Launch readiness checklist"
+        },
+        {
+          "skill": "feature-flags-architect",
+          "source": "alireza",
+          "path": "engineering/skills/feature-flags-architect",
+          "plugin": "engineering-advanced-skills",
+          "role": "Ship behind a flag: progressive rollout, kill switch, stale-flag debt"
+        }
       ]
     },
     {
       "id": "9-operations",
       "title": "Operations",
       "entries": [
-        { "skill": "incident-commander", "source": "alireza", "path": "engineering-team/skills/incident-commander", "plugin": "engineering-skills", "role": "Lead an active production incident" },
-        { "skill": "incident-response", "source": "alireza", "path": "engineering-team/skills/incident-response", "plugin": "engineering-skills", "role": "Security incident triage, severity, forensics (NIST SP 800-61)" },
-        { "skill": "incident-postmortem", "source": "pm", "path": "skills/incident-postmortem", "plugin": "pm-engineering", "role": "Blameless postmortem with action items" }
+        {
+          "skill": "incident-commander",
+          "source": "alireza",
+          "path": "engineering-team/skills/incident-commander",
+          "plugin": "engineering-skills",
+          "role": "Lead an active production incident"
+        },
+        {
+          "skill": "incident-response",
+          "source": "alireza",
+          "path": "engineering-team/skills/incident-response",
+          "plugin": "engineering-skills",
+          "role": "Security incident triage, severity, forensics (NIST SP 800-61)"
+        },
+        {
+          "skill": "incident-postmortem",
+          "source": "pm",
+          "path": "skills/incident-postmortem",
+          "plugin": "pm-engineering",
+          "role": "Blameless postmortem with action items"
+        }
       ]
     },
     {
       "id": "meta",
       "title": "Meta",
       "entries": [
-        { "skill": "skill-creator", "source": "anthropic", "path": "skills/skill-creator", "plugin": "example-skills", "role": "Create, edit, and evaluate skills" }
+        {
+          "skill": "skill-creator",
+          "source": "anthropic",
+          "path": "skills/skill-creator",
+          "plugin": "example-skills",
+          "role": "Create, edit, and evaluate skills"
+        }
       ]
     }
   ]

@@ -11,7 +11,7 @@ copied into this repository.**
 |---|---|---|---|---|
 | [`obra/superpowers`](https://github.com/obra/superpowers) | 285.6k | MIT | Agent Skills | 12 |
 | [`anthropics/skills`](https://github.com/anthropics/skills) | 175.9k | Apache-2.0 | Agent Skills | 4 |
-| [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) | 25.9k | MIT | Agent Skills | 24 |
+| [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) | 25.9k | MIT | Agent Skills | 28 |
 | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills) | 1.4k | MIT | Agent Skills | 5 |
 | [`rohitg00/awesome-claude-code-toolkit`](https://github.com/rohitg00/awesome-claude-code-toolkit) | 2.6k | Apache-2.0 | slash commands + agents (NOT Agent Skills) | 1 |
 
@@ -78,6 +78,7 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 | `database-schema-designer` | Data model design | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/database-schema-designer) | `engineering-advanced-skills` |
 | `threat-model` | Identify threats and mitigations at design time | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/threat-model) | `pm-security` |
 | `frontend-design` | Deliberate visual direction for a UI | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/frontend-design) | `example-skills` |
+| `tech-stack-evaluator` | Choose between frameworks or platforms with TCO and ecosystem-health analysis | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/tech-stack-evaluator) | `engineering-skills` |
 
 ### Planning
 
@@ -99,6 +100,7 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 | `migration-architect` | Schema and data migration sequencing | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/migration-architect) | `engineering-advanced-skills` |
 | `tech-debt-tracker` | Track and prioritize restructuring work | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/tech-debt-tracker) | `engineering-advanced-skills` |
 | `mcp-builder` | Build an MCP server | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/mcp-builder) | `example-skills` |
+| `env-secrets-manager` | Environment-variable hygiene, secret handling, drift and rotation readiness | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/env-secrets-manager) | `engineering-advanced-skills` |
 
 ### Debugging and performance
 
@@ -128,6 +130,7 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 | `senior-security` | Security audit of a change | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/senior-security) | `engineering-skills` |
 | `security-guidance` | Secure-coding guidance during review | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/security-guidance/skills/security-guidance) | `security-guidance` |
 | `dependency-auditor` | Dependency and advisory triage | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/dependency-auditor) | `engineering-advanced-skills` |
+| `adversarial-reviewer` | Deliberately critical review that breaks the self-review monoculture | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/adversarial-reviewer) | `engineering-skills` |
 
 ### Release
 
@@ -140,6 +143,7 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 | `ship-gate` | Go/no-go release gate | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/ship-gate) | `engineering-advanced-skills` |
 | `changelog-generator` | Changelog and release notes | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/changelog-generator) | `engineering-advanced-skills` |
 | `launch-readiness` | Launch readiness checklist | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/launch-readiness) | `pm-delivery` |
+| `feature-flags-architect` | Ship behind a flag: progressive rollout, kill switch, stale-flag debt | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/feature-flags-architect) | `engineering-advanced-skills` |
 
 ### Operations
 
@@ -157,15 +161,23 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 
 ## Known thin spots
 
-Stated plainly rather than papered over. Two phases are covered less well by the
-community collections than the rest:
+Stated plainly rather than papered over.
 
-- **Behavior-preserving refactoring** — `tech-debt-tracker` tracks debt but does not
-  walk a safe refactor. `rohitg00/awesome-claude-code-toolkit` ships a
-  `refactor-engine` plugin, but as slash commands rather than a Skill.
-- **Flaky-test diagnosis** — `ci-cd-pipeline-builder` builds pipelines; it does not
-  diagnose intermittent failures. The toolkit's `ci-debugger` is likewise a command.
+**Behavior-preserving refactoring** is the one phase with no strong Skill-format option.
+`superpowers:test-driven-development` has a REFACTOR step, but it is scoped to tidying
+code you have just written while tests are green; `tech-debt-tracker` tracks debt
+without walking a safe restructure. Neither covers reshaping existing code that no test
+pins. `rohitg00/awesome-claude-code-toolkit` ships a `refactor-engine`, but as slash
+commands rather than a Skill. The `development-lifecycle` router states the two
+operating rules inline so the phase is not silently skipped.
 
-The `development-lifecycle` skill states the operating rule for both cases inline, so
-the phase is not silently skipped. If a good Skill-format option appears upstream, it
-belongs in `catalog.json` — not reimplemented here.
+**Flaky-test diagnosis is better covered than it first appears**, and an earlier version
+of this catalog wrongly listed it as a gap. `superpowers:systematic-debugging` bundles
+`condition-based-waiting.md` (115 lines), dedicated to the largest single cause: tests
+that guess at timing with `sleep`/`setTimeout` and therefore pass locally but fail under
+load or in CI. It does not cover test ordering and shared state, unseeded randomness,
+unordered collection comparison, or local-versus-CI environment differences; the router
+carries the rule for those.
+
+If a good Skill-format option appears upstream for either, it belongs in
+`catalog.json` — not reimplemented here.
