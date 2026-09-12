@@ -1,0 +1,30 @@
+name: validate
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Upstream pins are external dependencies; check weekly that they still resolve.
+    - cron: "0 6 * * 1"
+
+jobs:
+  skills:
+    name: Skill spec conformance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate SKILL.md frontmatter, naming, and router coverage
+        run: python3 scripts/validate-skills.py
+
+  upstream:
+    name: Upstream pins resolve
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify pinned upstream refs
+        run: ./scripts/check-upstream.sh

@@ -1,0 +1,19 @@
+{
+  "name": "dev-lifecycle",
+  "displayName": "Development Lifecycle",
+  "version": "0.1.0",
+  "description": "Stack-agnostic best-practice skills spanning requirements definition through production operations, designed to compose with the superpowers and Anthropic example skill collections.",
+  "author": {
+    "name": "yuusakuri",
+    "url": "https://github.com/yuusakuri"
+  },
+  "homepage": "https://github.com/yuusakuri/dev-skills",
+  "repository": "https://github.com/yuusakuri/dev-skills",
+  "license": "MIT",
+  "keywords": [
+    "sdlc", "requirements", "architecture", "adr", "api-design",
+    "threat-modeling", "testing", "refactoring", "migration",
+    "performance", "security", "observability", "release",
+    "incident-response", "postmortem", "accessibility"
+  ]
+}

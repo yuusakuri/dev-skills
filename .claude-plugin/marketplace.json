@@ -1,0 +1,65 @@
+{
+  "name": "dev-skills",
+  "owner": {
+    "name": "yuusakuri",
+    "url": "https://github.com/yuusakuri"
+  },
+  "metadata": {
+    "description": "Best-practice Agent Skills covering the whole software lifecycle, for any product and any stack",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "dev-lifecycle",
+      "source": "./plugins/dev-lifecycle",
+      "displayName": "Development Lifecycle",
+      "description": "Stack-agnostic skills for the lifecycle phases upstream collections do not cover: requirements, architecture decisions, API contracts, threat modeling, test strategy, refactoring, data migrations, performance, security review, dependency upgrades, observability, CI health, release, incident response, postmortems, and accessibility",
+      "version": "0.1.0",
+      "author": { "name": "yuusakuri" },
+      "homepage": "https://github.com/yuusakuri/dev-skills",
+      "repository": "https://github.com/yuusakuri/dev-skills",
+      "license": "MIT",
+      "category": "workflow",
+      "keywords": ["sdlc", "requirements", "architecture", "review", "release", "operations"]
+    },
+    {
+      "name": "superpowers",
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers",
+        "ref": "v6.3.0"
+      },
+      "displayName": "Superpowers (upstream)",
+      "description": "Jesse Vincent's agentic development methodology: brainstorming, planning, TDD, systematic debugging, code review, and branch integration. Installed under the name 'superpowers' so its internal superpowers:<skill> references resolve.",
+      "author": { "name": "Jesse Vincent" },
+      "homepage": "https://github.com/obra/superpowers",
+      "repository": "https://github.com/obra/superpowers",
+      "license": "MIT",
+      "category": "workflow",
+      "keywords": ["tdd", "debugging", "planning", "code-review"]
+    },
+    {
+      "name": "example-skills",
+      "source": {
+        "source": "github",
+        "repo": "anthropics/skills",
+        "ref": "34040c9c568585f6929bedeaad110ad08f079624"
+      },
+      "strict": false,
+      "skills": [
+        "./skills/skill-creator",
+        "./skills/mcp-builder",
+        "./skills/webapp-testing",
+        "./skills/frontend-design"
+      ],
+      "displayName": "Anthropic Example Skills (upstream subset)",
+      "description": "The development-relevant subset of Anthropic's example skills: skill authoring, MCP server construction, Playwright-driven web app testing, and frontend visual design. Apache-2.0 skills only; the source-available document skills are deliberately excluded.",
+      "author": { "name": "Anthropic" },
+      "homepage": "https://github.com/anthropics/skills",
+      "repository": "https://github.com/anthropics/skills",
+      "license": "Apache-2.0",
+      "category": "workflow",
+      "keywords": ["skills", "mcp", "testing", "frontend"]
+    }
+  ]
+}
