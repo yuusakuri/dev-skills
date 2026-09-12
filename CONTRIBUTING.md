@@ -1,67 +1,57 @@
 # Contributing
 
-## The bar for a new skill
+This repository is a **curation**. The default contribution is an edit to
+[`catalog.json`](catalog.json), not a new skill.
 
-A skill belongs here only if it passes all five:
+## Adding a skill to the curation
 
-1. **It covers a real lifecycle phase gap.** If `obra/superpowers` or
-   `anthropics/skills` already covers it competently, reference theirs instead —
-   composing beats writing a worse duplicate.
-2. **It is stack-agnostic.** No required framework, cloud, or vendor. A skill that only
-   works for one ecosystem belongs in that ecosystem's own collection.
-3. **It has a distinct trigger.** The `description` must state *when* to use it, in
-   terms that do not collide with an existing skill's trigger. Overlapping triggers are
-   worse than a missing skill: the agent picks unpredictably between them.
-4. **It encodes judgment, not documentation.** Restating what a tool's manual already
-   says adds nothing. The value is in the decision rules, the ordering, and the
-   failure modes.
-5. **It names its red flags.** The "Red flags" section is where most of the practical
-   value lives — the symptoms that mean the practice is being done wrong.
+1. It must be an existing, publicly published skill in a maintained repository with a
+   clear permissive licence.
+2. It must fill a phase gap, or beat an incumbent clearly enough to replace it. Two
+   skills matching the same request is a routing hazard — the agent picks between them
+   unpredictably.
+3. Add the entry to `catalog.json` with the upstream `repo`, a **40-character commit
+   SHA** as `ref`, the `path` to the skill directory, the install `plugin`, and a
+   one-line `role`.
+4. Add it to the phase map in `development-lifecycle/SKILL.md`. The validator fails the
+   build if a catalog entry is not routed to.
+5. Regenerate the docs and run the checks (below).
 
-## Conventions
+## Writing a new skill here — the bar
 
-Every `SKILL.md` in this repository:
+Prefer curating over authoring, and prefer contributing a skill upstream over hosting it
+here. A new skill in this repository needs all of:
 
-- lives at `plugins/dev-lifecycle/skills/<name>/SKILL.md`, with `name` in frontmatter
-  matching the directory exactly
-- has a `description` that begins with the trigger ("Use when…", "Use before…")
-- carries `license: MIT` and a `metadata.phase` from the known phase list
-- stays under 500 lines; longer material moves to `references/`
-- opens with a **core principle** stating the one idea the skill exists to enforce
-- closes with **red flags**
+1. **No existing published skill covers it.** Search the ecosystem first — the awesome
+   lists, the sources in `catalog.json`, and Claude Code's plugin directory. This
+   repository previously shipped 18 hand-written skills that all turned out to have
+   established equivalents; they were removed.
+2. **It is stack-agnostic.** No required framework, cloud, or vendor.
+3. **It has a distinct trigger** that does not collide with a curated skill's.
+4. **It encodes judgment, not documentation.**
 
-## Required when adding a skill
-
-1. Add the skill directory and `SKILL.md`.
-2. **Add it to the phase map in `development-lifecycle/SKILL.md`.** The validator fails
-   the build if a skill is not routed to — an unrouted skill is one the agent will
-   rarely find.
-3. Add it to the catalog in `docs/catalog.md` and the table in `README.md`.
-4. Run the checks.
+The `development-lifecycle` router is the one skill hosted here, because a routing map
+over a specific curation cannot live upstream.
 
 ## Checks
 
 ```bash
-python3 scripts/validate-skills.py   # frontmatter, naming, phases, router coverage
-./scripts/check-upstream.sh          # pinned upstream refs still resolve
+python3 scripts/verify-catalog.py   # every curated ref resolves at its pinned commit
+python3 scripts/validate-skills.py  # spec conformance + router covers every entry
+./scripts/check-upstream.sh         # pins are immutable commits, tags still agree
 ```
 
-Both run in CI. The validator is deliberately strict about frontmatter: a malformed
-`SKILL.md` does not fail loudly at runtime, it just silently never triggers.
+All three run in CI, and weekly on a schedule so upstream drift surfaces as a failing
+build rather than a silently wrong map.
 
-## Changing upstream pins
+## Regenerating the docs
 
-See the last section of [NOTICE.md](NOTICE.md). Upstream skill names appear in this
-repository's routing table, so check the upstream changelog for renames before bumping.
+`docs/catalog.md` and `NOTICE.md` are generated from `catalog.json`. Do not hand-edit
+them; change the catalog and regenerate, so the map and its documentation cannot
+disagree.
 
-## Writing style
+## Updating a pin
 
-Skills are read by agents under context pressure. Prefer:
-
-- imperative instructions over description
-- tables and checklists over paragraphs
-- concrete thresholds over adjectives ("p95 under 300 ms", not "fast")
-- one idea per section, with the reason it matters stated once
-
-Avoid restating general knowledge the model already has. Write down the things teams
-get wrong repeatedly.
+Edit the `ref` in `catalog.json`, then run all three checks. Review the upstream
+changelog first: upstream skill *names* are part of the routing table, so a rename
+breaks the router. `verify-catalog.py` catches exactly that.

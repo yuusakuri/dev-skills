@@ -1,39 +1,32 @@
-# Adopting these skills
+# Adopting this curation
 
-## In Claude Code (recommended)
+## In Claude Code
 
-```bash
-/plugin marketplace add yuusakuri/dev-skills
-/plugin install dev-lifecycle@dev-skills
-/plugin install superpowers@dev-skills
-/plugin install example-skills@dev-skills
-```
+Install the router, then the upstream marketplaces it routes to — the full command list
+is in [README](../README.md#install) and per-phase targets in [catalog.md](catalog.md).
 
-Skills trigger on their descriptions, so in normal use you do not invoke them by name —
-describing the task is enough. Naming one explicitly ("use requirements-definition")
-always works and is useful when you want a specific phase.
+Skills trigger on their descriptions, so in normal use you describe the task rather
+than naming a skill. Naming one explicitly always works.
 
 ## In another agent runtime
 
-The skills are plain [Agent Skills](https://agentskills.io/specification) directories:
-a folder with a `SKILL.md` carrying YAML frontmatter. Any runtime implementing the
-format can use them.
+The upstream skills are plain [Agent Skills](https://agentskills.io/specification)
+directories. Clone each upstream repository **at the ref pinned in
+[`catalog.json`](../catalog.json)** and copy the skill directories you want:
 
 ```bash
-git clone https://github.com/yuusakuri/dev-skills
-cp -r dev-skills/plugins/dev-lifecycle/skills/* <your-skills-directory>/
+git clone https://github.com/obra/superpowers
+git -C superpowers checkout b36e0829c6d0140e93cfef2ca599b1b07d4a7797
+cp -r superpowers/skills/test-driven-development <your-skills-dir>/
 ```
 
-For the upstream collections, clone them from their own repositories at the refs pinned
-in `.claude-plugin/marketplace.json` — do not copy them out of a third party.
-
-If your runtime does not support the `plugin:skill` reference form, the
-`development-lifecycle` router's upstream references (`superpowers:brainstorming`) still
-read correctly as names; only the automatic resolution differs.
+Take upstream skills from their own repositories, never from a third party's copy —
+that is the whole point of the pinning. `scripts/verify-catalog.py` prints every
+repository, ref, and path.
 
 ## Making it stick in a project
 
-Installing skills makes them *available*. Three things make them *used*:
+Installing skills makes them *available*. Three things make them *used*.
 
 ### 1. Point at the router from the project's agent instructions
 
@@ -44,8 +37,8 @@ In your `CLAUDE.md` or `AGENTS.md`:
 
 Start with the `development-lifecycle` skill to identify the phase and the skill that
 owns it. Scale the process to the change: trivial fixes go straight to implementation
-and verification; anything touching <the risky areas of this project> requires a
-threat model and an ADR.
+and verification; anything touching <the risky areas of this project> requires a threat
+model and an ADR.
 
 Project specifics that override general practice:
 - Test command: <command>
@@ -53,50 +46,55 @@ Project specifics that override general practice:
 - Decisions live in: docs/decisions/
 ```
 
-The last block matters most. These skills are deliberately stack-agnostic; your
+The last block matters most. The curated skills are deliberately general; your
 `CLAUDE.md` is where the stack-specific truth goes, and it takes precedence.
 
 ### 2. Create the directories the skills write into
 
-Several skills produce artifacts that belong in the repository rather than in a chat
-log. Create them so there is an obvious place to put things:
+Several skills produce artifacts that belong in the repository rather than a chat log:
 
 ```
-docs/requirements/   # requirements-definition
-docs/decisions/      # architecture-decision-records (ADR NNNN-slug.md)
-docs/security/       # threat-modeling
-docs/postmortems/    # postmortem
+docs/requirements/   # prd-template
+docs/decisions/      # architecture-decision-record
+docs/security/       # threat-model
+docs/postmortems/    # incident-postmortem
+docs/runbooks/       # runbook-generator
 ```
 
-A skill that has nowhere to write its artifact produces a message that scrolls away.
+A skill with nowhere to write its artifact produces a message that scrolls away.
 
 ### 3. Adopt incrementally
 
 Do not mandate all ten phases on day one; it will be abandoned. A workable order:
 
-1. **`superpowers:verification-before-completion` and `test-driven-development`** —
-   these change day-to-day quality immediately and need no process agreement
-2. **`codebase-orientation` and `superpowers:brainstorming`** — cheap, and they cut the
-   rework that comes from starting in the wrong place
-3. **`requirements-definition` and `architecture-decision-records`** — the first two
-   that need team agreement, because they produce artifacts others must read
-4. **`release-management`, `observability-instrumentation`, `incident-response`,
-   `postmortem`** — when the project has users whose downtime matters
-5. **`threat-modeling`, `security-review`, `accessibility-review`** — before the first
-   release that handles real user data or faces the public
+1. **`superpowers:verification-before-completion`** and **`test-driven-development`** —
+   immediate effect on quality, no team agreement needed
+2. **`codebase-onboarding`** and **`superpowers:brainstorming`** — cheap, and they cut
+   the rework that comes from starting in the wrong place
+3. **`prd-template`** and **`architecture-decision-record`** — the first two needing
+   team agreement, because they produce artifacts others must read
+4. **`ship-gate`, `observability-designer`, `incident-commander`, `incident-postmortem`**
+   — once the project has users whose downtime matters
+5. **`threat-model`, `senior-security`, `a11y-audit`** — before the first release that
+   handles real user data or faces the public
 
-## Customizing
+## Choosing between overlapping skills
 
-Fork, or keep this as an upstream and add a project-specific plugin alongside it. Two
-rules keep customization from degrading routing:
+Curating five collections means some phases have more than one option. Where that
+happens the router lists both; pick on this basis:
 
-- **Do not duplicate a trigger.** Two skills whose descriptions match the same request
-  get chosen between unpredictably. Narrow one, or replace rather than add.
-- **Keep project specifics in project files.** A skill that hardcodes your CI provider
-  stops being reusable and starts being documentation with extra steps.
+| Overlap | Guidance |
+|---|---|
+| `superpowers:test-driven-development` vs `tdd-guide` | Superpowers' is stricter about watching the test fail; `tdd-guide` is a gentler walkthrough. Pick one per team and stay with it. |
+| `superpowers:requesting-code-review` vs `pr-review-expert` | The former is about *asking* well; the latter is a structured reviewing pass. |
+| `incident-commander` vs `incident-response` | Outage versus security event. Different playbooks — do not substitute one. |
+| `senior-security` vs `security-guidance` | Audit of a change versus guidance while writing it. |
+
+Two skills that match the same request are a routing hazard; if your team settles on
+one, disable the other rather than leaving the choice to chance.
 
 ## Verifying an install
 
-Ask the agent: *"Which skill covers deciding what to test and at which level?"* It
-should answer `test-strategy`. If it cannot, the skills are not loaded — check that the
-plugin is enabled and that the session was restarted.
+Ask the agent: *"Which skill covers deciding whether to ship a release?"* It should
+answer `ship-gate` (or `launch-readiness`). If it cannot, the skills are not loaded —
+check the plugin is enabled and the session was restarted.

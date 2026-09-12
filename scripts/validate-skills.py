@@ -169,17 +169,21 @@ def main() -> int:
     for d in skill_dirs:
         all_errors.extend(validate(d))
 
-    # The router must list every skill in the collection, or routing silently misses one.
+    # The router must name every curated skill, or the curation silently loses one.
     router = SKILLS_DIR / "development-lifecycle" / "SKILL.md"
-    if router.is_file():
+    catalog_path = ROOT / "catalog.json"
+    if router.is_file() and catalog_path.is_file():
         router_text = router.read_text(encoding="utf-8")
-        for d in skill_dirs:
-            if d.name == "development-lifecycle":
-                continue
-            if f"`{d.name}`" not in router_text:
-                all_errors.append(
-                    f"development-lifecycle: does not route to '{d.name}' — add it to the phase map"
-                )
+        catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+        for phase in catalog["phases"]:
+            for entry in phase["entries"]:
+                name = entry["skill"]
+                # Accept the bare name or any plugin-qualified form of it.
+                if f"`{name}`" not in router_text and f":{name}`" not in router_text:
+                    all_errors.append(
+                        f"development-lifecycle: does not route to curated skill "
+                        f"'{name}' ({entry['source']}) — add it to the phase map"
+                    )
 
     # Manifests must be parseable, and the marketplace must point at the plugin.
     for manifest in (
