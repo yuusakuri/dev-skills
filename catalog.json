@@ -58,6 +58,18 @@
       "marketplace_add": "/plugin marketplace add rohitg00/awesome-claude-code-toolkit",
       "install": "/plugin install adr-writer@claude-code-toolkit",
       "namespace": "n/a"
+    },
+    "addyosmani": {
+      "repo": "addyosmani/agent-skills",
+      "ref": "be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39",
+      "license": "MIT",
+      "author": "Addy Osmani",
+      "stars": "93.8k",
+      "format": "Agent Skills",
+      "note": "Production-grade engineering skills. Referenced at upstream HEAD rather than through any mirror, because vendored copies of it in the wild are already several revisions behind.",
+      "marketplace_add": "/plugin marketplace add addyosmani/agent-skills",
+      "install": "/plugin install agent-skills@agent-skills  # confirm the plugin name from the repo README",
+      "namespace": "agent-skills"
     }
   },
   "phases": [
@@ -153,6 +165,13 @@
           "path": "engineering-team/skills/tech-stack-evaluator",
           "plugin": "engineering-skills",
           "role": "Choose between frameworks or platforms with TCO and ecosystem-health analysis"
+        },
+        {
+          "skill": "documentation-and-adrs",
+          "source": "addyosmani",
+          "path": "skills/documentation-and-adrs",
+          "plugin": "agent-skills",
+          "role": "Record decisions and write the docs a future maintainer needs"
         }
       ]
     },
@@ -180,6 +199,13 @@
           "path": "skills/using-git-worktrees",
           "plugin": "superpowers",
           "role": "Isolated workspace before implementing"
+        },
+        {
+          "skill": "constraint-driven-development",
+          "source": "addyosmani",
+          "path": "skills/constraint-driven-development",
+          "plugin": "agent-skills",
+          "role": "Write the quality bar as a contract, and catch an agent quietly lowering it"
         }
       ]
     },
@@ -249,6 +275,27 @@
           "path": "engineering/skills/env-secrets-manager",
           "plugin": "engineering-advanced-skills",
           "role": "Environment-variable hygiene, secret handling, drift and rotation readiness"
+        },
+        {
+          "skill": "security-and-hardening",
+          "source": "addyosmani",
+          "path": "skills/security-and-hardening",
+          "plugin": "agent-skills",
+          "role": "Write secure code as you go: input handling, authN/Z, storage, integrations"
+        },
+        {
+          "skill": "code-simplification",
+          "source": "addyosmani",
+          "path": "skills/code-simplification",
+          "plugin": "agent-skills",
+          "role": "Refactor for clarity with behavior preserved exactly, separate from feature work"
+        },
+        {
+          "skill": "source-driven-development",
+          "source": "addyosmani",
+          "path": "skills/source-driven-development",
+          "plugin": "agent-skills",
+          "role": "Ground implementation decisions in official docs instead of recalled patterns"
         }
       ]
     },
@@ -264,13 +311,6 @@
           "role": "Any bug or test failure, before proposing fixes"
         },
         {
-          "skill": "performance-profiler",
-          "source": "alireza",
-          "path": "engineering/skills/performance-profiler",
-          "plugin": "engineering-advanced-skills",
-          "role": "Profile before optimizing"
-        },
-        {
           "skill": "database-optimization",
           "source": "toolkit",
           "path": "skills/database-optimization",
@@ -278,18 +318,25 @@
           "role": "Query and index tuning (command-based repo; see note)"
         },
         {
-          "skill": "ci-cd-pipeline-builder",
-          "source": "alireza",
-          "path": "engineering/skills/ci-cd-pipeline-builder",
-          "plugin": "engineering-advanced-skills",
-          "role": "Pipeline design and CI health"
-        },
-        {
           "skill": "chaos-engineering",
           "source": "alireza",
           "path": "engineering/skills/chaos-engineering",
           "plugin": "engineering-advanced-skills",
           "role": "Fault injection and resilience testing"
+        },
+        {
+          "skill": "performance-optimization",
+          "source": "addyosmani",
+          "path": "skills/performance-optimization",
+          "plugin": "agent-skills",
+          "role": "Measure-first performance work: profile, find the real bottleneck, prove the gain"
+        },
+        {
+          "skill": "ci-cd-and-automation",
+          "source": "addyosmani",
+          "path": "skills/ci-cd-and-automation",
+          "plugin": "agent-skills",
+          "role": "Pipeline design, caching, and keeping the build trustworthy"
         }
       ]
     },
@@ -434,6 +481,13 @@
           "path": "engineering/skills/feature-flags-architect",
           "plugin": "engineering-advanced-skills",
           "role": "Ship behind a flag: progressive rollout, kill switch, stale-flag debt"
+        },
+        {
+          "skill": "deprecation-and-migration",
+          "source": "addyosmani",
+          "path": "skills/deprecation-and-migration",
+          "plugin": "agent-skills",
+          "role": "Retire an API, feature, or system and move users off it safely"
         }
       ]
     },
@@ -474,6 +528,13 @@
           "path": "skills/skill-creator",
           "plugin": "example-skills",
           "role": "Create, edit, and evaluate skills"
+        },
+        {
+          "skill": "context-engineering",
+          "source": "addyosmani",
+          "path": "skills/context-engineering",
+          "plugin": "agent-skills",
+          "role": "Set up and maintain the agent's context when output quality degrades"
         }
       ]
     }

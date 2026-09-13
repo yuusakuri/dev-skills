@@ -11,9 +11,10 @@ copied into this repository.**
 |---|---|---|---|---|
 | [`obra/superpowers`](https://github.com/obra/superpowers) | 285.6k | MIT | Agent Skills | 12 |
 | [`anthropics/skills`](https://github.com/anthropics/skills) | 175.9k | Apache-2.0 | Agent Skills | 4 |
-| [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) | 25.9k | MIT | Agent Skills | 28 |
-| [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills) | 1.4k | MIT | Agent Skills | 5 |
+| [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) | 93.8k | MIT | Agent Skills | 9 |
+| [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) | 25.9k | MIT | Agent Skills | 26 |
 | [`rohitg00/awesome-claude-code-toolkit`](https://github.com/rohitg00/awesome-claude-code-toolkit) | 2.6k | Apache-2.0 | slash commands + agents (NOT Agent Skills) | 1 |
+| [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills) | 1.4k | MIT | Agent Skills | 5 |
 
 ### Pinned refs
 
@@ -24,6 +25,8 @@ copied into this repository.**
   - *Listed in Anthropic's official plugin directory*
 - **rohitg00/awesome-claude-code-toolkit** — `ebdf1d596d2cde5c5cceb32177e8d1cf4829e7d9`
   - *Its marketplace exposes command-based plugins; the repo's own skills/ directory is not listed as an installable plugin. Referenced only as an optional supplement.*
+- **addyosmani/agent-skills** — `be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39`
+  - *Production-grade engineering skills. Referenced at upstream HEAD rather than through any mirror, because vendored copies of it in the wild are already several revisions behind.*
 
 ### Install
 
@@ -49,6 +52,10 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 # rohitg00/awesome-claude-code-toolkit  (Apache-2.0)
 /plugin marketplace add rohitg00/awesome-claude-code-toolkit
 /plugin install adr-writer@claude-code-toolkit
+
+# addyosmani/agent-skills  (MIT)
+/plugin marketplace add addyosmani/agent-skills
+/plugin install agent-skills@agent-skills  # confirm the plugin name from the repo README
 
 ```
 
@@ -79,6 +86,7 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 | `threat-model` | Identify threats and mitigations at design time | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/threat-model) | `pm-security` |
 | `frontend-design` | Deliberate visual direction for a UI | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/frontend-design) | `example-skills` |
 | `tech-stack-evaluator` | Choose between frameworks or platforms with TCO and ecosystem-health analysis | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/tech-stack-evaluator) | `engineering-skills` |
+| `documentation-and-adrs` | Record decisions and write the docs a future maintainer needs | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/documentation-and-adrs) | `agent-skills` |
 
 ### Planning
 
@@ -87,6 +95,7 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 | `writing-plans` | Turn a spec into an executable plan | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/writing-plans) | `superpowers` |
 | `senior-qa` | Decide what to test and at which level | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/senior-qa) | `engineering-skills` |
 | `using-git-worktrees` | Isolated workspace before implementing | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/using-git-worktrees) | `superpowers` |
+| `constraint-driven-development` | Write the quality bar as a contract, and catch an agent quietly lowering it | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/constraint-driven-development) | `agent-skills` |
 
 ### Implementation
 
@@ -101,16 +110,19 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 | `tech-debt-tracker` | Track and prioritize restructuring work | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/tech-debt-tracker) | `engineering-advanced-skills` |
 | `mcp-builder` | Build an MCP server | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/mcp-builder) | `example-skills` |
 | `env-secrets-manager` | Environment-variable hygiene, secret handling, drift and rotation readiness | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/env-secrets-manager) | `engineering-advanced-skills` |
+| `security-and-hardening` | Write secure code as you go: input handling, authN/Z, storage, integrations | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/security-and-hardening) | `agent-skills` |
+| `code-simplification` | Refactor for clarity with behavior preserved exactly, separate from feature work | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/code-simplification) | `agent-skills` |
+| `source-driven-development` | Ground implementation decisions in official docs instead of recalled patterns | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/source-driven-development) | `agent-skills` |
 
 ### Debugging and performance
 
 | Skill | Role | Source | Install plugin |
 |---|---|---|---|
 | `systematic-debugging` | Any bug or test failure, before proposing fixes | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/systematic-debugging) | `superpowers` |
-| `performance-profiler` | Profile before optimizing | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/performance-profiler) | `engineering-advanced-skills` |
 | `database-optimization` | Query and index tuning (command-based repo; see note) | [`rohitg00/awesome-claude-code-toolkit`](https://github.com/rohitg00/awesome-claude-code-toolkit/tree/ebdf1d596d2cde5c5cceb32177e8d1cf4829e7d9/skills/database-optimization) | — |
-| `ci-cd-pipeline-builder` | Pipeline design and CI health | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/ci-cd-pipeline-builder) | `engineering-advanced-skills` |
 | `chaos-engineering` | Fault injection and resilience testing | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/chaos-engineering) | `engineering-advanced-skills` |
+| `performance-optimization` | Measure-first performance work: profile, find the real bottleneck, prove the gain | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/performance-optimization) | `agent-skills` |
+| `ci-cd-and-automation` | Pipeline design, caching, and keeping the build trustworthy | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/ci-cd-and-automation) | `agent-skills` |
 
 ### Verification
 
@@ -144,6 +156,7 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 | `changelog-generator` | Changelog and release notes | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/changelog-generator) | `engineering-advanced-skills` |
 | `launch-readiness` | Launch readiness checklist | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/launch-readiness) | `pm-delivery` |
 | `feature-flags-architect` | Ship behind a flag: progressive rollout, kill switch, stale-flag debt | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/feature-flags-architect) | `engineering-advanced-skills` |
+| `deprecation-and-migration` | Retire an API, feature, or system and move users off it safely | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/deprecation-and-migration) | `agent-skills` |
 
 ### Operations
 
@@ -158,26 +171,34 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 | Skill | Role | Source | Install plugin |
 |---|---|---|---|
 | `skill-creator` | Create, edit, and evaluate skills | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/skill-creator) | `example-skills` |
+| `context-engineering` | Set up and maintain the agent's context when output quality degrades | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/context-engineering) | `agent-skills` |
 
-## Known thin spots
+## Selection notes
 
-Stated plainly rather than papered over.
+Curation decisions that are not obvious from the table.
 
-**Behavior-preserving refactoring** is the one phase with no strong Skill-format option.
-`superpowers:test-driven-development` has a REFACTOR step, but it is scoped to tidying
-code you have just written while tests are green; `tech-debt-tracker` tracks debt
-without walking a safe restructure. Neither covers reshaping existing code that no test
-pins. `rohitg00/awesome-claude-code-toolkit` ships a `refactor-engine`, but as slash
-commands rather than a Skill. The `development-lifecycle` router states the two
-operating rules inline so the phase is not silently skipped.
+**Why `addyosmani/agent-skills` is referenced at upstream HEAD, not through a mirror.**
+Several catalogs in this ecosystem vendor copies of it. Copies drift: one widely used
+mirror is pinned several revisions behind, and its copy of `security-and-hardening` is
+missing roughly 57 lines present upstream. Referencing the origin keeps the security
+content current and the attribution direct.
 
-**Flaky-test diagnosis is better covered than it first appears**, and an earlier version
-of this catalog wrongly listed it as a gap. `superpowers:systematic-debugging` bundles
-`condition-based-waiting.md` (115 lines), dedicated to the largest single cause: tests
-that guess at timing with `sleep`/`setTimeout` and therefore pass locally but fail under
-load or in CI. It does not cover test ordering and shared state, unseeded randomness,
-unordered collection comparison, or local-versus-CI environment differences; the router
-carries the rule for those.
+**Two entries were replaced on measured substance, not preference.**
 
-If a good Skill-format option appears upstream for either, it belongs in
-`catalog.json` — not reimplemented here.
+| Replaced | Size | Replacement | Size |
+|---|---|---|---|
+| `performance-profiler` | 2.7 KB | `performance-optimization` | 21.7 KB |
+| `ci-cd-pipeline-builder` | 3.2 KB | `ci-cd-and-automation` | 11.3 KB |
+
+**Two apparent duplicates are kept deliberately**, because their triggers differ:
+
+- `security-and-hardening` (implementation — writing secure code) versus
+  `senior-security` and `security-guidance` (review — auditing a diff that exists).
+- `api-design-reviewer` was *not* replaced by `api-and-interface-design` despite similar
+  size, because the incumbent ships an OpenAPI linter, a breaking-change detector, and a
+  scorecard as runnable scripts.
+
+**Considered and deferred.** `phuryn/pm-skills` (26.3k stars, MIT) has `pre-mortem` and
+`retro`, but at 4.1 KB and 2.8 KB they add little over `ship-gate` and
+`launch-readiness`, and adding a source costs a pin to maintain. `senior-devops`
+(alirezarezvani) was rejected for overlapping `ci-cd-and-automation` in 34 places.

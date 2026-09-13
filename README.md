@@ -10,17 +10,18 @@ true.
 
 ## Sources
 
-All five are established, permissively licensed, public projects:
+All six are established, permissively licensed, public projects:
 
 | Repository | Stars | License | Format | Curated |
 |---|---|---|---|---|
 | [`obra/superpowers`](https://github.com/obra/superpowers) | 285.6k | MIT | Agent Skills | 12 |
 | [`anthropics/skills`](https://github.com/anthropics/skills) | 175.9k | Apache-2.0 | Agent Skills | 4 |
-| [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) | 25.9k | MIT | Agent Skills | 28 |
-| [`rohitg00/awesome-claude-code-toolkit`](https://github.com/rohitg00/awesome-claude-code-toolkit) | 2.6k | Apache-2.0 | commands + agents | 1 |
+| [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) | 93.8k | MIT | Agent Skills | 9 |
+| [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) | 25.9k | MIT | Agent Skills | 26 |
+| [`rohitg00/awesome-claude-code-toolkit`](https://github.com/rohitg00/awesome-claude-code-toolkit) | 2.6k | Apache-2.0 | slash commands + agents (NOT Agent Skills) | 1 |
 | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills) | 1.4k | MIT | Agent Skills | 5 |
 
-**50 skills across 11 phases**, each pinned to a specific upstream commit and verified
+**57 skills across 11 phases**, each pinned to a specific upstream commit and verified
 to resolve. Star counts are as shown on each repository page at the time of curation.
 
 ## What this repository actually contains
@@ -32,7 +33,7 @@ Only three things — and deliberately nothing else:
 2. **One skill, [`development-lifecycle`](plugins/dev-lifecycle/skills/development-lifecycle/SKILL.md)**
    — a router. It owns no practice of its own; it works out which phase a task is in and
    hands off to the community skill that covers it.
-3. **[`scripts/verify-catalog.py`](scripts/verify-catalog.py)** — fetches all 50
+3. **[`scripts/verify-catalog.py`](scripts/verify-catalog.py)** — fetches all 57
    referenced `SKILL.md` files from their pinned commits and fails if any has been
    renamed, moved, or deleted. This is the only way a curation can rot, so it runs in CI.
 
@@ -91,15 +92,15 @@ work — a typo does not get a requirements document:
 |---|---|
 | **0 · Orientation** | `codebase-onboarding` |
 | **1 · Requirements** | `brainstorming` · `prd-template` · `epic-design` |
-| **2 · Design** | `senior-architect` · `architecture-decision-record` · `api-design-reviewer` · `database-schema-designer` · `threat-model` · `frontend-design` · `tech-stack-evaluator` |
-| **3 · Planning** | `writing-plans` · `senior-qa` · `using-git-worktrees` |
-| **4 · Implementation** | `test-driven-development` · `tdd-guide` · `executing-plans` · `subagent-driven-development` · `dispatching-parallel-agents` · `migration-architect` · `tech-debt-tracker` · `mcp-builder` · `env-secrets-manager` |
-| **5 · Quality** | `systematic-debugging` · `performance-profiler` · `database-optimization` · `ci-cd-pipeline-builder` · `chaos-engineering` |
+| **2 · Design** | `senior-architect` · `architecture-decision-record` · `api-design-reviewer` · `database-schema-designer` · `threat-model` · `frontend-design` · `tech-stack-evaluator` · `documentation-and-adrs` |
+| **3 · Planning** | `writing-plans` · `senior-qa` · `using-git-worktrees` · `constraint-driven-development` |
+| **4 · Implementation** | `test-driven-development` · `tdd-guide` · `executing-plans` · `subagent-driven-development` · `dispatching-parallel-agents` · `migration-architect` · `tech-debt-tracker` · `mcp-builder` · `env-secrets-manager` · `security-and-hardening` · `code-simplification` · `source-driven-development` |
+| **5 · Quality** | `systematic-debugging` · `database-optimization` · `chaos-engineering` · `performance-optimization` · `ci-cd-and-automation` |
 | **6 · Verification** | `verification-before-completion` · `webapp-testing` · `a11y-audit` |
 | **7 · Review** | `requesting-code-review` · `receiving-code-review` · `pr-review-expert` · `senior-security` · `security-guidance` · `dependency-auditor` · `adversarial-reviewer` |
-| **8 · Release** | `observability-designer` · `slo-architect` · `runbook-generator` · `finishing-a-development-branch` · `ship-gate` · `changelog-generator` · `launch-readiness` · `feature-flags-architect` |
+| **8 · Release** | `observability-designer` · `slo-architect` · `runbook-generator` · `finishing-a-development-branch` · `ship-gate` · `changelog-generator` · `launch-readiness` · `feature-flags-architect` · `deprecation-and-migration` |
 | **9 · Operations** | `incident-commander` · `incident-response` · `incident-postmortem` |
-| **Meta** | `development-lifecycle` · `skill-creator` |
+| **Meta** | `development-lifecycle` · `skill-creator` · `context-engineering` |
 
 Phase-by-phase rationale and handoffs: [docs/lifecycle.md](docs/lifecycle.md).
 
@@ -114,7 +115,7 @@ rule for both inline so the phase is not silently skipped. See
 ## Maintenance
 
 ```bash
-python3 scripts/verify-catalog.py   # all 50 upstream refs still resolve
+python3 scripts/verify-catalog.py   # all 57 upstream refs still resolve
 python3 scripts/validate-skills.py  # spec conformance + router covers every catalog entry
 ./scripts/check-upstream.sh         # pinned refs are immutable, not moving branches
 ```

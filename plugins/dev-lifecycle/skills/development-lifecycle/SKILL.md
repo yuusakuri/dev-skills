@@ -39,6 +39,7 @@ what to look for — see `docs/catalog.md` for the repository and install comman
 | 1 | Decomposition | A large requirement needs breaking into epics and stories | `epic-design` |
 | 2 | Architecture | Several designs compete, or the structure constrains later work | `senior-architect` |
 | 2 | Decision record | A choice is hard or expensive to reverse | `architecture-decision-record` |
+| 2 | Documentation | Recording context a future maintainer will need | `documentation-and-adrs` |
 | 2 | Interface design | Defining an API, schema, event, or public library surface | `api-design-reviewer` |
 | 2 | Data model | Designing or reshaping a database schema | `database-schema-designer` |
 | 2 | Tech choice | Picking between frameworks, platforms, or vendors | `tech-stack-evaluator` |
@@ -46,17 +47,21 @@ what to look for — see `docs/catalog.md` for the repository and install comman
 | 2 | Visual direction | Building or reshaping a user interface | `example-skills:frontend-design` |
 | 3 | Planning | You have a spec and need an executable plan | `superpowers:writing-plans` |
 | 3 | Test planning | Deciding what to test and at which level | `senior-qa` |
+| 3 | Quality bar | No written standard, or an agent keeps silencing checks to go green | `constraint-driven-development` |
 | 3 | Workspace | You need an isolated branch or worktree before implementing | `superpowers:using-git-worktrees` |
 | 4 | Implementation | About to write feature or bugfix code | `superpowers:test-driven-development`, `tdd-guide` |
 | 4 | Plan execution | Working through a written plan | `superpowers:executing-plans`, `superpowers:subagent-driven-development` |
 | 4 | Parallel work | 2+ independent tasks with no shared state | `superpowers:dispatching-parallel-agents` |
 | 4 | Schema change | Changing a schema or migrating stored data | `migration-architect` |
 | 4 | Restructuring | Paying down or tracking structural debt | `tech-debt-tracker` |
+| 4 | Secure coding | Handling untrusted input, authN/Z, storage, or integrations | `security-and-hardening` |
 | 4 | Secrets & config | Handling env vars, secrets, credentials, or rotation | `env-secrets-manager` |
+| 4 | Refactoring | Changing how code reads without changing what it does | `code-simplification` |
+| 4 | Unfamiliar API | You need authoritative usage rather than a recalled pattern | `source-driven-development` |
 | 4 | MCP server | Exposing an API or service to an agent | `example-skills:mcp-builder` |
 | 5 | Debugging | Any bug, test failure, or unexplained behavior | `superpowers:systematic-debugging` |
-| 5 | Slowness | Something is too slow or uses too much resource | `performance-profiler`, `database-optimization` |
-| 5 | CI / pipeline | CI is red, or the pipeline needs designing | `ci-cd-pipeline-builder` |
+| 5 | Slowness | Something is too slow or uses too much resource | `performance-optimization`, `database-optimization` |
+| 5 | CI / pipeline | CI is red, or the pipeline needs designing | `ci-cd-and-automation` |
 | 5 | Resilience | Verifying behavior under failure | `chaos-engineering` |
 | 6 | Verification | About to claim work is complete | `superpowers:verification-before-completion` |
 | 6 | UI verification | A browser-facing change needs real-browser proof | `example-skills:webapp-testing` |
@@ -72,10 +77,12 @@ what to look for — see `docs/catalog.md` for the repository and install comman
 | 8 | Progressive rollout | Shipping behind a flag, canary, or kill switch | `feature-flags-architect` |
 | 8 | Release gate | Deciding whether to ship | `ship-gate`, `launch-readiness` |
 | 8 | Release notes | Communicating what changed | `changelog-generator` |
+| 8 | Deprecation | Retiring an API, feature, or system and moving users off it | `deprecation-and-migration` |
 | 9 | Incident (outage) | Something is broken in production **now** | `incident-commander` |
 | 9 | Incident (security) | A security event needs triage, severity, and forensics | `incident-response` |
 | 9 | Postmortem | An incident is resolved and needs learning captured | `incident-postmortem` |
 | — | Meta | Writing or improving a skill | `example-skills:skill-creator` |
+| — | Agent context | Output quality is degrading, or you are switching tasks | `context-engineering` |
 
 ## Rules that hold in every phase
 
@@ -104,26 +111,25 @@ Match the ceremony to the blast radius:
 
 When unsure which size a task is, assume the larger one and say so.
 
-## When a row has no installed skill
+## Gaps to be aware of
 
-One phase is covered less well by the community collections than the rest. Stated
-plainly rather than papered over:
+Every phase now routes to a maintained skill. Two residual sharp edges are worth
+stating, because no skill covers them head-on:
 
-- **Behavior-preserving refactoring.** `superpowers:test-driven-development` has a
-  REFACTOR step, but it is scoped to cleaning up code you have just written while the
-  tests are already green. `tech-debt-tracker` tracks debt without walking a safe
-  restructure. What neither covers is **changing the shape of existing code that no
-  test pins**. Two rules apply directly: never mix a refactor and a behavior change in
-  one commit, and write characterization tests — which capture what the code currently
-  does, bugs included — before touching untested code.
-
-**Flaky tests are better covered than they look.** `superpowers:systematic-debugging`
-bundles `condition-based-waiting.md`, which handles the largest single cause: tests
-that guess at timing with `sleep`/`setTimeout` and so pass locally but fail under load
-or in CI. Reach for it first. It does not cover test ordering and shared state, unseeded
-randomness, unordered collection comparison, or local-versus-CI environment differences —
-for those, the rule is that a flake is real non-determinism, so find its source and
-never retry it into green.
+- **Untested legacy code.** `code-simplification` preserves behavior and keeps
+  refactors out of feature commits, but it assumes something can tell you when
+  behavior changed. When no test pins the code you are about to reshape, write
+  characterization tests first — tests that capture what the code *currently* does,
+  bugs included — then refactor against them.
+- **Flaky tests beyond timing.** `superpowers:systematic-debugging` bundles
+  `condition-based-waiting.md`, which handles the largest single cause: tests that
+  guess at timing with `sleep`/`setTimeout` and so pass locally but fail under load or
+  in CI. Reach for it first. It does not cover test ordering and shared state, unseeded
+  randomness, unordered collection comparison, or local-versus-CI environment
+  differences. For those the rule is that a flake is real non-determinism: find its
+  source, and never retry it into green. `constraint-driven-development` is the
+  counterpart that catches the other half of this failure — an agent skipping or
+  deleting a test to reach green.
 
 If no row fits at all, say which phase the task is in and proceed with the phase's
 principle above rather than guessing at a skill.
