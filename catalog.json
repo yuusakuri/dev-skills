@@ -70,7 +70,8 @@
           "source": "alireza",
           "path": "engineering/skills/codebase-onboarding",
           "plugin": "engineering-advanced-skills",
-          "role": "Map an unfamiliar codebase before changing it"
+          "role": "Map an unfamiliar codebase before changing it",
+          "core": true
         }
       ]
     },
@@ -83,14 +84,16 @@
           "source": "superpowers",
           "path": "skills/brainstorming",
           "plugin": "superpowers",
-          "role": "Explore intent and design before any code"
+          "role": "Explore intent and design before any code",
+          "core": true
         },
         {
           "skill": "prd-template",
           "source": "pm",
           "path": "skills/prd-template",
           "plugin": "pm-essentials",
-          "role": "Turn agreement into a written PRD with acceptance criteria"
+          "role": "Turn agreement into a written PRD with acceptance criteria",
+          "core": true
         },
         {
           "skill": "epic-design",
@@ -117,14 +120,16 @@
           "source": "pm",
           "path": "skills/architecture-decision-record",
           "plugin": "pm-engineering",
-          "role": "Record a hard-to-reverse decision as an ADR"
+          "role": "Record a hard-to-reverse decision as an ADR",
+          "core": true
         },
         {
           "skill": "api-design-reviewer",
           "source": "alireza",
           "path": "engineering/skills/api-design-reviewer",
           "plugin": "engineering-advanced-skills",
-          "role": "Contract review with linting and breaking-change detection scripts"
+          "role": "Contract review with linting and breaking-change detection scripts",
+          "core": true
         },
         {
           "skill": "database-schema-designer",
@@ -138,7 +143,8 @@
           "source": "pm",
           "path": "skills/threat-model",
           "plugin": "pm-security",
-          "role": "Identify threats and mitigations at design time"
+          "role": "Identify threats and mitigations at design time",
+          "core": true
         },
         {
           "skill": "frontend-design",
@@ -172,14 +178,16 @@
           "source": "superpowers",
           "path": "skills/writing-plans",
           "plugin": "superpowers",
-          "role": "Turn a spec into an executable plan"
+          "role": "Turn a spec into an executable plan",
+          "core": true
         },
         {
           "skill": "senior-qa",
           "source": "alireza",
           "path": "engineering-team/skills/senior-qa",
           "plugin": "engineering-skills",
-          "role": "Decide what to test and at which level"
+          "role": "Decide what to test and at which level",
+          "core": true
         },
         {
           "skill": "using-git-worktrees",
@@ -206,7 +214,8 @@
           "source": "superpowers",
           "path": "skills/test-driven-development",
           "plugin": "superpowers",
-          "role": "Red-green-refactor for every feature and bugfix"
+          "role": "Red-green-refactor for every feature and bugfix",
+          "core": true
         },
         {
           "skill": "tdd-guide",
@@ -269,14 +278,16 @@
           "source": "addyosmani",
           "path": "skills/security-and-hardening",
           "plugin": "agent-skills",
-          "role": "Write secure code as you go: input handling, authN/Z, storage, integrations"
+          "role": "Write secure code as you go: input handling, authN/Z, storage, integrations",
+          "core": true
         },
         {
           "skill": "code-simplification",
           "source": "addyosmani",
           "path": "skills/code-simplification",
           "plugin": "agent-skills",
-          "role": "Refactor for clarity with behavior preserved exactly, separate from feature work"
+          "role": "Refactor for clarity with behavior preserved exactly, separate from feature work",
+          "core": true
         },
         {
           "skill": "source-driven-development",
@@ -296,7 +307,8 @@
           "source": "superpowers",
           "path": "skills/systematic-debugging",
           "plugin": "superpowers",
-          "role": "Any bug or test failure, before proposing fixes"
+          "role": "Any bug or test failure, before proposing fixes",
+          "core": true
         },
         {
           "skill": "chaos-engineering",
@@ -330,7 +342,8 @@
           "source": "superpowers",
           "path": "skills/verification-before-completion",
           "plugin": "superpowers",
-          "role": "Evidence before claiming done"
+          "role": "Evidence before claiming done",
+          "core": true
         },
         {
           "skill": "webapp-testing",
@@ -357,14 +370,16 @@
           "source": "superpowers",
           "path": "skills/requesting-code-review",
           "plugin": "superpowers",
-          "role": "Get work checked before merging"
+          "role": "Get work checked before merging",
+          "core": true
         },
         {
           "skill": "receiving-code-review",
           "source": "superpowers",
           "path": "skills/receiving-code-review",
           "plugin": "superpowers",
-          "role": "Assess feedback rigorously, not performatively"
+          "role": "Assess feedback rigorously, not performatively",
+          "core": true
         },
         {
           "skill": "pr-review-expert",
@@ -412,7 +427,8 @@
           "source": "alireza",
           "path": "engineering/skills/observability-designer",
           "plugin": "engineering-advanced-skills",
-          "role": "Logs, metrics, traces before shipping"
+          "role": "Logs, metrics, traces before shipping",
+          "core": true
         },
         {
           "skill": "slo-architect",
@@ -440,7 +456,8 @@
           "source": "alireza",
           "path": "engineering/skills/ship-gate",
           "plugin": "engineering-advanced-skills",
-          "role": "Go/no-go release gate"
+          "role": "Go/no-go release gate",
+          "core": true
         },
         {
           "skill": "changelog-generator",
@@ -481,7 +498,8 @@
           "source": "alireza",
           "path": "engineering-team/skills/incident-commander",
           "plugin": "engineering-skills",
-          "role": "Lead an active production incident"
+          "role": "Lead an active production incident",
+          "core": true
         },
         {
           "skill": "incident-response",
@@ -495,7 +513,8 @@
           "source": "pm",
           "path": "skills/incident-postmortem",
           "plugin": "pm-engineering",
-          "role": "Blameless postmortem with action items"
+          "role": "Blameless postmortem with action items",
+          "core": true
         }
       ]
     },

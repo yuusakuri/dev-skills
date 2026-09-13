@@ -35,3 +35,5 @@ jobs:
         run: python3 scripts/validate-skills.py
       - name: Project settings generator produces valid JSON
         run: python3 scripts/gen-project-settings.py | python3 -m json.tool > /dev/null
+      - name: Skill installer resolves the core set
+        run: python3 scripts/install-skills.py --project . --list

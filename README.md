@@ -32,9 +32,13 @@ Only three things — and deliberately nothing else:
 2. **One skill, [`development-lifecycle`](plugins/dev-lifecycle/skills/development-lifecycle/SKILL.md)**
    — a router. It owns no practice of its own; it works out which phase a task is in and
    hands off to the community skill that covers it.
-3. **[`scripts/verify-catalog.py`](scripts/verify-catalog.py)** — fetches all 56
-   referenced `SKILL.md` files from their pinned commits and fails if any has been
-   renamed, moved, or deleted. This is the only way a curation can rot, so it runs in CI.
+3. **[`scripts/install-skills.py`](scripts/install-skills.py)** — copies the curated
+   skills into a project's `.claude/skills/`, fetched from their own upstreams at the
+   pinned commits, with attribution and licence texts written alongside them.
+4. **[`scripts/verify-catalog.py`](scripts/verify-catalog.py)** — fetches all 56
+   referenced `SKILL.md` files from their pinned commits, and checks that every
+   documented install command names a marketplace and plugin that exist. This is the
+   only way a curation can rot, so it runs in CI.
 
 ## Why curate instead of fork
 
@@ -46,15 +50,77 @@ Only three things — and deliberately nothing else:
 
 ## Install
 
-### Just for yourself
+There are two ways in, and they trade off differently. **For a team project, use the
+first one.**
+
+| | Copy into the repo | Install plugins |
+|---|---|---|
+| Setup | one command, by one person | one command, by one person |
+| **What each teammate does** | **nothing** | runs `claude plugin install` once, per plugin |
+| Works in | Claude Code, Codex, Cursor, any Agent Skills runtime | Claude Code |
+| Offline | yes | no |
+| Staying current | re-run the installer | automatic |
+| Repo size | ~1.7 MB for the core set | nothing added |
+| Licence duty | you are redistributing (handled for you) | none |
+
+### Into a repository, for the whole team (recommended)
+
+Skills committed under `.claude/skills/` load automatically for anyone who clones the
+repository. There is no marketplace and no per-developer step.
 
 ```bash
-# The router (this repo)
+git clone https://github.com/yuusakuri/dev-skills
+python3 dev-skills/scripts/install-skills.py --project /path/to/your-project
+
+cd /path/to/your-project
+git add .claude/skills && git commit -m "Add curated agent skills"
+```
+
+That is the whole setup. Everyone who pulls now has the skills.
+
+The default is a **core set of 20 skills** covering every phase once. Options:
+
+```bash
+--list            # show what would be installed, change nothing
+--full            # all 56
+--skills a,b,c    # pick exactly these
+```
+
+The installer fetches each skill from its own upstream repository at the commit pinned
+in [`catalog.json`](catalog.json), using a sparse checkout so it pulls only the files it
+needs — about 9 seconds for the core set. Re-run it to update. It also writes
+`.claude/skills/.dev-skills.json` recording the exact commit behind every skill, so the
+result is reproducible and auditable.
+
+**Licensing is handled.** Committing these skills into your repository is
+redistribution, which MIT and Apache-2.0 both permit but require notices for. The
+installer writes `ATTRIBUTION.md` (every skill, its upstream, its commit, its licence)
+and fetches each upstream `LICENSE` into `.claude/skills/licenses/`. Commit those too.
+
+**Using a submodule instead of cloning** is worth it only if you want the pins to travel
+with the project and to re-run the installer without hunting for a checkout:
+
+```bash
+git submodule add https://github.com/yuusakuri/dev-skills .agents/dev-skills
+python3 .agents/dev-skills/scripts/install-skills.py --project .
+```
+
+Note what a submodule does *not* do here: this repository contains no skill files, only
+the catalog and the router, so the submodule alone installs nothing — you still run the
+installer, and you still commit `.claude/skills/`. The trade is that teammates now need
+`git submodule update --init`, which is a step the plain clone avoids. Prefer the plain
+clone unless you specifically want the pins versioned inside the project.
+
+### As plugins, for yourself
+
+Lighter on the repository, heavier on each person. Nothing is copied, and updates arrive
+on their own.
+
+```bash
+/plugin install superpowers@claude-plugins-official      # already registered
+
 /plugin marketplace add yuusakuri/dev-skills
 /plugin install dev-lifecycle@dev-skills
-
-# The skills it routes to, each from its own marketplace
-/plugin install superpowers@claude-plugins-official      # already registered by Claude Code
 
 /plugin marketplace add addyosmani/agent-skills
 /plugin install agent-skills@addy-agent-skills
@@ -79,42 +145,22 @@ Every marketplace and plugin name above is checked against the upstream's own
 `.claude-plugin/marketplace.json` by `scripts/verify-catalog.py`, so these commands
 cannot silently rot.
 
-### Into another repository, for the whole team
-
-Commit the plugin configuration so everyone on the project gets the same skills.
-
-**1. Generate the project settings** — run this from a clone of *this* repo, pointing at
-the project you want to set up:
+To declare the plugins for a project rather than installing them yourself:
 
 ```bash
 python3 scripts/gen-project-settings.py --write /path/to/your-project
 ```
 
-That merges `extraKnownMarketplaces` and `enabledPlugins` into
-`your-project/.claude/settings.json`, preserving any settings already there. To inspect
-it first, run the command with no `--write`.
+That merges `extraKnownMarketplaces` and `enabledPlugins` into the project's
+`.claude/settings.json`. Be aware of the catch: committing that file registers the
+marketplaces, but Claude Code (v2.1.195+) **does not auto-install plugins from an
+external source** — each developer still runs the install commands once
+(`gen-project-settings.py --commands` prints them). That step is why the copy-into-repo
+route above is recommended for teams.
 
-**2. Commit it**:
+### Point your agent instructions at the router
 
-```bash
-cd /path/to/your-project
-git add .claude/settings.json && git commit -m "Add dev-skills plugin configuration"
-```
-
-**3. Each developer installs once.** This step is not optional, and it is the part most
-people get wrong: committing the settings registers the marketplaces, but Claude Code
-(v2.1.195+) **does not auto-install plugins that come from an external source**. Until
-each person installs, Claude Code reports the plugins as not installed.
-
-```bash
-python3 /path/to/dev-skills/scripts/gen-project-settings.py --commands
-```
-
-That prints the exact `claude plugin install ... --scope project` lines to run. Or
-install interactively with `/plugin install <name>@<marketplace>` and choose
-**Project scope**.
-
-**4. Point your agent instructions at the router.** In the project's `CLAUDE.md`:
+Either way, add this to the project's `CLAUDE.md`:
 
 ```markdown
 Start with the `development-lifecycle` skill to identify the phase and the skill that
@@ -125,23 +171,23 @@ model and an ADR.
 Test command: <command>   Decisions: docs/decisions/   Requirements: docs/requirements/
 ```
 
-**5. Verify it took.** Ask the agent *"Which skill covers deciding whether to ship a
-release?"* — it should answer `ship-gate` or `launch-readiness`. If not, run
-`/plugin` and check the **Installed** tab, then `/reload-plugins`.
+Verify it took by asking *"Which skill covers deciding whether to ship a release?"* —
+the answer should be `ship-gate`.
 
-### Without Claude Code
+### Other agents
 
 Every curated skill is a plain [Agent Skills](https://agentskills.io/specification)
-directory, so other agents can use them too. The
-[skills CLI](https://github.com/vercel-labs/skills) installs into 70+ agents:
+directory. The copy-into-repo route already works for any runtime that reads
+`.claude/skills/`; for Codex, symlink `.agents/skills` to it. The
+[skills CLI](https://github.com/vercel-labs/skills) installs individual skills into 70+
+agents:
 
 ```bash
 npx skills add addyosmani/agent-skills --skill code-simplification
 ```
 
-Or clone an upstream at the ref pinned in [`catalog.json`](catalog.json) and copy the
-directory. Always take skills from the repository that authors them, not from a mirror —
-see [NOTICE.md](NOTICE.md#why-origins-not-mirrors).
+Always take skills from the repository that authors them, not from a mirror — see
+[NOTICE.md](NOTICE.md#why-origins-not-mirrors).
 
 Per-phase install targets: [docs/catalog.md](docs/catalog.md). More on adoption:
 [docs/adoption.md](docs/adoption.md).
