@@ -9,7 +9,7 @@
       "author": "Jesse Vincent",
       "stars": "285.6k",
       "format": "Agent Skills",
-      "marketplace_add": "/plugin marketplace add obra/superpowers",
+      "marketplace_add": "# already registered: claude-plugins-official is added automatically",
       "install": "/plugin install superpowers@claude-plugins-official",
       "namespace": "superpowers"
     },
@@ -44,20 +44,8 @@
       "format": "Agent Skills",
       "note": "Listed in Anthropic's official plugin directory",
       "marketplace_add": "/plugin marketplace add mohitagw15856/pm-claude-skills",
-      "install": "/plugin install pm-engineering@pm-skills  # plus pm-essentials, pm-security, pm-delivery",
+      "install": "/plugin install pm-engineering@pm-claude-skills  # plus pm-essentials, pm-security, pm-delivery",
       "namespace": "varies by bundle"
-    },
-    "toolkit": {
-      "repo": "rohitg00/awesome-claude-code-toolkit",
-      "ref": "ebdf1d596d2cde5c5cceb32177e8d1cf4829e7d9",
-      "license": "Apache-2.0",
-      "author": "Rohit Ghumare",
-      "stars": "2.6k",
-      "format": "slash commands + agents (NOT Agent Skills)",
-      "note": "Its marketplace exposes command-based plugins; the repo's own skills/ directory is not listed as an installable plugin. Referenced only as an optional supplement.",
-      "marketplace_add": "/plugin marketplace add rohitg00/awesome-claude-code-toolkit",
-      "install": "/plugin install adr-writer@claude-code-toolkit",
-      "namespace": "n/a"
     },
     "addyosmani": {
       "repo": "addyosmani/agent-skills",
@@ -68,7 +56,7 @@
       "format": "Agent Skills",
       "note": "Production-grade engineering skills. Referenced at upstream HEAD rather than through any mirror, because vendored copies of it in the wild are already several revisions behind.",
       "marketplace_add": "/plugin marketplace add addyosmani/agent-skills",
-      "install": "/plugin install agent-skills@agent-skills  # confirm the plugin name from the repo README",
+      "install": "/plugin install agent-skills@addy-agent-skills",
       "namespace": "agent-skills"
     }
   },
@@ -309,13 +297,6 @@
           "path": "skills/systematic-debugging",
           "plugin": "superpowers",
           "role": "Any bug or test failure, before proposing fixes"
-        },
-        {
-          "skill": "database-optimization",
-          "source": "toolkit",
-          "path": "skills/database-optimization",
-          "plugin": null,
-          "role": "Query and index tuning (command-based repo; see note)"
         },
         {
           "skill": "chaos-engineering",

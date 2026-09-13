@@ -60,7 +60,7 @@ what to look for — see `docs/catalog.md` for the repository and install comman
 | 4 | Unfamiliar API | You need authoritative usage rather than a recalled pattern | `source-driven-development` |
 | 4 | MCP server | Exposing an API or service to an agent | `example-skills:mcp-builder` |
 | 5 | Debugging | Any bug, test failure, or unexplained behavior | `superpowers:systematic-debugging` |
-| 5 | Slowness | Something is too slow or uses too much resource | `performance-optimization`, `database-optimization` |
+| 5 | Slowness | Something is too slow or uses too much resource | `performance-optimization` |
 | 5 | CI / pipeline | CI is red, or the pipeline needs designing | `ci-cd-and-automation` |
 | 5 | Resilience | Verifying behavior under failure | `chaos-engineering` |
 | 6 | Verification | About to claim work is complete | `superpowers:verification-before-completion` |

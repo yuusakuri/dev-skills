@@ -1,20 +1,19 @@
 # Curated skill catalog
 
 Generated from [`catalog.json`](../catalog.json) — the machine-readable curation.
-Every entry is verified to exist at its pinned upstream ref by
+Every entry, and every install command below, is verified by
 [`scripts/verify-catalog.py`](../scripts/verify-catalog.py). **No upstream file is
 copied into this repository.**
 
 ## Sources
 
-| Repository | Stars | License | Format | Skills curated |
-|---|---|---|---|---|
-| [`obra/superpowers`](https://github.com/obra/superpowers) | 285.6k | MIT | Agent Skills | 12 |
-| [`anthropics/skills`](https://github.com/anthropics/skills) | 175.9k | Apache-2.0 | Agent Skills | 4 |
-| [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) | 93.8k | MIT | Agent Skills | 9 |
-| [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) | 25.9k | MIT | Agent Skills | 26 |
-| [`rohitg00/awesome-claude-code-toolkit`](https://github.com/rohitg00/awesome-claude-code-toolkit) | 2.6k | Apache-2.0 | slash commands + agents (NOT Agent Skills) | 1 |
-| [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills) | 1.4k | MIT | Agent Skills | 5 |
+| Repository | Stars | License | Skills curated |
+|---|---|---|---|
+| [`obra/superpowers`](https://github.com/obra/superpowers) | 285.6k | MIT | 12 |
+| [`anthropics/skills`](https://github.com/anthropics/skills) | 175.9k | Apache-2.0 | 4 |
+| [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) | 93.8k | MIT | 9 |
+| [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) | 25.9k | MIT | 26 |
+| [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills) | 1.4k | MIT | 5 |
 
 ### Pinned refs
 
@@ -23,18 +22,17 @@ copied into this repository.**
 - **alirezarezvani/claude-skills** — `19392f7a08264ed00486a251f5b2098321771f94`
 - **mohitagw15856/pm-claude-skills** — `f67821d42c8c6db20752030e12ded030a623bee3`
   - *Listed in Anthropic's official plugin directory*
-- **rohitg00/awesome-claude-code-toolkit** — `ebdf1d596d2cde5c5cceb32177e8d1cf4829e7d9`
-  - *Its marketplace exposes command-based plugins; the repo's own skills/ directory is not listed as an installable plugin. Referenced only as an optional supplement.*
 - **addyosmani/agent-skills** — `be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39`
   - *Production-grade engineering skills. Referenced at upstream HEAD rather than through any mirror, because vendored copies of it in the wild are already several revisions behind.*
 
 ### Install
 
-Each upstream is installed from its own marketplace, under its own plugin names:
+Marketplace and plugin names below are checked against each upstream's own
+`.claude-plugin/marketplace.json`, so a rename upstream fails the build.
 
 ```bash
 # obra/superpowers  (MIT)
-/plugin marketplace add obra/superpowers
+# already registered: claude-plugins-official is added automatically
 /plugin install superpowers@claude-plugins-official
 
 # anthropics/skills  (Apache-2.0)
@@ -47,17 +45,16 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 
 # mohitagw15856/pm-claude-skills  (MIT)
 /plugin marketplace add mohitagw15856/pm-claude-skills
-/plugin install pm-engineering@pm-skills  # plus pm-essentials, pm-security, pm-delivery
-
-# rohitg00/awesome-claude-code-toolkit  (Apache-2.0)
-/plugin marketplace add rohitg00/awesome-claude-code-toolkit
-/plugin install adr-writer@claude-code-toolkit
+/plugin install pm-engineering@pm-claude-skills  # plus pm-essentials, pm-security, pm-delivery
 
 # addyosmani/agent-skills  (MIT)
 /plugin marketplace add addyosmani/agent-skills
-/plugin install agent-skills@agent-skills  # confirm the plugin name from the repo README
+/plugin install agent-skills@addy-agent-skills
 
 ```
+
+For a whole project at once, see
+[Into another repository](../README.md#into-another-repository-for-the-whole-team).
 
 ## By phase
 
@@ -119,7 +116,6 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 | Skill | Role | Source | Install plugin |
 |---|---|---|---|
 | `systematic-debugging` | Any bug or test failure, before proposing fixes | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/systematic-debugging) | `superpowers` |
-| `database-optimization` | Query and index tuning (command-based repo; see note) | [`rohitg00/awesome-claude-code-toolkit`](https://github.com/rohitg00/awesome-claude-code-toolkit/tree/ebdf1d596d2cde5c5cceb32177e8d1cf4829e7d9/skills/database-optimization) | — |
 | `chaos-engineering` | Fault injection and resilience testing | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/chaos-engineering) | `engineering-advanced-skills` |
 | `performance-optimization` | Measure-first performance work: profile, find the real bottleneck, prove the gain | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/performance-optimization) | `agent-skills` |
 | `ci-cd-and-automation` | Pipeline design, caching, and keeping the build trustworthy | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/ci-cd-and-automation) | `agent-skills` |
@@ -175,13 +171,10 @@ Each upstream is installed from its own marketplace, under its own plugin names:
 
 ## Selection notes
 
-Curation decisions that are not obvious from the table.
-
 **Why `addyosmani/agent-skills` is referenced at upstream HEAD, not through a mirror.**
-Several catalogs in this ecosystem vendor copies of it. Copies drift: one widely used
-mirror is pinned several revisions behind, and its copy of `security-and-hardening` is
-missing roughly 57 lines present upstream. Referencing the origin keeps the security
-content current and the attribution direct.
+Several catalogs vendor copies of it. Copies drift: one widely used mirror is pinned
+several revisions behind, and its copy of `security-and-hardening` is missing roughly 57
+lines present upstream. Referencing the origin keeps security content current.
 
 **Two entries were replaced on measured substance, not preference.**
 
@@ -194,11 +187,17 @@ content current and the attribution direct.
 
 - `security-and-hardening` (implementation — writing secure code) versus
   `senior-security` and `security-guidance` (review — auditing a diff that exists).
-- `api-design-reviewer` was *not* replaced by `api-and-interface-design` despite similar
+- `api-design-reviewer` was not replaced by `api-and-interface-design` despite similar
   size, because the incumbent ships an OpenAPI linter, a breaking-change detector, and a
   scorecard as runnable scripts.
 
+**`rohitg00/awesome-claude-code-toolkit` was dropped entirely.** Its marketplace exposes
+only command-based plugins under `./plugins/`; the repository's own `skills/` directory
+is not listed as an installable plugin. The one skill curated from it
+(`database-optimization`) could be read at its pinned ref but never installed by the
+documented method, so it was removed rather than left as an instruction that fails.
+
 **Considered and deferred.** `phuryn/pm-skills` (26.3k stars, MIT) has `pre-mortem` and
 `retro`, but at 4.1 KB and 2.8 KB they add little over `ship-gate` and
-`launch-readiness`, and adding a source costs a pin to maintain. `senior-devops`
-(alirezarezvani) was rejected for overlapping `ci-cd-and-automation` in 34 places.
+`launch-readiness`. `senior-devops` (alirezarezvani) overlaps `ci-cd-and-automation` in
+34 places.

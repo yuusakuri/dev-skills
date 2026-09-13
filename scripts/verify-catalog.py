@@ -24,6 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog.json"
 RAW = "https://raw.githubusercontent.com/{repo}/{ref}/{path}/SKILL.md"
+MARKET = "https://raw.githubusercontent.com/{repo}/{ref}/.claude-plugin/marketplace.json"
 TIMEOUT = 30
 
 
@@ -46,6 +47,68 @@ def frontmatter_name(text: str) -> str | None:
         return None
     m = re.search(r"^name:\s*(.+)$", text[:end], re.M)
     return m.group(1).strip().strip("\"'") if m else None
+
+
+def verify_installability(sources: dict) -> list[str]:
+    """Check each source's install command against its own marketplace manifest.
+
+    `catalog.json` documents how to install every source. Upstream can rename a
+    marketplace or a plugin, which silently turns those commands into
+    instructions that fail for anyone following the README.
+    """
+    problems: list[str] = []
+    print("[install] documented commands resolve to real plugins")
+
+    for key, src in sources.items():
+        install = src.get("install", "")
+        ref_match = re.search(r"install\s+([A-Za-z0-9._-]+)@([A-Za-z0-9._-]+)", install)
+        if not ref_match:
+            continue
+        plugin, marketplace = ref_match.group(1), ref_match.group(2)
+
+        # Anthropic registers this one itself; it has no manifest to read here.
+        if marketplace == "claude-plugins-official":
+            print(f"  skip {plugin}@{marketplace} (Anthropic official marketplace)")
+            continue
+
+        status, body = fetch(MARKET.format(repo=src["repo"], ref=src["ref"]))
+        if status != 200:
+            problems.append(
+                f"{key} — no .claude-plugin/marketplace.json at {src['repo']}@{src['ref'][:8]}"
+            )
+            print(f"  FAIL {plugin}@{marketplace} (no marketplace manifest)")
+            continue
+
+        try:
+            manifest = json.loads(body)
+        except json.JSONDecodeError as exc:
+            problems.append(f"{key} — marketplace.json is not valid JSON ({exc})")
+            continue
+
+        actual = manifest.get("name")
+        if actual != marketplace:
+            problems.append(
+                f"{key} — install says '@{marketplace}' but the marketplace is named "
+                f"'{actual}'; the documented command would fail"
+            )
+            print(f"  FAIL {plugin}@{marketplace} (marketplace is '{actual}')")
+            continue
+
+        names = {p.get("name") for p in manifest.get("plugins", [])}
+        missing = [n for n in re.findall(r"\b[a-z0-9]+(?:-[a-z0-9]+)+\b", install)
+                   if n in names or n == plugin]
+        if plugin not in names:
+            problems.append(
+                f"{key} — plugin '{plugin}' is not in marketplace '{marketplace}'"
+            )
+            print(f"  FAIL {plugin}@{marketplace} (plugin not listed)")
+            continue
+
+        extra = len(missing) - 1
+        suffix = f" (+{extra} more named in the comment)" if extra > 0 else ""
+        print(f"  ok   {plugin}@{marketplace}{suffix}")
+
+    return problems
 
 
 def main() -> int:
@@ -97,6 +160,11 @@ def main() -> int:
             print(f"[{phase['id']}] {phase['title']}")
             for line in by_phase.get(phase["id"], []):
                 print(line)
+
+    # A reference that resolves is not the same as a skill anyone can install.
+    # Prove the documented install commands name a real marketplace and plugin.
+    install_failures = verify_installability(sources)
+    failures.extend(install_failures)
 
     total = len(jobs)
     print()

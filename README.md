@@ -10,7 +10,7 @@ true.
 
 ## Sources
 
-All six are established, permissively licensed, public projects:
+All five are established, permissively licensed, public projects:
 
 | Repository | Stars | License | Format | Curated |
 |---|---|---|---|---|
@@ -18,10 +18,9 @@ All six are established, permissively licensed, public projects:
 | [`anthropics/skills`](https://github.com/anthropics/skills) | 175.9k | Apache-2.0 | Agent Skills | 4 |
 | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills) | 93.8k | MIT | Agent Skills | 9 |
 | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) | 25.9k | MIT | Agent Skills | 26 |
-| [`rohitg00/awesome-claude-code-toolkit`](https://github.com/rohitg00/awesome-claude-code-toolkit) | 2.6k | Apache-2.0 | slash commands + agents (NOT Agent Skills) | 1 |
 | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills) | 1.4k | MIT | Agent Skills | 5 |
 
-**57 skills across 11 phases**, each pinned to a specific upstream commit and verified
+**56 skills across 11 phases**, each pinned to a specific upstream commit and verified
 to resolve. Star counts are as shown on each repository page at the time of curation.
 
 ## What this repository actually contains
@@ -33,7 +32,7 @@ Only three things — and deliberately nothing else:
 2. **One skill, [`development-lifecycle`](plugins/dev-lifecycle/skills/development-lifecycle/SKILL.md)**
    — a router. It owns no practice of its own; it works out which phase a task is in and
    hands off to the community skill that covers it.
-3. **[`scripts/verify-catalog.py`](scripts/verify-catalog.py)** — fetches all 57
+3. **[`scripts/verify-catalog.py`](scripts/verify-catalog.py)** — fetches all 56
    referenced `SKILL.md` files from their pinned commits and fails if any has been
    renamed, moved, or deleted. This is the only way a curation can rot, so it runs in CI.
 
@@ -47,14 +46,18 @@ Only three things — and deliberately nothing else:
 
 ## Install
 
+### Just for yourself
+
 ```bash
 # The router (this repo)
 /plugin marketplace add yuusakuri/dev-skills
 /plugin install dev-lifecycle@dev-skills
 
 # The skills it routes to, each from its own marketplace
-/plugin marketplace add obra/superpowers
-/plugin install superpowers@claude-plugins-official
+/plugin install superpowers@claude-plugins-official      # already registered by Claude Code
+
+/plugin marketplace add addyosmani/agent-skills
+/plugin install agent-skills@addy-agent-skills
 
 /plugin marketplace add anthropics/skills
 /plugin install example-skills@anthropic-agent-skills
@@ -66,13 +69,82 @@ Only three things — and deliberately nothing else:
 /plugin install security-guidance@claude-code-skills
 
 /plugin marketplace add mohitagw15856/pm-claude-skills
-/plugin install pm-engineering@pm-skills
-/plugin install pm-essentials@pm-skills
-/plugin install pm-security@pm-skills
-/plugin install pm-delivery@pm-skills
+/plugin install pm-engineering@pm-claude-skills
+/plugin install pm-essentials@pm-claude-skills
+/plugin install pm-security@pm-claude-skills
+/plugin install pm-delivery@pm-claude-skills
 ```
 
-Exact per-phase install targets: [docs/catalog.md](docs/catalog.md).
+Every marketplace and plugin name above is checked against the upstream's own
+`.claude-plugin/marketplace.json` by `scripts/verify-catalog.py`, so these commands
+cannot silently rot.
+
+### Into another repository, for the whole team
+
+Commit the plugin configuration so everyone on the project gets the same skills.
+
+**1. Generate the project settings** — run this from a clone of *this* repo, pointing at
+the project you want to set up:
+
+```bash
+python3 scripts/gen-project-settings.py --write /path/to/your-project
+```
+
+That merges `extraKnownMarketplaces` and `enabledPlugins` into
+`your-project/.claude/settings.json`, preserving any settings already there. To inspect
+it first, run the command with no `--write`.
+
+**2. Commit it**:
+
+```bash
+cd /path/to/your-project
+git add .claude/settings.json && git commit -m "Add dev-skills plugin configuration"
+```
+
+**3. Each developer installs once.** This step is not optional, and it is the part most
+people get wrong: committing the settings registers the marketplaces, but Claude Code
+(v2.1.195+) **does not auto-install plugins that come from an external source**. Until
+each person installs, Claude Code reports the plugins as not installed.
+
+```bash
+python3 /path/to/dev-skills/scripts/gen-project-settings.py --commands
+```
+
+That prints the exact `claude plugin install ... --scope project` lines to run. Or
+install interactively with `/plugin install <name>@<marketplace>` and choose
+**Project scope**.
+
+**4. Point your agent instructions at the router.** In the project's `CLAUDE.md`:
+
+```markdown
+Start with the `development-lifecycle` skill to identify the phase and the skill that
+owns it. Scale the process to the change: trivial fixes go straight to implementation
+and verification; anything touching <the risky areas of this project> requires a threat
+model and an ADR.
+
+Test command: <command>   Decisions: docs/decisions/   Requirements: docs/requirements/
+```
+
+**5. Verify it took.** Ask the agent *"Which skill covers deciding whether to ship a
+release?"* — it should answer `ship-gate` or `launch-readiness`. If not, run
+`/plugin` and check the **Installed** tab, then `/reload-plugins`.
+
+### Without Claude Code
+
+Every curated skill is a plain [Agent Skills](https://agentskills.io/specification)
+directory, so other agents can use them too. The
+[skills CLI](https://github.com/vercel-labs/skills) installs into 70+ agents:
+
+```bash
+npx skills add addyosmani/agent-skills --skill code-simplification
+```
+
+Or clone an upstream at the ref pinned in [`catalog.json`](catalog.json) and copy the
+directory. Always take skills from the repository that authors them, not from a mirror —
+see [NOTICE.md](NOTICE.md#why-origins-not-mirrors).
+
+Per-phase install targets: [docs/catalog.md](docs/catalog.md). More on adoption:
+[docs/adoption.md](docs/adoption.md).
 
 ## How to use it
 
@@ -95,7 +167,7 @@ work — a typo does not get a requirements document:
 | **2 · Design** | `senior-architect` · `architecture-decision-record` · `api-design-reviewer` · `database-schema-designer` · `threat-model` · `frontend-design` · `tech-stack-evaluator` · `documentation-and-adrs` |
 | **3 · Planning** | `writing-plans` · `senior-qa` · `using-git-worktrees` · `constraint-driven-development` |
 | **4 · Implementation** | `test-driven-development` · `tdd-guide` · `executing-plans` · `subagent-driven-development` · `dispatching-parallel-agents` · `migration-architect` · `tech-debt-tracker` · `mcp-builder` · `env-secrets-manager` · `security-and-hardening` · `code-simplification` · `source-driven-development` |
-| **5 · Quality** | `systematic-debugging` · `database-optimization` · `chaos-engineering` · `performance-optimization` · `ci-cd-and-automation` |
+| **5 · Quality** | `systematic-debugging` · `chaos-engineering` · `performance-optimization` · `ci-cd-and-automation` |
 | **6 · Verification** | `verification-before-completion` · `webapp-testing` · `a11y-audit` |
 | **7 · Review** | `requesting-code-review` · `receiving-code-review` · `pr-review-expert` · `senior-security` · `security-guidance` · `dependency-auditor` · `adversarial-reviewer` |
 | **8 · Release** | `observability-designer` · `slo-architect` · `runbook-generator` · `finishing-a-development-branch` · `ship-gate` · `changelog-generator` · `launch-readiness` · `feature-flags-architect` · `deprecation-and-migration` |
