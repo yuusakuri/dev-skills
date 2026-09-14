@@ -46,9 +46,9 @@ build rather than a silently wrong map.
 
 ## Regenerating the docs
 
-`docs/catalog.md` and `NOTICE.md` are generated from `catalog.json`. Do not hand-edit
-them; change the catalog and regenerate, so the map and its documentation cannot
-disagree.
+`docs/reference/catalog.md` and `NOTICE.md` are generated from `catalog.json`. Do not
+hand-edit them; change the catalog and regenerate, so the map and its documentation
+cannot disagree.
 
 ## Updating a pin
 

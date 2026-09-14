@@ -1,9 +1,12 @@
 # Curated skill catalog
 
-Generated from [`catalog.json`](../catalog.json) — the machine-readable curation.
+Generated from [`catalog.json`](../../catalog.json) — the machine-readable curation.
 Every entry, and every install command below, is verified by
-[`scripts/verify-catalog.py`](../scripts/verify-catalog.py). **No upstream file is
-copied into this repository.**
+[`scripts/verify-catalog.py`](../../scripts/verify-catalog.py). No upstream file is
+copied into this repository.
+
+Why these sources were chosen:
+[explanation/why-these-sources.md](../explanation/why-these-sources.md).
 
 ## Sources
 
@@ -21,9 +24,7 @@ copied into this repository.**
 - **anthropics/skills** — `34040c9c568585f6929bedeaad110ad08f079624`
 - **alirezarezvani/claude-skills** — `19392f7a08264ed00486a251f5b2098321771f94`
 - **mohitagw15856/pm-claude-skills** — `f67821d42c8c6db20752030e12ded030a623bee3`
-  - *Listed in Anthropic's official plugin directory*
 - **addyosmani/agent-skills** — `be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39`
-  - *Production-grade engineering skills. Referenced at upstream HEAD rather than through any mirror, because vendored copies of it in the wild are already several revisions behind.*
 
 ### Install
 
@@ -54,7 +55,7 @@ Marketplace and plugin names below are checked against each upstream's own
 ```
 
 For a whole project at once, see
-[Into another repository](../README.md#into-another-repository-for-the-whole-team).
+[Install](../../README.md#install).
 
 ## By phase
 
@@ -168,36 +169,3 @@ For a whole project at once, see
 |---|---|---|---|
 | `skill-creator` | Create, edit, and evaluate skills | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/skill-creator) | `example-skills` |
 | `context-engineering` | Set up and maintain the agent's context when output quality degrades | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/context-engineering) | `agent-skills` |
-
-## Selection notes
-
-**Why `addyosmani/agent-skills` is referenced at upstream HEAD, not through a mirror.**
-Several catalogs vendor copies of it. Copies drift: one widely used mirror is pinned
-several revisions behind, and its copy of `security-and-hardening` is missing roughly 57
-lines present upstream. Referencing the origin keeps security content current.
-
-**Two entries were replaced on measured substance, not preference.**
-
-| Replaced | Size | Replacement | Size |
-|---|---|---|---|
-| `performance-profiler` | 2.7 KB | `performance-optimization` | 21.7 KB |
-| `ci-cd-pipeline-builder` | 3.2 KB | `ci-cd-and-automation` | 11.3 KB |
-
-**Two apparent duplicates are kept deliberately**, because their triggers differ:
-
-- `security-and-hardening` (implementation — writing secure code) versus
-  `senior-security` and `security-guidance` (review — auditing a diff that exists).
-- `api-design-reviewer` was not replaced by `api-and-interface-design` despite similar
-  size, because the incumbent ships an OpenAPI linter, a breaking-change detector, and a
-  scorecard as runnable scripts.
-
-**`rohitg00/awesome-claude-code-toolkit` was dropped entirely.** Its marketplace exposes
-only command-based plugins under `./plugins/`; the repository's own `skills/` directory
-is not listed as an installable plugin. The one skill curated from it
-(`database-optimization`) could be read at its pinned ref but never installed by the
-documented method, so it was removed rather than left as an instruction that fails.
-
-**Considered and deferred.** `phuryn/pm-skills` (26.3k stars, MIT) has `pre-mortem` and
-`retro`, but at 4.1 KB and 2.8 KB they add little over `ship-gate` and
-`launch-readiness`. `senior-devops` (alirezarezvani) overlaps `ci-cd-and-automation` in
-34 places.

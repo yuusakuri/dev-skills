@@ -29,7 +29,7 @@ is the most common cause of rework.
 ## Phase map
 
 Names are given as `plugin:skill`. If a skill is not installed, the row still tells you
-what to look for — see `docs/catalog.md` for the repository and install command.
+what to look for — see `docs/reference/catalog.md` for the repository and install command.
 
 | # | Phase | Use when | Skill |
 |---|---|---|---|

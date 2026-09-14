@@ -43,8 +43,10 @@ git add .claude/skills .agents/skills && git commit -m "Add agent skills"
 
 The default installs 20 skills covering every phase once, for Claude Code and
 for the agents that read `.agents/skills`. See
-[docs/adoption.md](docs/adoption.md) for the other options, for installing as
-plugins instead, and for the licence notices the installer writes.
+[docs/how-to/adopt-in-a-project.md](docs/how-to/adopt-in-a-project.md) for what
+makes them stick, and
+[docs/how-to/install-for-other-agents.md](docs/how-to/install-for-other-agents.md)
+for agents other than Claude Code.
 
 ## Usage
 
@@ -60,8 +62,9 @@ skill that owns it. Scale the process to the change.
 Test command: <command>   Decisions: docs/decisions/
 ```
 
-Full skill list by phase: [docs/catalog.md](docs/catalog.md).
-Why the phases are ordered as they are: [docs/lifecycle.md](docs/lifecycle.md).
+New here? [docs/tutorials/first-install.md](docs/tutorials/first-install.md) walks
+through it once, end to end. Everything else is indexed in
+[docs/index.md](docs/index.md).
 
 ## What is here
 
