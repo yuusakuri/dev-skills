@@ -57,7 +57,7 @@ first one.**
 |---|---|---|
 | Setup | one command, by one person | one command, by one person |
 | **What each teammate does** | **nothing** | runs `claude plugin install` once, per plugin |
-| Works in | Claude Code, Codex, Cursor, OpenCode (`--agents all`) | Claude Code |
+| Works in | Claude Code, Codex, Gemini CLI, Cursor, OpenCode, Copilot | Claude Code |
 | Offline | yes | no |
 | Staying current | re-run the installer | automatic |
 | Repo size | ~1.7 MB for the core set | nothing added |
@@ -84,7 +84,7 @@ The default is a **core set of 20 skills** covering every phase once. Options:
 --list             # show what would be installed, change nothing
 --full             # all 56
 --skills a,b,c     # pick exactly these
---agents all       # install for every supported agent, not just Claude Code
+--agents all       # write every agent directory, not just Claude Code and .agents
 ```
 
 The installer fetches each skill from its own upstream repository at the commit pinned
@@ -163,35 +163,42 @@ the answer should be `ship-gate`.
 
 ### Other agents
 
-Agent Skills are a portable format, and nothing in this curation is Claude-specific:
-every skill is a directory with a `SKILL.md`. Only the directory an agent reads differs,
-so the installer writes whichever ones you ask for.
+Agent Skills are a portable format and nothing in this curation is Claude-specific:
+every skill is a directory with a `SKILL.md`. Only the directory an agent reads differs.
+
+`.agents/skills/` is the shared convention that most agents honour, so the default
+writes two directories and that covers nearly everything:
 
 ```bash
-python3 dev-skills/scripts/install-skills.py --project . --agents all
+python3 dev-skills/scripts/install-skills.py --project .              # .claude + .agents
+python3 dev-skills/scripts/install-skills.py --project . --agents all # every directory below
 ```
 
-| Agent | Directory | |
+| Directory | Read by | Flag |
 |---|---|---|
-| Claude Code | `.claude/skills/` | default |
-| Codex (and any `AGENTS.md` runtime) | `.agents/skills/` | `--agents codex` |
-| Cursor | `.cursor/skills/` | `--agents cursor` |
-| OpenCode | `.opencode/skills/` | `--agents opencode` |
+| `.claude/skills/` | Claude Code | default |
+| `.agents/skills/` | **Codex, Gemini CLI, OpenCode, Copilot, CommandCode** | default (alias: `codex`) |
+| `.gemini/skills/` | Gemini CLI, workspace scope | `--agents gemini` |
+| `.cursor/skills/` | Cursor | `--agents cursor` |
+| `.opencode/skills/` | OpenCode | `--agents opencode` |
+| `.github/skills/` | GitHub Copilot | `--agents copilot` |
+
+Gemini CLI, OpenCode and Copilot each also read a directory of their own, listed above;
+those are only worth writing if you want the agent-specific location as well.
 
 The directories hold identical copies rather than symlinks, because symlinks are
-unreliable on Windows checkouts. That costs nothing in the repository: git stores
-content by hash, so the same skill committed to four directories is one blob with four
-tree entries. Installing 3 skills for all four agents produced 40 tracked files from 10
-unique blobs.
+unreliable on Windows checkouts. That costs nothing where it matters: git stores content
+by hash, so the same skill committed to four directories is one blob with four tree
+entries. Installing 3 skills for 4 agents produced 40 tracked files from 10 unique blobs.
 
-Gemini CLI installs skills itself, so point it at an upstream rather than copying:
+Gemini CLI can also install skills itself, at user or workspace scope:
 
 ```bash
 gemini skills install https://github.com/addyosmani/agent-skills.git --path skills
 ```
 
-The [skills CLI](https://github.com/vercel-labs/skills) covers 70+ other agents one
-skill at a time:
+The [skills CLI](https://github.com/vercel-labs/skills) covers 70+ agents one skill at
+a time:
 
 ```bash
 npx skills add addyosmani/agent-skills --skill code-simplification

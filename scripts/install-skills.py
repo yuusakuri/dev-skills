@@ -38,12 +38,32 @@ ROUTER = ROOT / "plugins" / "dev-lifecycle" / "skills" / "development-lifecycle"
 # same everywhere; only the directory differs. Files are copied rather than
 # symlinked: symlinks are unreliable on Windows checkouts, and git stores identical
 # content as one blob, so extra copies cost almost nothing in the repository.
+#
+# `.agents/skills` is the shared convention — Codex, Gemini CLI, OpenCode, Copilot
+# and CommandCode all read it — so the default writes just that plus Claude Code's
+# directory, which between them covers most agents in two directories.
 AGENT_DIRS = {
     "claude": ".claude/skills",
-    "codex": ".agents/skills",
+    "agents": ".agents/skills",
+    "gemini": ".gemini/skills",
     "cursor": ".cursor/skills",
     "opencode": ".opencode/skills",
+    "copilot": ".github/skills",
 }
+
+# Agents that read a shared directory rather than one named after themselves.
+ALIASES = {"codex": "agents", "commandcode": "agents"}
+
+COVERED_BY = {
+    "claude": "Claude Code",
+    "agents": "Codex, Gemini CLI, OpenCode, Copilot, CommandCode",
+    "gemini": "Gemini CLI (workspace scope)",
+    "cursor": "Cursor",
+    "opencode": "OpenCode",
+    "copilot": "GitHub Copilot",
+}
+
+DEFAULT_AGENTS = "claude,agents"
 
 
 # MIT and Apache-2.0 both require the licence and copyright notice to travel with
@@ -150,18 +170,27 @@ def main() -> int:
                     help="install every curated skill (default: the core set)")
     ap.add_argument("--skills", help="comma-separated skill names, overrides --full")
     ap.add_argument("--list", action="store_true", help="show what would be installed")
-    ap.add_argument("--agents", default="claude",
-                    help="comma-separated agents to install for, or 'all' "
-                         f"(known: {', '.join(AGENT_DIRS)}; default: claude)")
+    ap.add_argument("--agents", default=DEFAULT_AGENTS,
+                    help="comma-separated targets, or 'all' (known: "
+                         f"{', '.join(AGENT_DIRS)}; aliases: {', '.join(ALIASES)}; "
+                         f"default: {DEFAULT_AGENTS})")
     args = ap.parse_args()
 
-    agents = list(AGENT_DIRS) if args.agents == "all" else [
-        a.strip() for a in args.agents.split(",") if a.strip()
-    ]
+    if args.agents == "all":
+        agents = list(AGENT_DIRS)
+    else:
+        agents = []
+        for raw in args.agents.split(","):
+            name = ALIASES.get(raw.strip(), raw.strip())
+            if name and name not in agents:
+                agents.append(name)
     unknown = [a for a in agents if a not in AGENT_DIRS]
     if unknown:
-        print(f"error: unknown agent(s): {', '.join(unknown)}; "
-              f"known: {', '.join(AGENT_DIRS)}", file=sys.stderr)
+        print(f"error: unknown agent(s): {', '.join(unknown)}; known: "
+              f"{', '.join(AGENT_DIRS)}; aliases: {', '.join(ALIASES)}", file=sys.stderr)
+        return 1
+    if not agents:
+        print("error: --agents named no targets", file=sys.stderr)
         return 1
 
     catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
@@ -261,7 +290,8 @@ def main() -> int:
         print(f"  warning: {missing_licenses} licence file(s) could not be fetched — "
               "check them before publishing", file=sys.stderr)
 
-    print(f"\n{installed} skills installed to {skills_dir.relative_to(project)}")
+    print(f"\n{installed} skills installed to {skills_dir.relative_to(project)}"
+          f"  — {COVERED_BY[agents[0]]}")
 
     # Mirror into the other requested agents' directories.
     for agent in agents[1:]:
@@ -270,7 +300,8 @@ def main() -> int:
             shutil.rmtree(mirror)
         mirror.parent.mkdir(parents=True, exist_ok=True)
         shutil.copytree(skills_dir, mirror)
-        print(f"{installed} skills mirrored to {mirror.relative_to(project)} ({agent})")
+        print(f"{installed} skills mirrored to {mirror.relative_to(project)}"
+              f"  — {COVERED_BY[agent]}")
 
     if failed:
         print(f"{failed} failed", file=sys.stderr)
@@ -282,7 +313,10 @@ def main() -> int:
     print("\nAnyone who clones the repository now gets these automatically —")
     print("no marketplace, no per-developer install step.")
     if "claude" not in agents:
-        print("\nNote: Claude Code was not among the agents; it reads .claude/skills.")
+        print("\nNote: Claude Code was not among the targets; it reads .claude/skills.")
+    print("\nGemini CLI reads .agents/skills at workspace scope, so it is covered "
+          "without\n.gemini/skills. Use --agents gemini only if you want its own "
+          "directory too.")
     return 1 if failed else 0
 
 

@@ -10,23 +10,26 @@ than naming a skill. Naming one explicitly always works.
 
 ## In another agent runtime
 
-Agent Skills are portable; only the directory each agent reads differs. The installer
-writes whichever ones you ask for:
+Agent Skills are portable; only the directory each agent reads differs. `.agents/skills/`
+is the shared convention, so the default covers most agents in two directories:
 
 ```bash
-python3 dev-skills/scripts/install-skills.py --project . --agents all
+python3 dev-skills/scripts/install-skills.py --project .              # .claude + .agents
+python3 dev-skills/scripts/install-skills.py --project . --agents all # every directory
 ```
 
-| Agent | Directory |
+| Directory | Read by |
 |---|---|
-| Claude Code | `.claude/skills/` |
-| Codex, and any `AGENTS.md` runtime | `.agents/skills/` |
-| Cursor | `.cursor/skills/` |
-| OpenCode | `.opencode/skills/` |
+| `.claude/skills/` | Claude Code |
+| `.agents/skills/` | Codex, Gemini CLI, OpenCode, Copilot, CommandCode |
+| `.gemini/skills/` | Gemini CLI, workspace scope |
+| `.cursor/skills/` | Cursor |
+| `.opencode/skills/` | OpenCode |
+| `.github/skills/` | GitHub Copilot |
 
-Gemini CLI installs skills natively (`gemini skills install <repo> --path skills`), and
-the [skills CLI](https://github.com/vercel-labs/skills) covers 70+ agents one skill at a
-time. Take skills from the repository that authors them, at the ref pinned in
+Gemini CLI can also install skills itself (`gemini skills install <repo> --path skills`),
+and the [skills CLI](https://github.com/vercel-labs/skills) covers 70+ agents one skill
+at a time. Take skills from the repository that authors them, at the ref pinned in
 [`catalog.json`](../catalog.json) — never from a mirror.
 
 ## Making it stick in a project
