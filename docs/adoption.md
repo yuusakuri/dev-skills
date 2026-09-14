@@ -10,19 +10,24 @@ than naming a skill. Naming one explicitly always works.
 
 ## In another agent runtime
 
-The upstream skills are plain [Agent Skills](https://agentskills.io/specification)
-directories. Clone each upstream repository **at the ref pinned in
-[`catalog.json`](../catalog.json)** and copy the skill directories you want:
+Agent Skills are portable; only the directory each agent reads differs. The installer
+writes whichever ones you ask for:
 
 ```bash
-git clone https://github.com/obra/superpowers
-git -C superpowers checkout b36e0829c6d0140e93cfef2ca599b1b07d4a7797
-cp -r superpowers/skills/test-driven-development <your-skills-dir>/
+python3 dev-skills/scripts/install-skills.py --project . --agents all
 ```
 
-Take upstream skills from their own repositories, never from a third party's copy —
-that is the whole point of the pinning. `scripts/verify-catalog.py` prints every
-repository, ref, and path.
+| Agent | Directory |
+|---|---|
+| Claude Code | `.claude/skills/` |
+| Codex, and any `AGENTS.md` runtime | `.agents/skills/` |
+| Cursor | `.cursor/skills/` |
+| OpenCode | `.opencode/skills/` |
+
+Gemini CLI installs skills natively (`gemini skills install <repo> --path skills`), and
+the [skills CLI](https://github.com/vercel-labs/skills) covers 70+ agents one skill at a
+time. Take skills from the repository that authors them, at the ref pinned in
+[`catalog.json`](../catalog.json) — never from a mirror.
 
 ## Making it stick in a project
 

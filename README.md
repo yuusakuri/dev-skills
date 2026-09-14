@@ -57,7 +57,7 @@ first one.**
 |---|---|---|
 | Setup | one command, by one person | one command, by one person |
 | **What each teammate does** | **nothing** | runs `claude plugin install` once, per plugin |
-| Works in | Claude Code, Codex, Cursor, any Agent Skills runtime | Claude Code |
+| Works in | Claude Code, Codex, Cursor, OpenCode (`--agents all`) | Claude Code |
 | Offline | yes | no |
 | Staying current | re-run the installer | automatic |
 | Repo size | ~1.7 MB for the core set | nothing added |
@@ -81,9 +81,10 @@ That is the whole setup. Everyone who pulls now has the skills.
 The default is a **core set of 20 skills** covering every phase once. Options:
 
 ```bash
---list            # show what would be installed, change nothing
---full            # all 56
---skills a,b,c    # pick exactly these
+--list             # show what would be installed, change nothing
+--full             # all 56
+--skills a,b,c     # pick exactly these
+--agents all       # install for every supported agent, not just Claude Code
 ```
 
 The installer fetches each skill from its own upstream repository at the commit pinned
@@ -96,20 +97,6 @@ result is reproducible and auditable.
 redistribution, which MIT and Apache-2.0 both permit but require notices for. The
 installer writes `ATTRIBUTION.md` (every skill, its upstream, its commit, its licence)
 and fetches each upstream `LICENSE` into `.claude/skills/licenses/`. Commit those too.
-
-**Using a submodule instead of cloning** is worth it only if you want the pins to travel
-with the project and to re-run the installer without hunting for a checkout:
-
-```bash
-git submodule add https://github.com/yuusakuri/dev-skills .agents/dev-skills
-python3 .agents/dev-skills/scripts/install-skills.py --project .
-```
-
-Note what a submodule does *not* do here: this repository contains no skill files, only
-the catalog and the router, so the submodule alone installs nothing — you still run the
-installer, and you still commit `.claude/skills/`. The trade is that teammates now need
-`git submodule update --init`, which is a step the plain clone avoids. Prefer the plain
-clone unless you specifically want the pins versioned inside the project.
 
 ### As plugins, for yourself
 
@@ -176,11 +163,35 @@ the answer should be `ship-gate`.
 
 ### Other agents
 
-Every curated skill is a plain [Agent Skills](https://agentskills.io/specification)
-directory. The copy-into-repo route already works for any runtime that reads
-`.claude/skills/`; for Codex, symlink `.agents/skills` to it. The
-[skills CLI](https://github.com/vercel-labs/skills) installs individual skills into 70+
-agents:
+Agent Skills are a portable format, and nothing in this curation is Claude-specific:
+every skill is a directory with a `SKILL.md`. Only the directory an agent reads differs,
+so the installer writes whichever ones you ask for.
+
+```bash
+python3 dev-skills/scripts/install-skills.py --project . --agents all
+```
+
+| Agent | Directory | |
+|---|---|---|
+| Claude Code | `.claude/skills/` | default |
+| Codex (and any `AGENTS.md` runtime) | `.agents/skills/` | `--agents codex` |
+| Cursor | `.cursor/skills/` | `--agents cursor` |
+| OpenCode | `.opencode/skills/` | `--agents opencode` |
+
+The directories hold identical copies rather than symlinks, because symlinks are
+unreliable on Windows checkouts. That costs nothing in the repository: git stores
+content by hash, so the same skill committed to four directories is one blob with four
+tree entries. Installing 3 skills for all four agents produced 40 tracked files from 10
+unique blobs.
+
+Gemini CLI installs skills itself, so point it at an upstream rather than copying:
+
+```bash
+gemini skills install https://github.com/addyosmani/agent-skills.git --path skills
+```
+
+The [skills CLI](https://github.com/vercel-labs/skills) covers 70+ other agents one
+skill at a time:
 
 ```bash
 npx skills add addyosmani/agent-skills --skill code-simplification

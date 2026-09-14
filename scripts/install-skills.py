@@ -6,9 +6,10 @@ the repository — no marketplace, no per-developer install step. This script
 fetches each curated skill from its own upstream repository at the pinned commit
 in `catalog.json` and writes it there.
 
-    python3 scripts/install-skills.py --project /path/to/repo            # core set
-    python3 scripts/install-skills.py --project /path/to/repo --full     # everything
-    python3 scripts/install-skills.py --project /path/to/repo --list     # dry run
+    python3 scripts/install-skills.py --project /path/to/repo                 # core set
+    python3 scripts/install-skills.py --project /path/to/repo --full          # everything
+    python3 scripts/install-skills.py --project /path/to/repo --agents all    # every agent
+    python3 scripts/install-skills.py --project /path/to/repo --list          # dry run
 
 Re-running updates in place. A manifest is written to
 `.claude/skills/.dev-skills.json` recording exactly which commit each skill came
@@ -32,6 +33,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog.json"
 ROUTER = ROOT / "plugins" / "dev-lifecycle" / "skills" / "development-lifecycle"
+
+# Where each agent looks for project-level skills. The Agent Skills format is the
+# same everywhere; only the directory differs. Files are copied rather than
+# symlinked: symlinks are unreliable on Windows checkouts, and git stores identical
+# content as one blob, so extra copies cost almost nothing in the repository.
+AGENT_DIRS = {
+    "claude": ".claude/skills",
+    "codex": ".agents/skills",
+    "cursor": ".cursor/skills",
+    "opencode": ".opencode/skills",
+}
 
 
 # MIT and Apache-2.0 both require the licence and copyright notice to travel with
@@ -138,7 +150,19 @@ def main() -> int:
                     help="install every curated skill (default: the core set)")
     ap.add_argument("--skills", help="comma-separated skill names, overrides --full")
     ap.add_argument("--list", action="store_true", help="show what would be installed")
+    ap.add_argument("--agents", default="claude",
+                    help="comma-separated agents to install for, or 'all' "
+                         f"(known: {', '.join(AGENT_DIRS)}; default: claude)")
     args = ap.parse_args()
+
+    agents = list(AGENT_DIRS) if args.agents == "all" else [
+        a.strip() for a in args.agents.split(",") if a.strip()
+    ]
+    unknown = [a for a in agents if a not in AGENT_DIRS]
+    if unknown:
+        print(f"error: unknown agent(s): {', '.join(unknown)}; "
+              f"known: {', '.join(AGENT_DIRS)}", file=sys.stderr)
+        return 1
 
     catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
     sources = catalog["sources"]
@@ -170,7 +194,8 @@ def main() -> int:
     if not project.is_dir():
         print(f"error: {project} is not a directory", file=sys.stderr)
         return 1
-    skills_dir = project / ".claude" / "skills"
+    # The first agent's directory holds the real files; the rest are mirrored from it.
+    skills_dir = project / AGENT_DIRS[agents[0]]
     skills_dir.mkdir(parents=True, exist_ok=True)
 
     # Group by source so each upstream is fetched once, not once per skill.
@@ -236,14 +261,28 @@ def main() -> int:
         print(f"  warning: {missing_licenses} licence file(s) could not be fetched — "
               "check them before publishing", file=sys.stderr)
 
-    print(f"\n{installed} skills installed to {skills_dir}")
+    print(f"\n{installed} skills installed to {skills_dir.relative_to(project)}")
+
+    # Mirror into the other requested agents' directories.
+    for agent in agents[1:]:
+        mirror = project / AGENT_DIRS[agent]
+        if mirror.exists():
+            shutil.rmtree(mirror)
+        mirror.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(skills_dir, mirror)
+        print(f"{installed} skills mirrored to {mirror.relative_to(project)} ({agent})")
+
     if failed:
         print(f"{failed} failed", file=sys.stderr)
+
+    paths = " ".join(AGENT_DIRS[a] for a in agents)
     print("\nNext:")
     print(f"  cd {project}")
-    print("  git add .claude/skills && git commit -m 'Add curated agent skills'")
+    print(f"  git add {paths} && git commit -m 'Add curated agent skills'")
     print("\nAnyone who clones the repository now gets these automatically —")
     print("no marketplace, no per-developer install step.")
+    if "claude" not in agents:
+        print("\nNote: Claude Code was not among the agents; it reads .claude/skills.")
     return 1 if failed else 0
 
 
