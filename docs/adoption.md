@@ -11,7 +11,8 @@ than naming a skill. Naming one explicitly always works.
 ## In another agent runtime
 
 Agent Skills are portable; only the directory each agent reads differs. `.agents/skills/`
-is the shared convention, so the default covers most agents in two directories:
+is the shared convention, but Claude Code does not read it — Claude Code discovers skills
+only under `.claude/skills/`. The default writes both, which covers every agent below:
 
 ```bash
 python3 dev-skills/scripts/install-skills.py --project .              # .claude + .agents

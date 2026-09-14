@@ -40,8 +40,9 @@ ROUTER = ROOT / "plugins" / "dev-lifecycle" / "skills" / "development-lifecycle"
 # content as one blob, so extra copies cost almost nothing in the repository.
 #
 # `.agents/skills` is the shared convention — Codex, Gemini CLI, OpenCode, Copilot
-# and CommandCode all read it — so the default writes just that plus Claude Code's
-# directory, which between them covers most agents in two directories.
+# and CommandCode all read it. Claude Code does NOT: it discovers skills only under
+# `.claude/skills`. So the default writes both, and between them they cover every
+# agent listed here.
 AGENT_DIRS = {
     "claude": ".claude/skills",
     "agents": ".agents/skills",

@@ -166,8 +166,9 @@ the answer should be `ship-gate`.
 Agent Skills are a portable format and nothing in this curation is Claude-specific:
 every skill is a directory with a `SKILL.md`. Only the directory an agent reads differs.
 
-`.agents/skills/` is the shared convention that most agents honour, so the default
-writes two directories and that covers nearly everything:
+`.agents/skills/` is the shared convention that most agents honour — but **Claude Code
+does not read it.** Claude Code discovers skills only under `.claude/skills/`. So the
+default writes both, and between them they cover every agent listed here:
 
 ```bash
 python3 dev-skills/scripts/install-skills.py --project .              # .claude + .agents
@@ -185,6 +186,9 @@ python3 dev-skills/scripts/install-skills.py --project . --agents all # every di
 
 Gemini CLI, OpenCode and Copilot each also read a directory of their own, listed above;
 those are only worth writing if you want the agent-specific location as well.
+
+Do not drop `.claude/skills/` on the assumption that `.agents/skills/` is universal — it
+is the one directory Claude Code will not find.
 
 The directories hold identical copies rather than symlinks, because symlinks are
 unreliable on Windows checkouts. That costs nothing where it matters: git stores content
