@@ -8,7 +8,7 @@ docs.
 
 ## Curated upstream skills
 
-**This repository redistributes no upstream content.** `catalog.json` references each
+This repository redistributes no upstream content. `catalog.json` references each
 upstream repository at a pinned commit; `/plugin marketplace add` fetches them from
 their own repositories at install time. Upstream licences, attribution, and updates
 therefore apply directly and unmodified, and each author remains the distributor of

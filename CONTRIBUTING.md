@@ -15,7 +15,8 @@ This repository is a **curation**. The default contribution is an edit to
    one-line `role`.
 4. Add it to the phase map in `development-lifecycle/SKILL.md`. The validator fails the
    build if a catalog entry is not routed to.
-5. Regenerate the docs and run the checks (below).
+5. Update `docs/reference/catalog.md` and `NOTICE.md` to match, then run the checks
+   (below).
 
 ## Writing a new skill here — the bar
 
@@ -44,11 +45,14 @@ python3 scripts/validate-skills.py  # spec conformance + router covers every ent
 All three run in CI, and weekly on a schedule so upstream drift surfaces as a failing
 build rather than a silently wrong map.
 
-## Regenerating the docs
+## Keeping the catalog and its docs in step
 
-`docs/reference/catalog.md` and `NOTICE.md` are generated from `catalog.json`. Do not
-hand-edit them; change the catalog and regenerate, so the map and its documentation
-cannot disagree.
+`catalog.json` is the source of truth. `docs/reference/catalog.md` and `NOTICE.md`
+restate it for readers and are maintained by hand, so an edit to the catalog is not
+finished until both are updated in the same commit.
+
+Nothing enforces this yet. `verify-catalog.py` checks that every entry in
+`catalog.json` resolves upstream; it does not check that the prose agrees with it.
 
 ## Updating a pin
 
