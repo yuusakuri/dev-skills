@@ -4,7 +4,7 @@ Installing skills makes them available. Three things make them used.
 
 ## Point at the router from the project's agent instructions
 
-In `CLAUDE.md` or `AGENTS.md`:
+In `AGENTS.md`, or whichever instructions file your agent reads:
 
 ```markdown
 ## Working in this repository
@@ -52,9 +52,6 @@ Mandating all ten phases on day one gets the whole thing abandoned. A workable o
 5. `threat-model`, `senior-security`, `a11y-audit` — before the first release that
    handles real user data or faces the public.
 
-Where a phase offers two skills, see
-[reference/overlapping-skills.md](../reference/overlapping-skills.md).
-
 ## Check that it worked
 
 Ask the agent:
@@ -62,4 +59,4 @@ Ask the agent:
 > Which skill covers deciding whether to ship a release?
 
 It should answer `ship-gate`, or `launch-readiness`. If it cannot, the skills are not
-loaded: check that the plugin is enabled and that the session was restarted.
+loaded: check that the directory your agent reads is present, and restart the session.

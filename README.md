@@ -38,22 +38,31 @@ git clone https://github.com/yuusakuri/dev-skills
 python3 dev-skills/scripts/install-skills.py --project /path/to/your-project
 
 cd /path/to/your-project
-git add .claude/skills .agents/skills && git commit -m "Add agent skills"
+git add .agents/skills .claude/skills .cursor/skills
+git commit -m "Add agent skills"
 ```
 
-The default installs 20 skills covering every phase once, for Claude Code and
-for the agents that read `.agents/skills`. See
-[docs/how-to/adopt-in-a-project.md](docs/how-to/adopt-in-a-project.md) for what
-makes them stick, and
-[docs/how-to/install-for-other-agents.md](docs/how-to/install-for-other-agents.md)
-for agents other than Claude Code.
+That installs 19 skills covering every phase once, plus the router.
+
+The skills go to `.agents/skills/`, the shared convention most agents read.
+Claude Code and Cursor do not read it, so they get their own directories too.
+`--agents` changes the targets, `--full` installs all 56, and `--list` shows
+what would be written without writing it.
+
+| Flag | Effect |
+|---|---|
+| `--agents agents` | the shared directory only |
+| `--agents all` | every directory in [docs/reference/agent-directories.md](docs/reference/agent-directories.md) |
+| `--full` | all 56 skills instead of the core 19 |
+| `--list` | dry run |
 
 ## Usage
 
 Start with the `development-lifecycle` skill. It identifies which phase a task
 is in and names the skill that owns it, so nobody has to remember 56 names.
 
-Add this to the project's `CLAUDE.md`:
+Add this to the project's `AGENTS.md`, or to whichever instructions file your
+agent reads:
 
 ```markdown
 Start with the `development-lifecycle` skill to identify the phase and the
@@ -62,9 +71,7 @@ skill that owns it. Scale the process to the change.
 Test command: <command>   Decisions: docs/decisions/
 ```
 
-New here? [docs/tutorials/first-install.md](docs/tutorials/first-install.md) walks
-through it once, end to end. Everything else is indexed in
-[docs/index.md](docs/index.md).
+Everything else is indexed in [docs/index.md](docs/index.md).
 
 ## What is here
 
