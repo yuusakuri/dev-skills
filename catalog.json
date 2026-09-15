@@ -218,13 +218,6 @@
           "core": true
         },
         {
-          "skill": "tdd-guide",
-          "source": "alireza",
-          "path": "engineering-team/skills/tdd-guide",
-          "plugin": "engineering-skills",
-          "role": "Alternative TDD walkthrough"
-        },
-        {
           "skill": "executing-plans",
           "source": "superpowers",
           "path": "skills/executing-plans",
@@ -370,7 +363,7 @@
           "source": "superpowers",
           "path": "skills/requesting-code-review",
           "plugin": "superpowers",
-          "role": "Get work checked before merging",
+          "role": "Prepare a change so a reviewer can review it",
           "core": true
         },
         {
@@ -386,21 +379,21 @@
           "source": "alireza",
           "path": "engineering/skills/pr-review-expert",
           "plugin": "engineering-advanced-skills",
-          "role": "Structured PR review"
+          "role": "Review someone else's change"
         },
         {
           "skill": "senior-security",
           "source": "alireza",
           "path": "engineering-team/skills/senior-security",
           "plugin": "engineering-skills",
-          "role": "Security audit of a change"
+          "role": "Audit a finished change for security defects"
         },
         {
           "skill": "security-guidance",
           "source": "alireza",
           "path": "engineering/security-guidance/skills/security-guidance",
           "plugin": "security-guidance",
-          "role": "Secure-coding guidance during review"
+          "role": "Answer security questions while the code is being written"
         },
         {
           "skill": "dependency-auditor",
@@ -498,7 +491,7 @@
           "source": "alireza",
           "path": "engineering-team/skills/incident-commander",
           "plugin": "engineering-skills",
-          "role": "Lead an active production incident",
+          "role": "Restore service during a production outage",
           "core": true
         },
         {
@@ -506,7 +499,7 @@
           "source": "alireza",
           "path": "engineering-team/skills/incident-response",
           "plugin": "engineering-skills",
-          "role": "Security incident triage, severity, forensics (NIST SP 800-61)"
+          "role": "Handle a security incident: triage, severity, forensics"
         },
         {
           "skill": "incident-postmortem",

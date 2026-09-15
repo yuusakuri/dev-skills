@@ -13,7 +13,7 @@
       "name": "dev-lifecycle",
       "source": "./plugins/dev-lifecycle",
       "displayName": "Development Lifecycle Router",
-      "description": "Routes any software task to the lifecycle phase that owns it and names the community skill that covers it, across 56 curated skills from five upstream repositories. Install the upstream marketplaces separately - see docs/reference/catalog.md.",
+      "description": "Routes any software task to the lifecycle phase that owns it and names the curated community skill that covers it. Install the upstream marketplaces separately - see docs/reference/catalog.md.",
       "version": "0.2.0",
       "author": { "name": "yuusakuri" },
       "homepage": "https://github.com/yuusakuri/dev-skills",

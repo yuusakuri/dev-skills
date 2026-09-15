@@ -9,27 +9,27 @@ metadata:
 
 # Development Lifecycle Router
 
-This skill is a **map, not a method**. It owns no practice of its own. Its job is to
-work out which lifecycle phase a task is in and hand off to the established community
-skill that covers it — all of which are maintained in their own repositories.
+This skill is a **map, not a method**.
+It owns no practice of its own.
+Its job is to work out which lifecycle phase a task is in and hand off to the established community skill that covers it — all of which are maintained in their own repositories.
 
-**Invoke the skill named in the table. Do not try to do the phase's work from here.**
+**Invoke the skill named in the table.
+Do not try to do the phase's work from here.**
 
 ## How to route
 
 Ask two questions:
 
-1. **What artifact does this task need to produce?** A decision, a spec, a plan, code,
-   a review, a release, a fix, a document?
+1. **What artifact does this task need to produce?** A decision, a spec, a plan, code, a review, a release, a fix, a document?
 2. **What does "done" look like, and who checks it?**
 
-Then pick the row. If a task spans phases, run them in order — skipping earlier phases
-is the most common cause of rework.
+Then pick the row.
+If a task spans phases, run them in order — skipping earlier phases is the most common cause of rework.
 
 ## Phase map
 
-Names are given as `plugin:skill`. If a skill is not installed, the row still tells you
-what to look for — see `docs/reference/catalog.md` for the repository and install command.
+Names are given as `plugin:skill`.
+If a skill is not installed, the row still tells you what to look for — see `docs/reference/catalog.md` for the repository and install command.
 
 | # | Phase | Use when | Skill |
 |---|---|---|---|
@@ -49,7 +49,7 @@ what to look for — see `docs/reference/catalog.md` for the repository and inst
 | 3 | Test planning | Deciding what to test and at which level | `senior-qa` |
 | 3 | Quality bar | No written standard, or an agent keeps silencing checks to go green | `constraint-driven-development` |
 | 3 | Workspace | You need an isolated branch or worktree before implementing | `superpowers:using-git-worktrees` |
-| 4 | Implementation | About to write feature or bugfix code | `superpowers:test-driven-development`, `tdd-guide` |
+| 4 | Implementation | About to write feature or bugfix code | `superpowers:test-driven-development` |
 | 4 | Plan execution | Working through a written plan | `superpowers:executing-plans`, `superpowers:subagent-driven-development` |
 | 4 | Parallel work | 2+ independent tasks with no shared state | `superpowers:dispatching-parallel-agents` |
 | 4 | Schema change | Changing a schema or migrating stored data | `migration-architect` |
@@ -88,48 +88,37 @@ what to look for — see `docs/reference/catalog.md` for the repository and inst
 
 These are the collection's operating principles; the individual skills carry the detail.
 
-1. **Evidence before assertion.** Never report a phase complete without output that
-   shows it. "Tests pass" means you ran them and read the result.
-2. **Reversibility decides rigor.** Cheap and reversible: just do it. Expensive or
-   one-way: write the decision down first (`architecture-decision-record`).
-3. **Phase 1 has no code.** If you are writing code to answer "what should this do?",
-   you are in the wrong phase — unless it is an explicit throwaway spike.
-4. **The user owns scope.** Surface gaps and risks; do not silently widen or narrow
-   what was asked for.
-5. **Leave the trail.** Requirements, decisions, and incidents belong in the repo, not
-   only in a conversation that will be lost.
+1. **Evidence before assertion.** Never report a phase complete without output that shows it.
+   "Tests pass" means you ran them and read the result.
+2. **Reversibility decides rigor.** Cheap and reversible: just do it.
+   Expensive or one-way: write the decision down first (`architecture-decision-record`).
+3. **Phase 1 has no code.** If you are writing code to answer "what should this do?", you are in the wrong phase — unless it is an explicit throwaway spike.
+4. **The user owns scope.** Surface gaps and risks; do not silently widen or narrow what was asked for.
+5. **Leave the trail.** Requirements, decisions, and incidents belong in the repo, not only in a conversation that will be lost.
 
 ## Scaling to task size
 
 Match the ceremony to the blast radius:
 
-- **Trivial** (typo, comment, obvious one-line fix): phase 4 → 6. No spec, no ADR.
+- **Trivial** (typo, comment, obvious one-line fix): phase 4 → 6.
+  No spec, no ADR.
 - **Small** (contained change, existing patterns, reversible): 1 → 4 → 6 → 7.
 - **Standard** (new feature or endpoint): 0 → 1 → 2 → 3 → 4 → 6 → 7 → 8.
-- **High-stakes** (data model, auth, money, migrations, public API): every phase, and
-  `threat-model` plus `architecture-decision-record` are mandatory, not optional.
+- **High-stakes** (data model, auth, money, migrations, public API): every phase, and `threat-model` plus `architecture-decision-record` are mandatory, not optional.
 
 When unsure which size a task is, assume the larger one and say so.
 
 ## Gaps to be aware of
 
-Every phase now routes to a maintained skill. Two residual sharp edges are worth
-stating, because no skill covers them head-on:
+Every phase now routes to a maintained skill.
+Two residual sharp edges are worth stating, because no skill covers them head-on:
 
-- **Untested legacy code.** `code-simplification` preserves behavior and keeps
-  refactors out of feature commits, but it assumes something can tell you when
-  behavior changed. When no test pins the code you are about to reshape, write
-  characterization tests first — tests that capture what the code *currently* does,
-  bugs included — then refactor against them.
-- **Flaky tests beyond timing.** `superpowers:systematic-debugging` bundles
-  `condition-based-waiting.md`, which handles the largest single cause: tests that
-  guess at timing with `sleep`/`setTimeout` and so pass locally but fail under load or
-  in CI. Reach for it first. It does not cover test ordering and shared state, unseeded
-  randomness, unordered collection comparison, or local-versus-CI environment
-  differences. For those the rule is that a flake is real non-determinism: find its
-  source, and never retry it into green. `constraint-driven-development` is the
-  counterpart that catches the other half of this failure — an agent skipping or
-  deleting a test to reach green.
+- **Untested legacy code.** `code-simplification` preserves behavior and keeps refactors out of feature commits, but it assumes something can tell you when behavior changed.
+  When no test pins the code you are about to reshape, write characterization tests first — tests that capture what the code *currently* does, bugs included — then refactor against them.
+- **Flaky tests beyond timing.** `superpowers:systematic-debugging` bundles `condition-based-waiting.md`, which handles the largest single cause: tests that guess at timing with `sleep`/`setTimeout` and so pass locally but fail under load or in CI.
+  Reach for it first.
+  It does not cover test ordering and shared state, unseeded randomness, unordered collection comparison, or local-versus-CI environment differences.
+  For those the rule is that a flake is real non-determinism: find its source, and never retry it into green.
+  `constraint-driven-development` is the counterpart that catches the other half of this failure — an agent skipping or deleting a test to reach green.
 
-If no row fits at all, say which phase the task is in and proceed with the phase's
-principle above rather than guessing at a skill.
+If no row fits at all, say which phase the task is in and proceed with the phase's principle above rather than guessing at a skill.

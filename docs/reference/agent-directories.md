@@ -1,20 +1,33 @@
 # Agent directories
 
-Where each agent discovers skills, and the `--agents` name that writes it.
+`.agents/skills/` is the shared convention.
+Most agents read it.
 
-| `--agents` name | Directory | Read by |
+| Reads `.agents/skills/` |
+|---|
+| Codex |
+| Gemini CLI |
+| OpenCode |
+| GitHub Copilot |
+| CommandCode |
+
+Two do not, and need a directory of their own.
+
+| Agent | Directory | `--agents` name |
 |---|---|---|
-| `claude` | `.claude/skills/` | Claude Code |
-| `agents` | `.agents/skills/` | Codex, Gemini CLI, OpenCode, Copilot, CommandCode |
-| `gemini` | `.gemini/skills/` | Gemini CLI, workspace scope |
-| `cursor` | `.cursor/skills/` | Cursor |
-| `opencode` | `.opencode/skills/` | OpenCode |
-| `copilot` | `.github/skills/` | GitHub Copilot |
+| Claude Code | `.claude/skills/` | `claude` |
+| Cursor | `.cursor/skills/` | `cursor` |
 
-Aliases: `codex` and `commandcode` both resolve to `agents`.
+The default writes all three: `agents,claude,cursor`.
 
-`all` writes every directory in the table.
+Some agents accept a second, narrower location.
+Passing these is optional; the shared directory already covers them.
 
-The default is `claude,agents`.
+| Directory | `--agents` name | Agent |
+|---|---|---|
+| `.gemini/skills/` | `gemini` | Gemini CLI, workspace scope |
+| `.opencode/skills/` | `opencode` | OpenCode |
+| `.github/skills/` | `copilot` | GitHub Copilot |
 
-Claude Code does not read `.agents/skills/`.
+`codex` and `commandcode` are aliases for `agents`.
+`all` writes every directory in this page.
