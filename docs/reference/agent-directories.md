@@ -1,6 +1,7 @@
 # Agent directories
 
-`.agents/skills/` is the shared convention. Most agents read it.
+`.agents/skills/` is the shared convention.
+Most agents read it.
 
 | Reads `.agents/skills/` |
 |---|
@@ -19,8 +20,8 @@ Two do not, and need a directory of their own.
 
 The default writes all three: `agents,claude,cursor`.
 
-Some agents accept a second, narrower location. Passing these is optional; the
-shared directory already covers them.
+Some agents accept a second, narrower location.
+Passing these is optional; the shared directory already covers them.
 
 | Directory | `--agents` name | Agent |
 |---|---|---|
@@ -28,5 +29,5 @@ shared directory already covers them.
 | `.opencode/skills/` | `opencode` | OpenCode |
 | `.github/skills/` | `copilot` | GitHub Copilot |
 
-`codex` and `commandcode` are aliases for `agents`. `all` writes every directory
-in this page.
+`codex` and `commandcode` are aliases for `agents`.
+`all` writes every directory in this page.

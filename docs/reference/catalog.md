@@ -1,12 +1,8 @@
 # Curated skill catalog
 
 Generated from [`catalog.json`](../../catalog.json) — the machine-readable curation.
-Every entry, and every install command below, is verified by
-[`scripts/verify-catalog.py`](../../scripts/verify-catalog.py). No upstream file is
-copied into this repository.
-
-Why these sources were chosen:
-[explanation/why-these-sources.md](../explanation/why-these-sources.md).
+Every entry, and every install command below, is verified by [`scripts/verify-catalog.py`](../../scripts/verify-catalog.py).
+No upstream file is copied into this repository.
 
 ## Sources
 
@@ -28,8 +24,7 @@ Why these sources were chosen:
 
 ### Install
 
-Marketplace and plugin names below are checked against each upstream's own
-`.claude-plugin/marketplace.json`, so a rename upstream fails the build.
+Marketplace and plugin names below are checked against each upstream's own `.claude-plugin/marketplace.json`, so a rename upstream fails the build.
 
 ```bash
 # obra/superpowers  (MIT)
@@ -54,8 +49,7 @@ Marketplace and plugin names below are checked against each upstream's own
 
 ```
 
-For a whole project at once, see
-[Install](../../README.md#install).
+For a whole project at once, see [Install](../../README.md#install).
 
 ## By phase
 
@@ -100,7 +94,6 @@ For a whole project at once, see
 | Skill | Role | Source | Install plugin |
 |---|---|---|---|
 | `test-driven-development` | Red-green-refactor for every feature and bugfix | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/test-driven-development) | `superpowers` |
-| `tdd-guide` | Alternative TDD walkthrough | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/tdd-guide) | `engineering-skills` |
 | `executing-plans` | Work a written plan with review checkpoints | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/executing-plans) | `superpowers` |
 | `subagent-driven-development` | Drive plan tasks through subagents | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/subagent-driven-development) | `superpowers` |
 | `dispatching-parallel-agents` | Independent tasks in parallel | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/dispatching-parallel-agents) | `superpowers` |
@@ -133,11 +126,11 @@ For a whole project at once, see
 
 | Skill | Role | Source | Install plugin |
 |---|---|---|---|
-| `requesting-code-review` | Get work checked before merging | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/requesting-code-review) | `superpowers` |
+| `requesting-code-review` | Prepare a change so a reviewer can review it | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/requesting-code-review) | `superpowers` |
 | `receiving-code-review` | Assess feedback rigorously, not performatively | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/receiving-code-review) | `superpowers` |
-| `pr-review-expert` | Structured PR review | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/pr-review-expert) | `engineering-advanced-skills` |
-| `senior-security` | Security audit of a change | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/senior-security) | `engineering-skills` |
-| `security-guidance` | Secure-coding guidance during review | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/security-guidance/skills/security-guidance) | `security-guidance` |
+| `pr-review-expert` | Review someone else's change | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/pr-review-expert) | `engineering-advanced-skills` |
+| `senior-security` | Audit a finished change for security defects | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/senior-security) | `engineering-skills` |
+| `security-guidance` | Answer security questions while the code is being written | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/security-guidance/skills/security-guidance) | `security-guidance` |
 | `dependency-auditor` | Dependency and advisory triage | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/dependency-auditor) | `engineering-advanced-skills` |
 | `adversarial-reviewer` | Deliberately critical review that breaks the self-review monoculture | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/adversarial-reviewer) | `engineering-skills` |
 
@@ -159,8 +152,8 @@ For a whole project at once, see
 
 | Skill | Role | Source | Install plugin |
 |---|---|---|---|
-| `incident-commander` | Lead an active production incident | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/incident-commander) | `engineering-skills` |
-| `incident-response` | Security incident triage, severity, forensics (NIST SP 800-61) | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/incident-response) | `engineering-skills` |
+| `incident-commander` | Restore service during a production outage | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/incident-commander) | `engineering-skills` |
+| `incident-response` | Handle a security incident: triage, severity, forensics | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/incident-response) | `engineering-skills` |
 | `incident-postmortem` | Blameless postmortem with action items | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/incident-postmortem) | `pm-engineering` |
 
 ### Meta
