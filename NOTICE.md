@@ -1,88 +1,88 @@
-# Notices and attribution
+# 権利表示と帰属
 
-## This repository
+## このリポジトリ
 
-MIT ([LICENSE](LICENSE)), (c) 2026 yuusakuri.
-That covers only this repository's own content: the `development-lifecycle` router skill, `catalog.json`, the scripts, and the docs.
+MIT（[LICENSE](LICENSE)）、(c) 2026 yuusakuri。
+対象はこのリポジトリ自身の内容に限る。`development-lifecycle`ルータースキル、`catalog.json`、各スクリプト、ドキュメント。
 
-## Curated upstream skills
+## 選定した上流のスキル
 
-This repository redistributes no upstream content. `catalog.json` references each upstream repository at a pinned commit; `/plugin marketplace add` fetches them from their own repositories at install time.
-Upstream licences, attribution, and updates therefore apply directly and unmodified, and each author remains the distributor of their own work.
+このリポジトリは上流の内容を一切再配布しない。`catalog.json`は各上流リポジトリを固定したコミットで参照するだけで、`/plugin marketplace add`が導入時にそれぞれのリポジトリから取得する。
+したがって上流のライセンス、帰属、更新はそのまま直接適用され、各著者が自身の成果物の配布者であり続ける。
 
-Verify at any time with `python3 scripts/verify-catalog.py`, which fetches every referenced `SKILL.md` from its pinned commit and checks that every documented install command names a marketplace and plugin that really exist.
+`python3 scripts/verify-catalog.py`でいつでも確認できる。参照している`SKILL.md`をすべて固定コミットから取得し、記載した導入コマンドが実在するマーケットプレイスとプラグインを指しているかを検査する。
 
 ### obra/superpowers
 
-- Repository: <https://github.com/obra/superpowers>
-- Author: Jesse Vincent
-- Licence: MIT
-- Pinned commit: `b36e0829c6d0140e93cfef2ca599b1b07d4a7797` (tag `v6.3.0`)
-- Skills curated from it: 12
+- リポジトリ: <https://github.com/obra/superpowers>
+- 著者: Jesse Vincent
+- ライセンス: MIT
+- 固定コミット: `b36e0829c6d0140e93cfef2ca599b1b07d4a7797` （タグ `v6.3.0`）
+- 選定数: 12
 
 ### anthropics/skills
 
-- Repository: <https://github.com/anthropics/skills>
-- Author: Anthropic
-- Licence: Apache-2.0
-- Pinned commit: `34040c9c568585f6929bedeaad110ad08f079624`
-- Skills curated from it: 4
+- リポジトリ: <https://github.com/anthropics/skills>
+- 著者: Anthropic
+- ライセンス: Apache-2.0
+- 固定コミット: `34040c9c568585f6929bedeaad110ad08f079624`
+- 選定数: 4
 
 ### addyosmani/agent-skills
 
-- Repository: <https://github.com/addyosmani/agent-skills>
-- Author: Addy Osmani
-- Licence: MIT
-- Pinned commit: `be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39`
-- Skills curated from it: 9
-- Note: Production-grade engineering skills.
-  Referenced at upstream HEAD rather than through any mirror, because vendored copies of it in the wild are already several revisions behind.
+- リポジトリ: <https://github.com/addyosmani/agent-skills>
+- 著者: Addy Osmani
+- ライセンス: MIT
+- 固定コミット: `be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39`
+- 選定数: 9
+- 備考: 実務水準のエンジニアリング用スキル。
+  ミラー経由ではなく上流のHEADを参照している。出回っている複製は既に数リビジョン遅れているためである。
 
 ### alirezarezvani/claude-skills
 
-- Repository: <https://github.com/alirezarezvani/claude-skills>
-- Author: Alireza Rezvani
-- Licence: MIT
-- Pinned commit: `19392f7a08264ed00486a251f5b2098321771f94`
-- Skills curated from it: 26
+- リポジトリ: <https://github.com/alirezarezvani/claude-skills>
+- 著者: Alireza Rezvani
+- ライセンス: MIT
+- 固定コミット: `19392f7a08264ed00486a251f5b2098321771f94`
+- 選定数: 26
 
 ### mohitagw15856/pm-claude-skills
 
-- Repository: <https://github.com/mohitagw15856/pm-claude-skills>
-- Author: mohitagw15856
-- Licence: MIT
-- Pinned commit: `f67821d42c8c6db20752030e12ded030a623bee3`
-- Skills curated from it: 5
-- Note: Listed in Anthropic's official plugin directory
+- リポジトリ: <https://github.com/mohitagw15856/pm-claude-skills>
+- 著者: mohitagw15856
+- ライセンス: MIT
+- 固定コミット: `f67821d42c8c6db20752030e12ded030a623bee3`
+- 選定数: 5
+- 備考: Anthropicの公式プラグイン一覧に掲載されている
 
-## Why origins, not mirrors
+## ミラーではなく本家を参照する理由
 
-Skills are referenced from the repository that authors them, never through a catalog that has vendored a copy.
-Vendored copies drift: at the time of writing, one widely used mirror of `addyosmani/agent-skills` is pinned several revisions behind upstream, and its copy of `security-and-hardening` is missing roughly 57 lines that exist upstream.
+スキルは、それを書いたリポジトリから参照する。複製を取り込んだカタログ経由では参照しない。
+取り込んだ複製はずれていく。本稿の執筆時点で、広く使われている`addyosmani/agent-skills`のミラーの1つは上流より数リビジョン遅れており、その`security-and-hardening`は上流に存在する約57行を欠いている。
 
-Vendoring is a legitimate approach — it works offline and pins exactly — but it makes the vendoring catalog responsible for staying current.
-This repository chose the other trade-off.
+取り込むこと自体は正当な方式である。オフラインで動き、固定も厳密になる。ただし、最新に保つ責任が取り込む側のカタログに移る。
+このリポジトリはもう一方のトレードオフを選んだ。
 
-## Plugin names are preserved deliberately
+## プラグイン名を意図して保っている
 
-Superpowers skills cross-reference each other as `superpowers:<skill-name>`, so they are installed under the plugin name `superpowers` and those references resolve.
+superpowersのスキルは互いを`superpowers:<skill-name>`の形で相互参照する。したがって`superpowers`というプラグイン名で導入し、その参照が解決するようにしている。
 
-## Deliberate exclusions
+## 意図的に除外したもの
 
-- **Anthropic's document skills** (`docx`, `pdf`, `pptx`, `xlsx`) are *source-available, not open source* — "(c) 2025 Anthropic, PBC.
-  All rights reserved." Install them from Anthropic's own marketplace and accept their terms if you want them.
-- **`doc-coauthoring`** (`anthropics/skills`) ships without a licence file.
-- **`rohitg00/awesome-claude-code-toolkit`** (2.6k stars, Apache-2.0) was curated and then removed: its marketplace exposes only command-based plugins, and the repository's own `skills/` directory is not an installable plugin, so the one entry taken from it could never be installed by the documented method.
-- **`phuryn/pm-skills`** (26.3k stars, MIT): `pre-mortem` (4.1 KB) and `retro` (2.8 KB) add little over `ship-gate` and `launch-readiness`.
-- Smaller specialist collections reviewed and left out on scale grounds, not quality: [`arozumenko/sdlc-skills`](https://github.com/arozumenko/sdlc-skills) and [`Security-Phoenix-demo/security-skills-claude-code`](https://github.com/Security-Phoenix-demo/security-skills-claude-code).
+- **Anthropicの文書スキル**（`docx`、`pdf`、`pptx`、`xlsx`）はソース公開であってオープンソースではない。
+  "(c) 2025 Anthropic, PBC. All rights reserved." 必要ならAnthropic自身のマーケットプレイスから導入し、その条件に同意すること。
+- **`doc-coauthoring`**（`anthropics/skills`）にはライセンスファイルが同梱されていない。
+- **`rohitg00/awesome-claude-code-toolkit`**（2.6kスター、Apache-2.0）は一度選定したのち削除した。マーケットプレイスがコマンド型のプラグインしか公開しておらず、リポジトリ自身の`skills/`ディレクトリは導入可能なプラグインになっていない。そのため、そこから採った1件は、記載した方法では決して導入できなかった。
+- **`phuryn/pm-skills`**（26.3kスター、MIT）。`pre-mortem`（4.1 KB）と`retro`（2.8 KB）は、`ship-gate`と`launch-readiness`に対して足すものが少ない。
+- 規模を理由に見送った、品質ではない理由での小規模な専門コレクション。[`arozumenko/sdlc-skills`](https://github.com/arozumenko/sdlc-skills)と[`Security-Phoenix-demo/security-skills-claude-code`](https://github.com/Security-Phoenix-demo/security-skills-claude-code)。
 
-## Updating a pin
+## 固定先の更新
 
-Edit the `ref` in `catalog.json`, then run:
+`catalog.json`の`ref`を編集し、次を実行する。
 
 ```bash
 python3 scripts/verify-catalog.py
 python3 scripts/validate-skills.py
 ```
 
-Upstream skill *names* and plugin names are part of this repository's routing and install instructions, so a rename upstream fails verification by design.
+上流のスキル名とプラグイン名は、このリポジトリの割り当てと導入手順の一部である。したがって上流での改名は、設計どおり検証を失敗させる。

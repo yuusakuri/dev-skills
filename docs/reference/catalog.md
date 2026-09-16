@@ -1,12 +1,12 @@
-# Curated skill catalog
+# 選定したスキルのカタログ
 
-Generated from [`catalog.json`](../../catalog.json) — the machine-readable curation.
-Every entry, and every install command below, is verified by [`scripts/verify-catalog.py`](../../scripts/verify-catalog.py).
-No upstream file is copied into this repository.
+機械可読な選定結果である[`catalog.json`](../../catalog.json)から起こした。
+各項目と、以下のすべての導入コマンドは[`scripts/verify-catalog.py`](../../scripts/verify-catalog.py)が検証している。
+上流のファイルはこのリポジトリへ一切コピーしていない。
 
-## Sources
+## 取得元
 
-| Repository | Stars | License | Skills curated |
+| リポジトリ | スター | ライセンス | 選定数 |
 |---|---|---|---|
 | [`obra/superpowers`](https://github.com/obra/superpowers) | 285.6k | MIT | 12 |
 | [`anthropics/skills`](https://github.com/anthropics/skills) | 175.9k | Apache-2.0 | 4 |
@@ -14,7 +14,7 @@ No upstream file is copied into this repository.
 | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills) | 25.9k | MIT | 26 |
 | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills) | 1.4k | MIT | 5 |
 
-### Pinned refs
+### 固定しているref
 
 - **obra/superpowers** — `b36e0829c6d0140e93cfef2ca599b1b07d4a7797` (`v6.3.0`)
 - **anthropics/skills** — `34040c9c568585f6929bedeaad110ad08f079624`
@@ -22,13 +22,13 @@ No upstream file is copied into this repository.
 - **mohitagw15856/pm-claude-skills** — `f67821d42c8c6db20752030e12ded030a623bee3`
 - **addyosmani/agent-skills** — `be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39`
 
-### Install
+### 導入
 
-Marketplace and plugin names below are checked against each upstream's own `.claude-plugin/marketplace.json`, so a rename upstream fails the build.
+以下のマーケットプレイス名とプラグイン名は、各上流の`.claude-plugin/marketplace.json`と照合している。上流での改名はビルドを落とす。
 
 ```bash
 # obra/superpowers  (MIT)
-# already registered: claude-plugins-official is added automatically
+# 登録済み: claude-plugins-official は自動的に追加される
 /plugin install superpowers@claude-plugins-official
 
 # anthropics/skills  (Apache-2.0)
@@ -37,11 +37,11 @@ Marketplace and plugin names below are checked against each upstream's own `.cla
 
 # alirezarezvani/claude-skills  (MIT)
 /plugin marketplace add alirezarezvani/claude-skills
-/plugin install engineering-advanced-skills@claude-code-skills  # plus engineering-skills, a11y-audit, security-guidance
+/plugin install engineering-advanced-skills@claude-code-skills  # ほかに engineering-skills、a11y-audit、security-guidance
 
 # mohitagw15856/pm-claude-skills  (MIT)
 /plugin marketplace add mohitagw15856/pm-claude-skills
-/plugin install pm-engineering@pm-claude-skills  # plus pm-essentials, pm-security, pm-delivery
+/plugin install pm-engineering@pm-claude-skills  # ほかに pm-essentials、pm-security、pm-delivery
 
 # addyosmani/agent-skills  (MIT)
 /plugin marketplace add addyosmani/agent-skills
@@ -49,116 +49,116 @@ Marketplace and plugin names below are checked against each upstream's own `.cla
 
 ```
 
-For a whole project at once, see [Install](../../README.md#install).
+プロジェクト一括の導入は[インストール](../../README.md#インストール)を参照する。
 
-## By phase
+## 工程別
 
-### Orientation
+### 把握
 
-| Skill | Role | Source | Install plugin |
+| スキル | 役割 | 取得元 | 導入プラグイン |
 |---|---|---|---|
-| `codebase-onboarding` | Map an unfamiliar codebase before changing it | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/codebase-onboarding) | `engineering-advanced-skills` |
+| `codebase-onboarding` | 不案内なコードベースを、変更する前に把握する | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/codebase-onboarding) | `engineering-advanced-skills` |
 
-### Requirements
+### 要件
 
-| Skill | Role | Source | Install plugin |
+| スキル | 役割 | 取得元 | 導入プラグイン |
 |---|---|---|---|
-| `brainstorming` | Explore intent and design before any code | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/brainstorming) | `superpowers` |
-| `prd-template` | Turn agreement into a written PRD with acceptance criteria | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/prd-template) | `pm-essentials` |
-| `epic-design` | Decompose a large requirement into epics and stories | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/epic-design) | `engineering-skills` |
+| `brainstorming` | コードを書く前に意図と設計を探る | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/brainstorming) | `superpowers` |
+| `prd-template` | 合意を、受け入れ基準を伴うPRDへ書き起こす | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/prd-template) | `pm-essentials` |
+| `epic-design` | 大きな要求をエピックとストーリーへ分解する | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/epic-design) | `engineering-skills` |
 
-### Architecture and design
+### アーキテクチャと設計
 
-| Skill | Role | Source | Install plugin |
+| スキル | 役割 | 取得元 | 導入プラグイン |
 |---|---|---|---|
-| `senior-architect` | System design and architectural trade-offs | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/senior-architect) | `engineering-skills` |
-| `architecture-decision-record` | Record a hard-to-reverse decision as an ADR | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/architecture-decision-record) | `pm-engineering` |
-| `api-design-reviewer` | Contract review with linting and breaking-change detection scripts | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/api-design-reviewer) | `engineering-advanced-skills` |
-| `database-schema-designer` | Data model design | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/database-schema-designer) | `engineering-advanced-skills` |
-| `threat-model` | Identify threats and mitigations at design time | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/threat-model) | `pm-security` |
-| `frontend-design` | Deliberate visual direction for a UI | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/frontend-design) | `example-skills` |
-| `tech-stack-evaluator` | Choose between frameworks or platforms with TCO and ecosystem-health analysis | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/tech-stack-evaluator) | `engineering-skills` |
-| `documentation-and-adrs` | Record decisions and write the docs a future maintainer needs | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/documentation-and-adrs) | `agent-skills` |
+| `senior-architect` | システム設計と、アーキテクチャ上のトレードオフ | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/senior-architect) | `engineering-skills` |
+| `architecture-decision-record` | 覆しにくい決定をADRとして記録する | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/architecture-decision-record) | `pm-engineering` |
+| `api-design-reviewer` | 契約のレビュー。linterと破壊的変更の検出スクリプトを同梱 | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/api-design-reviewer) | `engineering-advanced-skills` |
+| `database-schema-designer` | データモデルの設計 | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/database-schema-designer) | `engineering-advanced-skills` |
+| `threat-model` | 設計の時点で脅威と対策を洗い出す | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/threat-model) | `pm-security` |
+| `frontend-design` | UIの視覚的な方向性を意図して定める | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/frontend-design) | `example-skills` |
+| `tech-stack-evaluator` | 総保有コストとエコシステムの健全性からフレームワークやプラットフォームを選ぶ | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/tech-stack-evaluator) | `engineering-skills` |
+| `documentation-and-adrs` | 決定を記録し、将来の保守担当が必要とする文書を書く | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/documentation-and-adrs) | `agent-skills` |
 
-### Planning
+### 計画
 
-| Skill | Role | Source | Install plugin |
+| スキル | 役割 | 取得元 | 導入プラグイン |
 |---|---|---|---|
-| `writing-plans` | Turn a spec into an executable plan | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/writing-plans) | `superpowers` |
-| `senior-qa` | Decide what to test and at which level | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/senior-qa) | `engineering-skills` |
-| `using-git-worktrees` | Isolated workspace before implementing | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/using-git-worktrees) | `superpowers` |
-| `constraint-driven-development` | Write the quality bar as a contract, and catch an agent quietly lowering it | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/constraint-driven-development) | `agent-skills` |
+| `writing-plans` | 仕様を実行可能な計画に落とす | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/writing-plans) | `superpowers` |
+| `senior-qa` | 何をどの層でテストするかを決める | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/senior-qa) | `engineering-skills` |
+| `using-git-worktrees` | 実装前に独立した作業環境を用意する | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/using-git-worktrees) | `superpowers` |
+| `constraint-driven-development` | 品質基準を契約として書き、エージェントが黙ってそれを下げるのを捕らえる | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/constraint-driven-development) | `agent-skills` |
 
-### Implementation
+### 実装
 
-| Skill | Role | Source | Install plugin |
+| スキル | 役割 | 取得元 | 導入プラグイン |
 |---|---|---|---|
-| `test-driven-development` | Red-green-refactor for every feature and bugfix | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/test-driven-development) | `superpowers` |
-| `executing-plans` | Work a written plan with review checkpoints | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/executing-plans) | `superpowers` |
-| `subagent-driven-development` | Drive plan tasks through subagents | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/subagent-driven-development) | `superpowers` |
-| `dispatching-parallel-agents` | Independent tasks in parallel | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/dispatching-parallel-agents) | `superpowers` |
-| `migration-architect` | Schema and data migration sequencing | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/migration-architect) | `engineering-advanced-skills` |
-| `tech-debt-tracker` | Track and prioritize restructuring work | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/tech-debt-tracker) | `engineering-advanced-skills` |
-| `mcp-builder` | Build an MCP server | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/mcp-builder) | `example-skills` |
-| `env-secrets-manager` | Environment-variable hygiene, secret handling, drift and rotation readiness | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/env-secrets-manager) | `engineering-advanced-skills` |
-| `security-and-hardening` | Write secure code as you go: input handling, authN/Z, storage, integrations | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/security-and-hardening) | `agent-skills` |
-| `code-simplification` | Refactor for clarity with behavior preserved exactly, separate from feature work | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/code-simplification) | `agent-skills` |
-| `source-driven-development` | Ground implementation decisions in official docs instead of recalled patterns | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/source-driven-development) | `agent-skills` |
+| `test-driven-development` | 機能追加と不具合修正のすべてをレッド・グリーン・リファクタで進める | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/test-driven-development) | `superpowers` |
+| `executing-plans` | レビュー地点を挟みながら、書かれた計画を進める | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/executing-plans) | `superpowers` |
+| `subagent-driven-development` | 計画の各タスクをサブエージェントに進めさせる | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/subagent-driven-development) | `superpowers` |
+| `dispatching-parallel-agents` | 独立した作業を並行させる | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/dispatching-parallel-agents) | `superpowers` |
+| `migration-architect` | スキーマとデータの移行の順序を組む | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/migration-architect) | `engineering-advanced-skills` |
+| `tech-debt-tracker` | 構造の整理作業を追跡し、優先順位を付ける | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/tech-debt-tracker) | `engineering-advanced-skills` |
+| `mcp-builder` | MCPサーバーを作る | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/mcp-builder) | `example-skills` |
+| `env-secrets-manager` | 環境変数の衛生、機密情報の扱い、設定のずれと更新への備え | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/env-secrets-manager) | `engineering-advanced-skills` |
+| `security-and-hardening` | 書きながら安全なコードにする。入力の扱い、認証認可、保存、外部連携 | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/security-and-hardening) | `agent-skills` |
+| `code-simplification` | 挙動を厳密に保ったまま、読みやすさのために整理する。機能変更とは分ける | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/code-simplification) | `agent-skills` |
+| `source-driven-development` | 記憶した書き方ではなく、公式文書に基づいて実装を判断する | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/source-driven-development) | `agent-skills` |
 
-### Debugging and performance
+### デバッグと性能
 
-| Skill | Role | Source | Install plugin |
+| スキル | 役割 | 取得元 | 導入プラグイン |
 |---|---|---|---|
-| `systematic-debugging` | Any bug or test failure, before proposing fixes | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/systematic-debugging) | `superpowers` |
-| `chaos-engineering` | Fault injection and resilience testing | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/chaos-engineering) | `engineering-advanced-skills` |
-| `performance-optimization` | Measure-first performance work: profile, find the real bottleneck, prove the gain | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/performance-optimization) | `agent-skills` |
-| `ci-cd-and-automation` | Pipeline design, caching, and keeping the build trustworthy | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/ci-cd-and-automation) | `agent-skills` |
+| `systematic-debugging` | 不具合やテストの失敗に対し、修正を提案する前に行う | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/systematic-debugging) | `superpowers` |
+| `chaos-engineering` | 障害注入と耐障害性のテスト | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/chaos-engineering) | `engineering-advanced-skills` |
+| `performance-optimization` | 計測を先にする性能改善。プロファイルを取り、真のボトルネックを見つけ、改善を示す | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/performance-optimization) | `agent-skills` |
+| `ci-cd-and-automation` | パイプラインの設計、キャッシュ、ビルドを信用できる状態に保つこと | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/ci-cd-and-automation) | `agent-skills` |
 
-### Verification
+### 検証
 
-| Skill | Role | Source | Install plugin |
+| スキル | 役割 | 取得元 | 導入プラグイン |
 |---|---|---|---|
-| `verification-before-completion` | Evidence before claiming done | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/verification-before-completion) | `superpowers` |
-| `webapp-testing` | Real-browser verification via Playwright | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/webapp-testing) | `example-skills` |
-| `a11y-audit` | WCAG 2.2 A/AA audit and remediation | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/a11y-audit/skills/a11y-audit) | `a11y-audit` |
+| `verification-before-completion` | 完了を主張する前に根拠を出す | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/verification-before-completion) | `superpowers` |
+| `webapp-testing` | Playwrightによる実ブラウザでの検証 | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/webapp-testing) | `example-skills` |
+| `a11y-audit` | WCAG 2.2 A/AA の監査と是正 | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/a11y-audit/skills/a11y-audit) | `a11y-audit` |
 
-### Review
+### レビュー
 
-| Skill | Role | Source | Install plugin |
+| スキル | 役割 | 取得元 | 導入プラグイン |
 |---|---|---|---|
-| `requesting-code-review` | Prepare a change so a reviewer can review it | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/requesting-code-review) | `superpowers` |
-| `receiving-code-review` | Assess feedback rigorously, not performatively | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/receiving-code-review) | `superpowers` |
-| `pr-review-expert` | Review someone else's change | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/pr-review-expert) | `engineering-advanced-skills` |
-| `senior-security` | Audit a finished change for security defects | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/senior-security) | `engineering-skills` |
-| `security-guidance` | Answer security questions while the code is being written | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/security-guidance/skills/security-guidance) | `security-guidance` |
-| `dependency-auditor` | Dependency and advisory triage | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/dependency-auditor) | `engineering-advanced-skills` |
-| `adversarial-reviewer` | Deliberately critical review that breaks the self-review monoculture | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/adversarial-reviewer) | `engineering-skills` |
+| `requesting-code-review` | レビュアーがレビューできる形に変更を整える | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/requesting-code-review) | `superpowers` |
+| `receiving-code-review` | 指摘を形式的にではなく厳密に検討する | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/receiving-code-review) | `superpowers` |
+| `pr-review-expert` | 他人の変更をレビューする | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/pr-review-expert) | `engineering-advanced-skills` |
+| `senior-security` | 完成した変更にセキュリティ上の欠陥がないか監査する | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/senior-security) | `engineering-skills` |
+| `security-guidance` | コードを書いている最中のセキュリティの疑問に答える | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/security-guidance/skills/security-guidance) | `security-guidance` |
+| `dependency-auditor` | 依存と脆弱性情報の選別 | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/dependency-auditor) | `engineering-advanced-skills` |
+| `adversarial-reviewer` | 意図して批判的にレビューし、自己レビューの単一視点を崩す | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/adversarial-reviewer) | `engineering-skills` |
 
-### Release
+### リリース
 
-| Skill | Role | Source | Install plugin |
+| スキル | 役割 | 取得元 | 導入プラグイン |
 |---|---|---|---|
-| `observability-designer` | Logs, metrics, traces before shipping | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/observability-designer) | `engineering-advanced-skills` |
-| `slo-architect` | SLOs, error budgets, alert thresholds | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/slo-architect) | `engineering-advanced-skills` |
-| `runbook-generator` | Operational runbooks for each alert | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/runbook-generator) | `engineering-advanced-skills` |
-| `finishing-a-development-branch` | Integrate completed work | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/finishing-a-development-branch) | `superpowers` |
-| `ship-gate` | Go/no-go release gate | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/ship-gate) | `engineering-advanced-skills` |
-| `changelog-generator` | Changelog and release notes | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/changelog-generator) | `engineering-advanced-skills` |
-| `launch-readiness` | Launch readiness checklist | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/launch-readiness) | `pm-delivery` |
-| `feature-flags-architect` | Ship behind a flag: progressive rollout, kill switch, stale-flag debt | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/feature-flags-architect) | `engineering-advanced-skills` |
-| `deprecation-and-migration` | Retire an API, feature, or system and move users off it safely | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/deprecation-and-migration) | `agent-skills` |
+| `observability-designer` | リリース前にログ、メトリクス、トレースを用意する | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/observability-designer) | `engineering-advanced-skills` |
+| `slo-architect` | SLO、エラーバジェット、アラートのしきい値 | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/slo-architect) | `engineering-advanced-skills` |
+| `runbook-generator` | アラートごとの運用手順書 | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/runbook-generator) | `engineering-advanced-skills` |
+| `finishing-a-development-branch` | 完了した作業を統合する | [`obra/superpowers`](https://github.com/obra/superpowers/tree/b36e0829c6d0140e93cfef2ca599b1b07d4a7797/skills/finishing-a-development-branch) | `superpowers` |
+| `ship-gate` | リリースの可否判断 | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/ship-gate) | `engineering-advanced-skills` |
+| `changelog-generator` | 変更履歴とリリースノート | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/changelog-generator) | `engineering-advanced-skills` |
+| `launch-readiness` | リリース準備の確認項目 | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/launch-readiness) | `pm-delivery` |
+| `feature-flags-architect` | フラグの背後で出す。段階的公開、停止スイッチ、放置フラグの負債 | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering/skills/feature-flags-architect) | `engineering-advanced-skills` |
+| `deprecation-and-migration` | API、機能、システムの提供を終え、利用者を安全に移す | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/deprecation-and-migration) | `agent-skills` |
 
-### Operations
+### 運用
 
-| Skill | Role | Source | Install plugin |
+| スキル | 役割 | 取得元 | 導入プラグイン |
 |---|---|---|---|
-| `incident-commander` | Restore service during a production outage | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/incident-commander) | `engineering-skills` |
-| `incident-response` | Handle a security incident: triage, severity, forensics | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/incident-response) | `engineering-skills` |
-| `incident-postmortem` | Blameless postmortem with action items | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/incident-postmortem) | `pm-engineering` |
+| `incident-commander` | 本番障害の最中にサービスを復旧させる | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/incident-commander) | `engineering-skills` |
+| `incident-response` | セキュリティ事案を扱う。切り分け、深刻度、調査 | [`alirezarezvani/claude-skills`](https://github.com/alirezarezvani/claude-skills/tree/19392f7a08264ed00486a251f5b2098321771f94/engineering-team/skills/incident-response) | `engineering-skills` |
+| `incident-postmortem` | 個人を責めない振り返りと対策項目 | [`mohitagw15856/pm-claude-skills`](https://github.com/mohitagw15856/pm-claude-skills/tree/f67821d42c8c6db20752030e12ded030a623bee3/skills/incident-postmortem) | `pm-engineering` |
 
-### Meta
+### メタ
 
-| Skill | Role | Source | Install plugin |
+| スキル | 役割 | 取得元 | 導入プラグイン |
 |---|---|---|---|
-| `skill-creator` | Create, edit, and evaluate skills | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/skill-creator) | `example-skills` |
-| `context-engineering` | Set up and maintain the agent's context when output quality degrades | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/context-engineering) | `agent-skills` |
+| `skill-creator` | スキルを作り、直し、評価する | [`anthropics/skills`](https://github.com/anthropics/skills/tree/34040c9c568585f6929bedeaad110ad08f079624/skills/skill-creator) | `example-skills` |
+| `context-engineering` | 出力の質が落ちてきたときに、エージェントの文脈を整える | [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills/tree/be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39/skills/context-engineering) | `agent-skills` |

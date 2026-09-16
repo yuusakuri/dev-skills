@@ -1,51 +1,51 @@
-# Contributing
+# コントリビュート
 
-This repository is a **curation**.
-The default contribution is an edit to [`catalog.json`](catalog.json), not a new skill.
+このリポジトリは選定である。
+通常の貢献は[`catalog.json`](catalog.json)への編集であって、新しいスキルの追加ではない。
 
-## Adding a skill to the curation
+## 選定にスキルを加える
 
-1. It must be an existing, publicly published skill in a maintained repository with a clear permissive licence.
-2. It must fill a phase gap, or beat an incumbent clearly enough to replace it.
-   Two skills matching the same request is a routing hazard — the agent picks between them unpredictably.
-3. Add the entry to `catalog.json` with the upstream `repo`, a **40-character commit SHA** as `ref`, the `path` to the skill directory, the install `plugin`, and a one-line `role`.
-4. Add it to the phase map in `development-lifecycle/SKILL.md`.
-   The validator fails the build if a catalog entry is not routed to.
-5. Update `docs/reference/catalog.md` and `NOTICE.md` to match, then run the checks (below).
+1. 保守されているリポジトリで公開されている既存のスキルであり、明確な寛容ライセンスを持つこと。
+2. 工程の空白を埋めるか、既存のものを置き換えるに足るだけ明確に上回ること。
+   同じ依頼に2つのスキルが該当する状態は割り当ての危険であり、エージェントがどちらを選ぶか予測できなくなる。
+3. `catalog.json`に項目を加える。上流の`repo`、40文字のコミットSHAを`ref`として、スキルのディレクトリへの`path`、導入する`plugin`、1行の`role`。
+4. `development-lifecycle/SKILL.md`の工程の対応表に加える。
+   カタログの項目が割り当てられていない場合、検証がビルドを落とす。
+5. `docs/reference/catalog.md`と`NOTICE.md`を合わせて更新し、下記の検査を実行する。
 
-## Writing a new skill here — the bar
+## ここに新しいスキルを書く場合の基準
 
-Prefer curating over authoring, and prefer contributing a skill upstream over hosting it here.
-A new skill in this repository needs all of:
+選ぶことを、書くことより優先する。ここに置くより、上流へ貢献することを優先する。
+このリポジトリに新しいスキルを置くには、次のすべてを満たす必要がある。
 
-1. **No existing published skill covers it.** Search the ecosystem first — the awesome lists, the sources in `catalog.json`, and Claude Code's plugin directory.
-   This repository previously shipped 18 hand-written skills that all turned out to have established equivalents; they were removed.
-2. **It is stack-agnostic.** No required framework, cloud, or vendor.
-3. **It has a distinct trigger** that does not collide with a curated skill's.
-4. **It encodes judgment, not documentation.**
+1. 既存の公開スキルが扱っていないこと。まずエコシステムを調べる。まとめリポジトリ、`catalog.json`の取得元、Claude Codeのプラグイン一覧。
+   このリポジトリは以前、手書きのスキルを18個持っていたが、すべてに確立された同等物があると分かり、削除した。
+2. 技術構成に依存しないこと。特定のフレームワーク、クラウド、ベンダーを要求しない。
+3. 起動条件が明確で、選定済みのスキルと衝突しないこと。
+4. 文書ではなく判断を記していること。
 
-The `development-lifecycle` router is the one skill hosted here, because a routing map over a specific curation cannot live upstream.
+`development-lifecycle`ルーターがここに置かれている唯一のスキルである。特定の選定に対する割り当ての地図は、上流には置けないためである。
 
-## Checks
+## 検査
 
 ```bash
-python3 scripts/verify-catalog.py   # every curated ref resolves at its pinned commit
-python3 scripts/validate-skills.py  # spec conformance + router covers every entry
-./scripts/check-upstream.sh         # pins are immutable commits, tags still agree
+python3 scripts/verify-catalog.py   # 選定した各refが固定したコミットで解決する
+python3 scripts/validate-skills.py  # 仕様への適合と、ルーターが全項目を網羅していること
+./scripts/check-upstream.sh         # 固定先が不変のコミットであり、タグとも一致する
 ```
 
-All three run in CI, and weekly on a schedule so upstream drift surfaces as a failing build rather than a silently wrong map.
+3つともCIで実行され、週次でも実行される。上流のずれが、静かに誤った地図としてではなく、失敗するビルドとして現れるようにするためである。
 
-## Keeping the catalog and its docs in step
+## カタログと文書を揃えておく
 
-`catalog.json` is the source of truth.
-`docs/reference/catalog.md` and `NOTICE.md` restate it for readers and are maintained by hand, so an edit to the catalog is not finished until both are updated in the same commit.
+`catalog.json`が唯一の情報源である。
+`docs/reference/catalog.md`と`NOTICE.md`は読者向けにそれを言い直したもので、手で管理している。カタログへの編集は、両者を同じコミットで更新するまで終わっていない。
 
-Nothing enforces this yet.
-`verify-catalog.py` checks that every entry in `catalog.json` resolves upstream; it does not check that the prose agrees with it.
+これを強制する仕組みはまだない。
+`verify-catalog.py`は`catalog.json`の各項目が上流で解決するかを見るだけで、散文がカタログと一致しているかは見ていない。
 
-## Updating a pin
+## 固定先を更新する
 
-Edit the `ref` in `catalog.json`, then run all three checks.
-Review the upstream changelog first: upstream skill *names* are part of the routing table, so a rename breaks the router.
-`verify-catalog.py` catches exactly that.
+`catalog.json`の`ref`を編集し、3つの検査をすべて実行する。
+先に上流の変更履歴を読む。上流のスキル名は割り当ての表の一部なので、改名はルーターを壊す。
+`verify-catalog.py`はまさにそれを捕らえる。

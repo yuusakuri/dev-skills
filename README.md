@@ -1,37 +1,37 @@
 # dev-skills
 
-A curated map of community [Agent Skills](https://agentskills.io/specification) covering software work from requirements to production.
+要件定義から本番運用までのソフトウェア開発を対象に、公開されている[Agent Skills](https://agentskills.io/specification)を選び、整理した地図である。
 
-It curates existing skills and copies none of them.
-Each skill stays in the repository that maintains it.
-This repository contributes the map, the pinned commit for each entry, and a check that both are still true.
+既存のスキルを選ぶだけで、複製はしない。
+各スキルは、それを保守しているリポジトリに置かれたままである。
+このリポジトリが足すのは、対応表、各項目の固定コミット、そして両者がまだ正しいかを確かめる検査である。
 
-## Table of Contents
+## 目次
 
-- [Sources](#sources)
-- [Install](#install)
-- [Usage](#usage)
-- [What is here](#what-is-here)
-- [Contributing](#contributing)
-- [License](#license)
+- [取得元](#取得元)
+- [インストール](#インストール)
+- [使い方](#使い方)
+- [このリポジトリの中身](#このリポジトリの中身)
+- [コントリビュート](#コントリビュート)
+- [ライセンス](#ライセンス)
 
-## Sources
+## 取得元
 
-| Repository | Stars | License |
-|---|---|---|
+| リポジトリ | スター | ライセンス |
+| --- | --- | --- |
 | [obra/superpowers](https://github.com/obra/superpowers) | 285.6k | MIT |
 | [anthropics/skills](https://github.com/anthropics/skills) | 175.9k | Apache-2.0 |
 | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | 93.8k | MIT |
 | [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) | 25.9k | MIT |
 | [mohitagw15856/pm-claude-skills](https://github.com/mohitagw15856/pm-claude-skills) | 1.4k | MIT |
 
-Every entry is pinned to a commit, and the pin is checked weekly.
-The full list is in [docs/reference/catalog.md](docs/reference/catalog.md).
+各項目はコミットで固定されており、週次で検査される。
+一覧は[docs/reference/catalog.md](docs/reference/catalog.md)にある。
 
-## Install
+## インストール
 
-Copy the skills into a project.
-Anyone who clones it then has them, with no further setup.
+スキルをプロジェクトへコピーする。
+以降、そのリポジトリをクローンした人は、追加の設定なしに使える。
 
 ```bash
 git clone https://github.com/yuusakuri/dev-skills
@@ -42,24 +42,24 @@ git add .agents/skills .claude/skills .cursor/skills
 git commit -m "Add agent skills"
 ```
 
-The default installs one skill per phase, plus the router.
+既定では、各工程から1つずつと、ルーターが入る。
 
-They go to `.agents/skills/`, the shared convention most agents read.
-Claude Code and Cursor do not read it, so they get their own directories too.
+置き場所は`.agents/skills/`である。多くのエージェントが読む共通の場所である。
+Claude CodeとCursorはここを読まないので、それぞれのディレクトリにも書き込む。
 
-| Flag | Effect |
-|---|---|
-| `--agents agents` | the shared directory only |
-| `--agents all` | every directory in [docs/reference/agent-directories.md](docs/reference/agent-directories.md) |
-| `--full` | every curated skill, not just one per phase |
-| `--list` | print what would be written, write nothing |
+| オプション | 効果 |
+| --- | --- |
+| `--agents agents` | 共通のディレクトリのみ |
+| `--agents all` | [docs/reference/agent-directories.md](docs/reference/agent-directories.md)にある全ディレクトリ |
+| `--full` | 各工程から1つではなく、選定した全スキル |
+| `--list` | 書き込まずに、書き込む内容だけを表示する |
 
-## Usage
+## 使い方
 
-Start with the `development-lifecycle` skill.
-It identifies which phase a task is in and names the skill that owns it, so nobody has to recall the catalog.
+`development-lifecycle`スキルから始める。
+作業がどの工程にあるかを判断し、その工程を担うスキルを名指しするので、一覧を覚えておく必要はない。
 
-Add this to the project's `AGENTS.md`, or to whichever instructions file your agent reads:
+プロジェクトの`AGENTS.md`、または使っているエージェントが読む指示ファイルに、次を加える。
 
 ```markdown
 Start with the `development-lifecycle` skill to identify the phase and the
@@ -68,24 +68,24 @@ skill that owns it. Scale the process to the change.
 Test command: <command>   Decisions: docs/decisions/
 ```
 
-Everything else is indexed in [docs/index.md](docs/index.md).
+その他は[docs/index.md](docs/index.md)から辿れる。
 
-## What is here
+## このリポジトリの中身
 
-| Path | Purpose |
-|---|---|
-| `catalog.json` | Which skill owns which phase, at which commit |
-| `plugins/dev-lifecycle/` | The one skill hosted here: a router |
-| `scripts/install-skills.py` | Copies curated skills into a project |
-| `scripts/verify-catalog.py` | Checks every reference and install command still resolves |
+| パス | 役割 |
+| --- | --- |
+| `catalog.json` | どのスキルがどの工程を担うか、どのコミットで固定しているか |
+| `plugins/dev-lifecycle/` | このリポジトリが持つ唯一のスキル。ルーター |
+| `scripts/install-skills.py` | 選定したスキルをプロジェクトへコピーする |
+| `scripts/verify-catalog.py` | 参照と導入コマンドがまだ解決するかを確かめる |
 
-Run the checks with `python3 scripts/verify-catalog.py`.
+検査は`python3 scripts/verify-catalog.py`で実行する。
 
-## Contributing
+## コントリビュート
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+[CONTRIBUTING.md](CONTRIBUTING.md)を参照する。
 
-## License
+## ライセンス
 
-MIT for this repository's own content, see [LICENSE](LICENSE).
-Curated skills keep their own licences, listed in [NOTICE.md](NOTICE.md).
+このリポジトリ自身の内容はMIT。[LICENSE](LICENSE)を参照する。
+選定したスキルはそれぞれのライセンスに従う。一覧は[NOTICE.md](NOTICE.md)にある。
