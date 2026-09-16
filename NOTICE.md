@@ -7,7 +7,7 @@ That covers only this repository's own content: the `development-lifecycle` rout
 
 ## Curated upstream skills
 
-**This repository redistributes no upstream content.** `catalog.json` references each upstream repository at a pinned commit; `/plugin marketplace add` fetches them from their own repositories at install time.
+This repository redistributes no upstream content. `catalog.json` references each upstream repository at a pinned commit; `/plugin marketplace add` fetches them from their own repositories at install time.
 Upstream licences, attribution, and updates therefore apply directly and unmodified, and each author remains the distributor of their own work.
 
 Verify at any time with `python3 scripts/verify-catalog.py`, which fetches every referenced `SKILL.md` from its pinned commit and checks that every documented install command names a marketplace and plugin that really exist.
