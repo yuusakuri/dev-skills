@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
-"""Materialise the curated skills into a project's `.claude/skills/`.
+"""Materialise the curated skills into a project's agent directories.
 
-Skills committed under `.claude/skills/` load automatically for anyone who clones
-the repository — no marketplace, no per-developer install step. This script
-fetches each curated skill from its own upstream repository at the pinned commit
-in `catalog.json` and writes it there.
+`.agents/skills/` is the shared convention and the default target. Two agents do
+not read it and get their own directory as well: Claude Code and Cursor.
+
+Skills committed into the repository load for anyone who clones it — no
+marketplace, no per-developer install step. This script fetches each curated
+skill from its own upstream repository at the pinned commit in `catalog.json`
+and writes it there.
 
     python3 scripts/install-skills.py --project /path/to/repo                 # core set
     python3 scripts/install-skills.py --project /path/to/repo --full          # everything
     python3 scripts/install-skills.py --project /path/to/repo --agents all    # every agent
     python3 scripts/install-skills.py --project /path/to/repo --list          # dry run
 
-Re-running updates in place. A manifest is written to
-`.claude/skills/.dev-skills.json` recording exactly which commit each skill came
-from, so the result is reproducible and re-checkable.
+Re-running updates in place. A manifest recording exactly which commit each
+skill came from is written alongside them, so the result is reproducible and
+re-checkable.
 
 Requires: git, and network access to github.com.
 """
@@ -64,7 +67,9 @@ COVERED_BY = {
     "copilot": "GitHub Copilot",
 }
 
-DEFAULT_AGENTS = "claude,agents"
+# `.agents/` is the shared convention. Claude Code and Cursor do not read it,
+# so they are written too. No agent here is the primary one.
+DEFAULT_AGENTS = "agents,claude,cursor"
 
 
 # MIT and Apache-2.0 both require the licence and copyright notice to travel with
