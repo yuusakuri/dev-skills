@@ -70,7 +70,7 @@
           "source": "alireza",
           "path": "engineering/skills/codebase-onboarding",
           "plugin": "engineering-advanced-skills",
-          "role": "Map an unfamiliar codebase before changing it",
+          "role": "不案内なコードベースを、変更する前に把握する",
           "core": true
         }
       ]
@@ -84,7 +84,7 @@
           "source": "superpowers",
           "path": "skills/brainstorming",
           "plugin": "superpowers",
-          "role": "Explore intent and design before any code",
+          "role": "コードを書く前に意図と設計を探る",
           "core": true
         },
         {
@@ -92,7 +92,7 @@
           "source": "pm",
           "path": "skills/prd-template",
           "plugin": "pm-essentials",
-          "role": "Turn agreement into a written PRD with acceptance criteria",
+          "role": "合意を、受け入れ基準を伴うPRDへ書き起こす",
           "core": true
         },
         {
@@ -100,7 +100,7 @@
           "source": "alireza",
           "path": "engineering-team/skills/epic-design",
           "plugin": "engineering-skills",
-          "role": "Decompose a large requirement into epics and stories"
+          "role": "大きな要求をエピックとストーリーへ分解する"
         }
       ]
     },
@@ -113,14 +113,14 @@
           "source": "alireza",
           "path": "engineering-team/skills/senior-architect",
           "plugin": "engineering-skills",
-          "role": "System design and architectural trade-offs"
+          "role": "システム設計と、アーキテクチャ上のトレードオフ"
         },
         {
           "skill": "architecture-decision-record",
           "source": "pm",
           "path": "skills/architecture-decision-record",
           "plugin": "pm-engineering",
-          "role": "Record a hard-to-reverse decision as an ADR",
+          "role": "覆しにくい決定をADRとして記録する",
           "core": true
         },
         {
@@ -128,7 +128,7 @@
           "source": "alireza",
           "path": "engineering/skills/api-design-reviewer",
           "plugin": "engineering-advanced-skills",
-          "role": "Contract review with linting and breaking-change detection scripts",
+          "role": "契約のレビュー。linterと破壊的変更の検出スクリプトを同梱",
           "core": true
         },
         {
@@ -136,14 +136,14 @@
           "source": "alireza",
           "path": "engineering/skills/database-schema-designer",
           "plugin": "engineering-advanced-skills",
-          "role": "Data model design"
+          "role": "データモデルの設計"
         },
         {
           "skill": "threat-model",
           "source": "pm",
           "path": "skills/threat-model",
           "plugin": "pm-security",
-          "role": "Identify threats and mitigations at design time",
+          "role": "設計の時点で脅威と対策を洗い出す",
           "core": true
         },
         {
@@ -151,21 +151,21 @@
           "source": "anthropic",
           "path": "skills/frontend-design",
           "plugin": "example-skills",
-          "role": "Deliberate visual direction for a UI"
+          "role": "UIの視覚的な方向性を意図して定める"
         },
         {
           "skill": "tech-stack-evaluator",
           "source": "alireza",
           "path": "engineering-team/skills/tech-stack-evaluator",
           "plugin": "engineering-skills",
-          "role": "Choose between frameworks or platforms with TCO and ecosystem-health analysis"
+          "role": "総保有コストとエコシステムの健全性からフレームワークやプラットフォームを選ぶ"
         },
         {
           "skill": "documentation-and-adrs",
           "source": "addyosmani",
           "path": "skills/documentation-and-adrs",
           "plugin": "agent-skills",
-          "role": "Record decisions and write the docs a future maintainer needs"
+          "role": "決定を記録し、将来の保守担当が必要とする文書を書く"
         }
       ]
     },
@@ -178,7 +178,7 @@
           "source": "superpowers",
           "path": "skills/writing-plans",
           "plugin": "superpowers",
-          "role": "Turn a spec into an executable plan",
+          "role": "仕様を実行可能な計画に落とす",
           "core": true
         },
         {
@@ -186,7 +186,7 @@
           "source": "alireza",
           "path": "engineering-team/skills/senior-qa",
           "plugin": "engineering-skills",
-          "role": "Decide what to test and at which level",
+          "role": "何をどの層でテストするかを決める",
           "core": true
         },
         {
@@ -194,14 +194,14 @@
           "source": "superpowers",
           "path": "skills/using-git-worktrees",
           "plugin": "superpowers",
-          "role": "Isolated workspace before implementing"
+          "role": "実装前に独立した作業環境を用意する"
         },
         {
           "skill": "constraint-driven-development",
           "source": "addyosmani",
           "path": "skills/constraint-driven-development",
           "plugin": "agent-skills",
-          "role": "Write the quality bar as a contract, and catch an agent quietly lowering it"
+          "role": "品質基準を契約として書き、エージェントが黙ってそれを下げるのを捕らえる"
         }
       ]
     },
@@ -214,7 +214,7 @@
           "source": "superpowers",
           "path": "skills/test-driven-development",
           "plugin": "superpowers",
-          "role": "Red-green-refactor for every feature and bugfix",
+          "role": "機能追加と不具合修正のすべてをレッド・グリーン・リファクタで進める",
           "core": true
         },
         {
@@ -222,56 +222,56 @@
           "source": "superpowers",
           "path": "skills/executing-plans",
           "plugin": "superpowers",
-          "role": "Work a written plan with review checkpoints"
+          "role": "レビュー地点を挟みながら、書かれた計画を進める"
         },
         {
           "skill": "subagent-driven-development",
           "source": "superpowers",
           "path": "skills/subagent-driven-development",
           "plugin": "superpowers",
-          "role": "Drive plan tasks through subagents"
+          "role": "計画の各タスクをサブエージェントに進めさせる"
         },
         {
           "skill": "dispatching-parallel-agents",
           "source": "superpowers",
           "path": "skills/dispatching-parallel-agents",
           "plugin": "superpowers",
-          "role": "Independent tasks in parallel"
+          "role": "独立した作業を並行させる"
         },
         {
           "skill": "migration-architect",
           "source": "alireza",
           "path": "engineering/skills/migration-architect",
           "plugin": "engineering-advanced-skills",
-          "role": "Schema and data migration sequencing"
+          "role": "スキーマとデータの移行の順序を組む"
         },
         {
           "skill": "tech-debt-tracker",
           "source": "alireza",
           "path": "engineering/skills/tech-debt-tracker",
           "plugin": "engineering-advanced-skills",
-          "role": "Track and prioritize restructuring work"
+          "role": "構造の整理作業を追跡し、優先順位を付ける"
         },
         {
           "skill": "mcp-builder",
           "source": "anthropic",
           "path": "skills/mcp-builder",
           "plugin": "example-skills",
-          "role": "Build an MCP server"
+          "role": "MCPサーバーを作る"
         },
         {
           "skill": "env-secrets-manager",
           "source": "alireza",
           "path": "engineering/skills/env-secrets-manager",
           "plugin": "engineering-advanced-skills",
-          "role": "Environment-variable hygiene, secret handling, drift and rotation readiness"
+          "role": "環境変数の衛生、機密情報の扱い、設定のずれと更新への備え"
         },
         {
           "skill": "security-and-hardening",
           "source": "addyosmani",
           "path": "skills/security-and-hardening",
           "plugin": "agent-skills",
-          "role": "Write secure code as you go: input handling, authN/Z, storage, integrations",
+          "role": "書きながら安全なコードにする。入力の扱い、認証認可、保存、外部連携",
           "core": true
         },
         {
@@ -279,7 +279,7 @@
           "source": "addyosmani",
           "path": "skills/code-simplification",
           "plugin": "agent-skills",
-          "role": "Refactor for clarity with behavior preserved exactly, separate from feature work",
+          "role": "挙動を厳密に保ったまま、読みやすさのために整理する。機能変更とは分ける",
           "core": true
         },
         {
@@ -287,7 +287,7 @@
           "source": "addyosmani",
           "path": "skills/source-driven-development",
           "plugin": "agent-skills",
-          "role": "Ground implementation decisions in official docs instead of recalled patterns"
+          "role": "記憶した書き方ではなく、公式文書に基づいて実装を判断する"
         }
       ]
     },
@@ -300,7 +300,7 @@
           "source": "superpowers",
           "path": "skills/systematic-debugging",
           "plugin": "superpowers",
-          "role": "Any bug or test failure, before proposing fixes",
+          "role": "不具合やテストの失敗に対し、修正を提案する前に行う",
           "core": true
         },
         {
@@ -308,21 +308,21 @@
           "source": "alireza",
           "path": "engineering/skills/chaos-engineering",
           "plugin": "engineering-advanced-skills",
-          "role": "Fault injection and resilience testing"
+          "role": "障害注入と耐障害性のテスト"
         },
         {
           "skill": "performance-optimization",
           "source": "addyosmani",
           "path": "skills/performance-optimization",
           "plugin": "agent-skills",
-          "role": "Measure-first performance work: profile, find the real bottleneck, prove the gain"
+          "role": "計測を先にする性能改善。プロファイルを取り、真のボトルネックを見つけ、改善を示す"
         },
         {
           "skill": "ci-cd-and-automation",
           "source": "addyosmani",
           "path": "skills/ci-cd-and-automation",
           "plugin": "agent-skills",
-          "role": "Pipeline design, caching, and keeping the build trustworthy"
+          "role": "パイプラインの設計、キャッシュ、ビルドを信用できる状態に保つこと"
         }
       ]
     },
@@ -335,7 +335,7 @@
           "source": "superpowers",
           "path": "skills/verification-before-completion",
           "plugin": "superpowers",
-          "role": "Evidence before claiming done",
+          "role": "完了を主張する前に根拠を出す",
           "core": true
         },
         {
@@ -343,14 +343,14 @@
           "source": "anthropic",
           "path": "skills/webapp-testing",
           "plugin": "example-skills",
-          "role": "Real-browser verification via Playwright"
+          "role": "Playwrightによる実ブラウザでの検証"
         },
         {
           "skill": "a11y-audit",
           "source": "alireza",
           "path": "engineering-team/a11y-audit/skills/a11y-audit",
           "plugin": "a11y-audit",
-          "role": "WCAG 2.2 A/AA audit and remediation"
+          "role": "WCAG 2.2 A/AA の監査と是正"
         }
       ]
     },
@@ -363,7 +363,7 @@
           "source": "superpowers",
           "path": "skills/requesting-code-review",
           "plugin": "superpowers",
-          "role": "Prepare a change so a reviewer can review it",
+          "role": "レビュアーがレビューできる形に変更を整える",
           "core": true
         },
         {
@@ -371,7 +371,7 @@
           "source": "superpowers",
           "path": "skills/receiving-code-review",
           "plugin": "superpowers",
-          "role": "Assess feedback rigorously, not performatively",
+          "role": "指摘を形式的にではなく厳密に検討する",
           "core": true
         },
         {
@@ -379,35 +379,35 @@
           "source": "alireza",
           "path": "engineering/skills/pr-review-expert",
           "plugin": "engineering-advanced-skills",
-          "role": "Review someone else's change"
+          "role": "他人の変更をレビューする"
         },
         {
           "skill": "senior-security",
           "source": "alireza",
           "path": "engineering-team/skills/senior-security",
           "plugin": "engineering-skills",
-          "role": "Audit a finished change for security defects"
+          "role": "完成した変更にセキュリティ上の欠陥がないか監査する"
         },
         {
           "skill": "security-guidance",
           "source": "alireza",
           "path": "engineering/security-guidance/skills/security-guidance",
           "plugin": "security-guidance",
-          "role": "Answer security questions while the code is being written"
+          "role": "コードを書いている最中のセキュリティの疑問に答える"
         },
         {
           "skill": "dependency-auditor",
           "source": "alireza",
           "path": "engineering/skills/dependency-auditor",
           "plugin": "engineering-advanced-skills",
-          "role": "Dependency and advisory triage"
+          "role": "依存と脆弱性情報の選別"
         },
         {
           "skill": "adversarial-reviewer",
           "source": "alireza",
           "path": "engineering-team/skills/adversarial-reviewer",
           "plugin": "engineering-skills",
-          "role": "Deliberately critical review that breaks the self-review monoculture"
+          "role": "意図して批判的にレビューし、自己レビューの単一視点を崩す"
         }
       ]
     },
@@ -420,7 +420,7 @@
           "source": "alireza",
           "path": "engineering/skills/observability-designer",
           "plugin": "engineering-advanced-skills",
-          "role": "Logs, metrics, traces before shipping",
+          "role": "リリース前にログ、メトリクス、トレースを用意する",
           "core": true
         },
         {
@@ -428,28 +428,28 @@
           "source": "alireza",
           "path": "engineering/skills/slo-architect",
           "plugin": "engineering-advanced-skills",
-          "role": "SLOs, error budgets, alert thresholds"
+          "role": "SLO、エラーバジェット、アラートのしきい値"
         },
         {
           "skill": "runbook-generator",
           "source": "alireza",
           "path": "engineering/skills/runbook-generator",
           "plugin": "engineering-advanced-skills",
-          "role": "Operational runbooks for each alert"
+          "role": "アラートごとの運用手順書"
         },
         {
           "skill": "finishing-a-development-branch",
           "source": "superpowers",
           "path": "skills/finishing-a-development-branch",
           "plugin": "superpowers",
-          "role": "Integrate completed work"
+          "role": "完了した作業を統合する"
         },
         {
           "skill": "ship-gate",
           "source": "alireza",
           "path": "engineering/skills/ship-gate",
           "plugin": "engineering-advanced-skills",
-          "role": "Go/no-go release gate",
+          "role": "リリースの可否判断",
           "core": true
         },
         {
@@ -457,28 +457,28 @@
           "source": "alireza",
           "path": "engineering/skills/changelog-generator",
           "plugin": "engineering-advanced-skills",
-          "role": "Changelog and release notes"
+          "role": "変更履歴とリリースノート"
         },
         {
           "skill": "launch-readiness",
           "source": "pm",
           "path": "skills/launch-readiness",
           "plugin": "pm-delivery",
-          "role": "Launch readiness checklist"
+          "role": "リリース準備の確認項目"
         },
         {
           "skill": "feature-flags-architect",
           "source": "alireza",
           "path": "engineering/skills/feature-flags-architect",
           "plugin": "engineering-advanced-skills",
-          "role": "Ship behind a flag: progressive rollout, kill switch, stale-flag debt"
+          "role": "フラグの背後で出す。段階的公開、停止スイッチ、放置フラグの負債"
         },
         {
           "skill": "deprecation-and-migration",
           "source": "addyosmani",
           "path": "skills/deprecation-and-migration",
           "plugin": "agent-skills",
-          "role": "Retire an API, feature, or system and move users off it safely"
+          "role": "API、機能、システムの提供を終え、利用者を安全に移す"
         }
       ]
     },
@@ -491,7 +491,7 @@
           "source": "alireza",
           "path": "engineering-team/skills/incident-commander",
           "plugin": "engineering-skills",
-          "role": "Restore service during a production outage",
+          "role": "本番障害の最中にサービスを復旧させる",
           "core": true
         },
         {
@@ -499,14 +499,14 @@
           "source": "alireza",
           "path": "engineering-team/skills/incident-response",
           "plugin": "engineering-skills",
-          "role": "Handle a security incident: triage, severity, forensics"
+          "role": "セキュリティ事案を扱う。切り分け、深刻度、調査"
         },
         {
           "skill": "incident-postmortem",
           "source": "pm",
           "path": "skills/incident-postmortem",
           "plugin": "pm-engineering",
-          "role": "Blameless postmortem with action items",
+          "role": "個人を責めない振り返りと対策項目",
           "core": true
         }
       ]
@@ -520,14 +520,14 @@
           "source": "anthropic",
           "path": "skills/skill-creator",
           "plugin": "example-skills",
-          "role": "Create, edit, and evaluate skills"
+          "role": "スキルを作り、直し、評価する"
         },
         {
           "skill": "context-engineering",
           "source": "addyosmani",
           "path": "skills/context-engineering",
           "plugin": "agent-skills",
-          "role": "Set up and maintain the agent's context when output quality degrades"
+          "role": "出力の質が落ちてきたときに、エージェントの文脈を整える"
         }
       ]
     }

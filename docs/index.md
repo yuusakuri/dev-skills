@@ -1,8 +1,8 @@
-# Documentation
+# ドキュメント
 
-Installation is in the [README](../README.md#install).
+インストールは[README](../README.md#インストール)にある。
 
-- [How to adopt this in a project](how-to/adopt-in-a-project.md)
-- [Reference: the catalog](reference/catalog.md)
-- [Reference: agent directories](reference/agent-directories.md)
-- [Explanation: why the phases are in this order](explanation/why-this-order.md)
+- [プロジェクトへ定着させる方法](how-to/adopt-in-a-project.md)
+- [リファレンス: カタログ](reference/catalog.md)
+- [リファレンス: エージェントのディレクトリ](reference/agent-directories.md)
+- [説明: なぜこの順序なのか](explanation/why-this-order.md)

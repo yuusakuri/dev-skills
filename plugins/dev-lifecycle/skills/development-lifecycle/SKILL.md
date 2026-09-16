@@ -1,124 +1,124 @@
 ---
 name: development-lifecycle
-description: Use at the start of any software work, or whenever you are unsure which phase you are in or which skill applies - routes the task to the right lifecycle phase and names the specific community skill that owns it, covering requirements definition, design, planning, implementation, debugging, verification, review, release, and production operations.
+description: 'ソフトウェア開発の作業を始めるとき、あるいは今どの工程にいるのか、どのスキルが当てはまるのか分からないときに使う。作業を該当する工程へ割り当て、その工程を担うコミュニティのスキルを名指しする。要件定義、設計、計画、実装、デバッグ、検証、レビュー、リリース、本番運用を対象とする。'
 license: MIT
 metadata:
   collection: dev-skills
   phase: meta
 ---
 
-# Development Lifecycle Router
+# 開発ライフサイクルのルーター
 
-This skill is a **map, not a method**.
-It owns no practice of its own.
-Its job is to work out which lifecycle phase a task is in and hand off to the established community skill that covers it — all of which are maintained in their own repositories.
+このスキルは地図であって、方法ではない。
+固有の実践を持たない。
+仕事は、作業がどの工程にあるかを判断し、その工程を扱う既存のコミュニティのスキルへ引き渡すことである。いずれも各自のリポジトリで保守されている。
 
-**Invoke the skill named in the table.
-Do not try to do the phase's work from here.**
+表で名指ししたスキルを起動する。
+ここで工程の作業そのものをしようとしない。
 
-## How to route
+## 割り当て方
 
-Ask two questions:
+2つを問う。
 
-1. **What artifact does this task need to produce?** A decision, a spec, a plan, code, a review, a release, a fix, a document?
-2. **What does "done" look like, and who checks it?**
+1. この作業が生むべき成果物は何か。決定、仕様、計画、コード、レビュー、リリース、修正、文書のどれか。
+2. 「完了」とはどういう状態で、誰が確認するのか。
 
-Then pick the row.
-If a task spans phases, run them in order — skipping earlier phases is the most common cause of rework.
+そのうえで該当する行を選ぶ。
+作業が複数の工程にまたがるなら順に実行する。前の工程を飛ばすことが、手戻りの最大の原因である。
 
-## Phase map
+## 工程の対応表
 
-Names are given as `plugin:skill`.
-If a skill is not installed, the row still tells you what to look for — see `docs/reference/catalog.md` for the repository and install command.
+スキル名は`plugin:skill`の形で示す。
+未導入のスキルでも、行を見れば何を探せばよいかは分かる。リポジトリと導入コマンドは`docs/reference/catalog.md`にある。
 
-| # | Phase | Use when | Skill |
+| # | 工程 | 使う場面 | スキル |
 |---|---|---|---|
-| 0 | Orientation | The codebase is unfamiliar, or you are about to change code you have not read | `codebase-onboarding` |
-| 1 | Discovery | The idea is vague; intent and alternatives are unexplored | `superpowers:brainstorming` |
-| 1 | Requirements | The idea is agreed; you need a written spec with acceptance criteria | `prd-template` |
-| 1 | Decomposition | A large requirement needs breaking into epics and stories | `epic-design` |
-| 2 | Architecture | Several designs compete, or the structure constrains later work | `senior-architect` |
-| 2 | Decision record | A choice is hard or expensive to reverse | `architecture-decision-record` |
-| 2 | Documentation | Recording context a future maintainer will need | `documentation-and-adrs` |
-| 2 | Interface design | Defining an API, schema, event, or public library surface | `api-design-reviewer` |
-| 2 | Data model | Designing or reshaping a database schema | `database-schema-designer` |
-| 2 | Tech choice | Picking between frameworks, platforms, or vendors | `tech-stack-evaluator` |
-| 2 | Security design | Auth, secrets, PII, payments, or untrusted input is involved | `threat-model` |
-| 2 | Visual direction | Building or reshaping a user interface | `example-skills:frontend-design` |
-| 3 | Planning | You have a spec and need an executable plan | `superpowers:writing-plans` |
-| 3 | Test planning | Deciding what to test and at which level | `senior-qa` |
-| 3 | Quality bar | No written standard, or an agent keeps silencing checks to go green | `constraint-driven-development` |
-| 3 | Workspace | You need an isolated branch or worktree before implementing | `superpowers:using-git-worktrees` |
-| 4 | Implementation | About to write feature or bugfix code | `superpowers:test-driven-development` |
-| 4 | Plan execution | Working through a written plan | `superpowers:executing-plans`, `superpowers:subagent-driven-development` |
-| 4 | Parallel work | 2+ independent tasks with no shared state | `superpowers:dispatching-parallel-agents` |
-| 4 | Schema change | Changing a schema or migrating stored data | `migration-architect` |
-| 4 | Restructuring | Paying down or tracking structural debt | `tech-debt-tracker` |
-| 4 | Secure coding | Handling untrusted input, authN/Z, storage, or integrations | `security-and-hardening` |
-| 4 | Secrets & config | Handling env vars, secrets, credentials, or rotation | `env-secrets-manager` |
-| 4 | Refactoring | Changing how code reads without changing what it does | `code-simplification` |
-| 4 | Unfamiliar API | You need authoritative usage rather than a recalled pattern | `source-driven-development` |
-| 4 | MCP server | Exposing an API or service to an agent | `example-skills:mcp-builder` |
-| 5 | Debugging | Any bug, test failure, or unexplained behavior | `superpowers:systematic-debugging` |
-| 5 | Slowness | Something is too slow or uses too much resource | `performance-optimization` |
-| 5 | CI / pipeline | CI is red, or the pipeline needs designing | `ci-cd-and-automation` |
-| 5 | Resilience | Verifying behavior under failure | `chaos-engineering` |
-| 6 | Verification | About to claim work is complete | `superpowers:verification-before-completion` |
-| 6 | UI verification | A browser-facing change needs real-browser proof | `example-skills:webapp-testing` |
-| 6 | Accessibility | The change affects a user interface | `a11y-audit` |
-| 7 | Review (asking) | Work is ready to be checked | `superpowers:requesting-code-review`, `pr-review-expert` |
-| 7 | Review (receiving) | Feedback has arrived | `superpowers:receiving-code-review` |
-| 7 | Adversarial review | You suspect the review has been too agreeable | `adversarial-reviewer` |
-| 7 | Security review | Auditing a diff for vulnerabilities | `senior-security`, `security-guidance` |
-| 7 | Dependencies | Adding, upgrading, or triaging a vulnerable dependency | `dependency-auditor` |
-| 8 | Instrumentation | Shipping something whose health must be observable | `observability-designer`, `slo-architect` |
-| 8 | Runbooks | An alert needs a documented response | `runbook-generator` |
-| 8 | Integration | Tests pass and the branch needs to land | `superpowers:finishing-a-development-branch` |
-| 8 | Progressive rollout | Shipping behind a flag, canary, or kill switch | `feature-flags-architect` |
-| 8 | Release gate | Deciding whether to ship | `ship-gate`, `launch-readiness` |
-| 8 | Release notes | Communicating what changed | `changelog-generator` |
-| 8 | Deprecation | Retiring an API, feature, or system and moving users off it | `deprecation-and-migration` |
-| 9 | Incident (outage) | Something is broken in production **now** | `incident-commander` |
-| 9 | Incident (security) | A security event needs triage, severity, and forensics | `incident-response` |
-| 9 | Postmortem | An incident is resolved and needs learning captured | `incident-postmortem` |
-| — | Meta | Writing or improving a skill | `example-skills:skill-creator` |
-| — | Agent context | Output quality is degrading, or you are switching tasks | `context-engineering` |
+| 0 | 把握 | コードベースに不案内である、あるいは読んでいないコードを変更しようとしている | `codebase-onboarding` |
+| 1 | 探索 | 考えが漠然としており、意図も代替案も詰めていない | `superpowers:brainstorming` |
+| 1 | 要件 | 方向は合意済みで、受け入れ基準を伴う仕様書が要る | `prd-template` |
+| 1 | 分解 | 大きな要求をエピックとストーリーに分ける | `epic-design` |
+| 2 | アーキテクチャ | 複数の設計案が競合する、あるいは構造が後の作業を縛る | `senior-architect` |
+| 2 | 決定記録 | 覆すのが難しい、または高くつく選択である | `architecture-decision-record` |
+| 2 | 文書化 | 将来の保守担当が必要とする文脈を記録する | `documentation-and-adrs` |
+| 2 | インターフェース設計 | API、スキーマ、イベント、公開ライブラリの面を定める | `api-design-reviewer` |
+| 2 | データモデル | データベーススキーマを設計または作り直す | `database-schema-designer` |
+| 2 | 技術選定 | フレームワーク、プラットフォーム、ベンダーを選ぶ | `tech-stack-evaluator` |
+| 2 | セキュリティ設計 | 認証、機密情報、個人情報、決済、信頼できない入力が関わる | `threat-model` |
+| 2 | 視覚設計 | ユーザーインターフェースを作る、または作り直す | `example-skills:frontend-design` |
+| 3 | 計画 | 仕様があり、実行可能な計画が要る | `superpowers:writing-plans` |
+| 3 | テスト計画 | 何をどの層でテストするかを決める | `senior-qa` |
+| 3 | 品質基準 | 基準が明文化されていない、あるいはエージェントが通すために検査を黙らせ続ける | `constraint-driven-development` |
+| 3 | 作業環境 | 実装前に独立したブランチや作業ツリーが要る | `superpowers:using-git-worktrees` |
+| 4 | 実装 | 機能や不具合修正のコードを書こうとしている | `superpowers:test-driven-development` |
+| 4 | 計画の実行 | 書かれた計画を順に進める | `superpowers:executing-plans`, `superpowers:subagent-driven-development` |
+| 4 | 並行作業 | 状態を共有しない独立した作業が2件以上ある | `superpowers:dispatching-parallel-agents` |
+| 4 | スキーマ変更 | スキーマを変更する、保存済みデータを移行する | `migration-architect` |
+| 4 | 構造の整理 | 構造的な負債を返す、あるいは追跡する | `tech-debt-tracker` |
+| 4 | セキュアコーディング | 信頼できない入力、認証認可、保存、外部連携を扱う | `security-and-hardening` |
+| 4 | 機密情報と設定 | 環境変数、機密情報、資格情報、その更新を扱う | `env-secrets-manager` |
+| 4 | リファクタリング | 挙動を変えずにコードの読みやすさを変える | `code-simplification` |
+| 4 | 不案内なAPI | 記憶した書き方ではなく、一次情報に基づく使い方が要る | `source-driven-development` |
+| 4 | MCPサーバー | APIやサービスをエージェントへ公開する | `example-skills:mcp-builder` |
+| 5 | デバッグ | 不具合、テストの失敗、説明のつかない挙動 | `superpowers:systematic-debugging` |
+| 5 | 性能 | 何かが遅い、または資源を使いすぎる | `performance-optimization` |
+| 5 | CIとパイプライン | CIが落ちている、あるいはパイプラインの設計が要る | `ci-cd-and-automation` |
+| 5 | 耐障害性 | 障害時の挙動を確かめる | `chaos-engineering` |
+| 6 | 検証 | 作業を完了と報告しようとしている | `superpowers:verification-before-completion` |
+| 6 | UIの検証 | ブラウザに面する変更を実ブラウザで確かめる | `example-skills:webapp-testing` |
+| 6 | アクセシビリティ | 変更がユーザーインターフェースに及ぶ | `a11y-audit` |
+| 7 | レビュー依頼 | 作業を見てもらう用意ができた | `superpowers:requesting-code-review`, `pr-review-expert` |
+| 7 | レビューの受領 | 指摘が返ってきた | `superpowers:receiving-code-review` |
+| 7 | 批判的レビュー | レビューが甘いと感じる | `adversarial-reviewer` |
+| 7 | セキュリティレビュー | 差分に脆弱性がないか監査する | `senior-security`, `security-guidance` |
+| 7 | 依存関係 | 依存を追加、更新する、あるいは脆弱な依存を選別する | `dependency-auditor` |
+| 8 | 計測の作り込み | 状態を観測できる必要があるものを出す | `observability-designer`, `slo-architect` |
+| 8 | 運用手順書 | アラートに対する手順を文書化する | `runbook-generator` |
+| 8 | 統合 | テストが通り、ブランチを取り込む | `superpowers:finishing-a-development-branch` |
+| 8 | 段階的公開 | フラグ、カナリア、停止スイッチの背後で出す | `feature-flags-architect` |
+| 8 | リリース判断 | 出すかどうかを決める | `ship-gate`, `launch-readiness` |
+| 8 | リリースノート | 何が変わったかを伝える | `changelog-generator` |
+| 8 | 提供終了 | API、機能、システムの提供を終え、利用者を移す | `deprecation-and-migration` |
+| 9 | 障害対応 | 本番で今まさに何かが壊れている | `incident-commander` |
+| 9 | セキュリティ事案 | セキュリティ事案の切り分け、深刻度判定、調査が要る | `incident-response` |
+| 9 | 振り返り | 障害が収束し、学びを記録する | `incident-postmortem` |
+| — | メタ | スキルを書く、または改善する | `example-skills:skill-creator` |
+| — | エージェントの文脈 | 出力の質が落ちてきた、あるいは作業を切り替える | `context-engineering` |
 
-## Rules that hold in every phase
+## すべての工程で成り立つ規則
 
-These are the collection's operating principles; the individual skills carry the detail.
+以下はこの集まりの運用原則である。詳細は個々のスキルが持つ。
 
-1. **Evidence before assertion.** Never report a phase complete without output that shows it.
-   "Tests pass" means you ran them and read the result.
-2. **Reversibility decides rigor.** Cheap and reversible: just do it.
-   Expensive or one-way: write the decision down first (`architecture-decision-record`).
-3. **Phase 1 has no code.** If you are writing code to answer "what should this do?", you are in the wrong phase — unless it is an explicit throwaway spike.
-4. **The user owns scope.** Surface gaps and risks; do not silently widen or narrow what was asked for.
-5. **Leave the trail.** Requirements, decisions, and incidents belong in the repo, not only in a conversation that will be lost.
+1. 主張の前に根拠を出す。それを示す出力なしに、工程の完了を報告しない。
+   「テストが通る」とは、実行して結果を読んだという意味である。
+2. 可逆性が厳密さを決める。安く、元に戻せるなら、そのまま進める。
+   高くつく、または一方通行なら、先に決定を書き残す（`architecture-decision-record`）。
+3. 工程1にコードはない。「これは何をすべきか」に答えるためにコードを書いているなら、工程を間違えている。使い捨てと明示した検証を除く。
+4. 範囲を決めるのは依頼者である。抜けや危険は示す。頼まれた範囲を黙って広げたり狭めたりしない。
+5. 記録を残す。要件、決定、障害はリポジトリに置く。失われる会話の中だけに置かない。
 
-## Scaling to task size
+## 作業の大きさに合わせる
 
-Match the ceremony to the blast radius:
+手続きの重さを、影響範囲に合わせる。
 
-- **Trivial** (typo, comment, obvious one-line fix): phase 4 → 6.
-  No spec, no ADR.
-- **Small** (contained change, existing patterns, reversible): 1 → 4 → 6 → 7.
-- **Standard** (new feature or endpoint): 0 → 1 → 2 → 3 → 4 → 6 → 7 → 8.
-- **High-stakes** (data model, auth, money, migrations, public API): every phase, and `threat-model` plus `architecture-decision-record` are mandatory, not optional.
+- ごく小さい（誤字、コメント、明らかな1行修正）。工程4から6へ。
+  仕様書もADRも要らない。
+- 小さい（影響が閉じている、既存の型に沿う、元に戻せる）。1、4、6、7。
+- 標準（新しい機能やエンドポイント）。0、1、2、3、4、6、7、8。
+- 影響が大きい（データモデル、認証、金銭、マイグレーション、公開API）。全工程を通す。`threat-model`と`architecture-decision-record`は任意ではなく必須。
 
-When unsure which size a task is, assume the larger one and say so.
+どの大きさか判断がつかないときは、大きい方とみなし、そう述べる。
 
-## Gaps to be aware of
+## 把握しておくべき空白
 
-Every phase now routes to a maintained skill.
-Two residual sharp edges are worth stating, because no skill covers them head-on:
+現在はすべての工程が保守されているスキルへ割り当たっている。
+真正面から扱うスキルがない箇所が2つ残っているので、明記しておく。
 
-- **Untested legacy code.** `code-simplification` preserves behavior and keeps refactors out of feature commits, but it assumes something can tell you when behavior changed.
-  When no test pins the code you are about to reshape, write characterization tests first — tests that capture what the code *currently* does, bugs included — then refactor against them.
-- **Flaky tests beyond timing.** `superpowers:systematic-debugging` bundles `condition-based-waiting.md`, which handles the largest single cause: tests that guess at timing with `sleep`/`setTimeout` and so pass locally but fail under load or in CI.
-  Reach for it first.
-  It does not cover test ordering and shared state, unseeded randomness, unordered collection comparison, or local-versus-CI environment differences.
-  For those the rule is that a flake is real non-determinism: find its source, and never retry it into green.
-  `constraint-driven-development` is the counterpart that catches the other half of this failure — an agent skipping or deleting a test to reach green.
+- テストのないレガシーコード。`code-simplification`は挙動を保ち、リファクタリングを機能変更のコミットから分離するが、挙動が変わったことを何かが知らせてくれる前提に立っている。
+  これから形を変えようとしているコードを固定するテストがない場合は、まず特性化テストを書く。そのコードが現在何をしているかを、不具合ごと写し取るテストである。そのうえでリファクタリングする。
+- タイミング以外の原因による不安定なテスト。`superpowers:systematic-debugging`には`condition-based-waiting.md`が同梱されており、最大の原因を扱う。`sleep`や`setTimeout`でタイミングを当て推量するため、手元では通るのに負荷時やCIで落ちるテストである。
+  まずこれを使う。
+  ただし、テストの実行順と共有状態、乱数の種の未固定、順序のないコレクションの比較、手元とCIの環境差は扱わない。
+  これらについては、不安定さは実在する非決定性であるという規則に従う。原因を突き止める。再実行で緑にしない。
+  `constraint-driven-development`は、この失敗のもう半分を捉える対になるスキルである。エージェントが緑にするためにテストを飛ばしたり消したりする場合を扱う。
 
-If no row fits at all, say which phase the task is in and proceed with the phase's principle above rather than guessing at a skill.
+どの行にも当てはまらない場合は、その作業がどの工程にあるかを述べ、スキルを当て推量せず、上記の工程の原則に従って進める。

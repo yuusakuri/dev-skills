@@ -1,33 +1,33 @@
-# Agent directories
+# エージェントのディレクトリ
 
-`.agents/skills/` is the shared convention.
-Most agents read it.
+`.agents/skills/`が共通の置き場である。
+多くのエージェントがここを読む。
 
-| Reads `.agents/skills/` |
-|---|
+| `.agents/skills/`を読む |
+| --- |
 | Codex |
 | Gemini CLI |
 | OpenCode |
 | GitHub Copilot |
 | CommandCode |
 
-Two do not, and need a directory of their own.
+読まないものが2つあり、それぞれ専用のディレクトリが要る。
 
-| Agent | Directory | `--agents` name |
-|---|---|---|
+| エージェント | ディレクトリ | `--agents`の名前 |
+| --- | --- | --- |
 | Claude Code | `.claude/skills/` | `claude` |
 | Cursor | `.cursor/skills/` | `cursor` |
 
-The default writes all three: `agents,claude,cursor`.
+既定ではこの3つすべてに書き込む（`agents,claude,cursor`）。
 
-Some agents accept a second, narrower location.
-Passing these is optional; the shared directory already covers them.
+エージェントによっては、より狭い範囲の置き場所も受け付ける。
+指定は任意である。共通のディレクトリで既に足りている。
 
-| Directory | `--agents` name | Agent |
-|---|---|---|
-| `.gemini/skills/` | `gemini` | Gemini CLI, workspace scope |
+| ディレクトリ | `--agents`の名前 | エージェント |
+| --- | --- | --- |
+| `.gemini/skills/` | `gemini` | Gemini CLI、ワークスペース単位 |
 | `.opencode/skills/` | `opencode` | OpenCode |
 | `.github/skills/` | `copilot` | GitHub Copilot |
 
-`codex` and `commandcode` are aliases for `agents`.
-`all` writes every directory in this page.
+`codex`と`commandcode`は`agents`の別名である。
+`all`はこのページにある全ディレクトリへ書き込む。

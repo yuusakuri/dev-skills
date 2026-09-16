@@ -1,37 +1,37 @@
-# Why the phases are in this order
+# なぜこの順序なのか
 
-Which skill to use is answered by the `development-lifecycle` router, or by [reference/catalog.md](../reference/catalog.md).
-This page answers a different question: why the phases run in the order they do.
+どのスキルを使うかは`development-lifecycle`ルーター、または[reference/catalog.md](../reference/catalog.md)が答える。
+このページが答えるのは別の問いである。なぜ工程がこの順に並ぶのか。
 
-The rule is that a decision costs less to change the earlier it is written down.
-Each phase is a point where one class of mistake is still cheap to correct.
+原則は、決定は早く書き留めるほど変更が安く済む、ということである。
+各工程は、ある種類の誤りをまだ安く直せる時点に置かれている。
 
-## What each phase settles
+## 各工程が確定させるもの
 
-| Phase | Settles | Cost of skipping it |
-|---|---|---|
-| Orientation | How this project works and where the change belongs | The change fights existing conventions, or duplicates code that already exists |
-| Requirements | What "done" means, in writing | The dispute arrives at review time, and nothing written down settles it |
-| Architecture and design | Structure, interfaces, data model, anything touching auth, secrets, personal data, money or untrusted input | The next person cannot tell a deliberate trade-off from an accident, and reverses it |
-| Planning | Task order, and what will be tested at which level | Test level gets decided under implementation pressure, where the fastest test to write wins |
-| Implementation | The code | — |
-| Debugging and performance | Why something is wrong, measured before it is changed | A fix aimed at the wrong cause |
-| Verification | That the commands were run and the output read | A review cycle, or a release, spent on something that does not work |
-| Review | What the change exposes, and what any new dependency brings | — |
-| Release | Instrumentation, then the gate, then confirmation in production | Instrumentation cannot be added during an incident, and whatever was emitted before the failure is all the information there will be |
-| Operations | Service restored first, understood second | Diagnosis while users are affected turns a five-minute problem into an hour-long one |
+| 工程 | 確定させるもの | 飛ばした場合の損失 |
+| --- | --- | --- |
+| 把握 | このプロジェクトがどう動いており、変更をどこに置くか | 既存の慣習と衝突する変更になる。既にあるコードを重複して書く |
+| 要件 | 「完了」の意味を、書かれた形で | 争いがレビュー時に持ち込まれ、書かれたものがないので決着しない |
+| アーキテクチャと設計 | 構造、インターフェース、データモデル、認証・機密情報・個人情報・金銭・信頼できない入力に関わる箇所 | 次の担当者が、意図したトレードオフと事故とを区別できず、覆してしまう |
+| 計画 | 作業の順序と、何をどの層でテストするか | テストの層が実装中の圧力下で決まり、最も速く書けるテストが選ばれる |
+| 実装 | コード | — |
+| デバッグと性能 | 何が悪いのか。変更する前に計測して | 見当違いの原因に手を入れる |
+| 検証 | コマンドを実行し、出力を読んだこと | 動かないものにレビュー1周、あるいはリリース1回を費やす |
+| レビュー | その変更が何を露出させるか、追加した依存が何を持ち込むか | — |
+| リリース | 計測、次に判断、次に本番での確認 | 計測は障害の最中には足せない。失敗前に出力していたものが、得られる情報のすべてになる |
+| 運用 | まず復旧、理解はその後 | 利用者が影響を受けている最中の原因究明は、5分の問題を1時間に変える |
 
-Two items are worth stating plainly.
+2点は明示しておく価値がある。
 
-The decision record is what carries reasoning forward, and reasoning is the part that decays fastest.
-It belongs to design but is read during review, months later.
+決定記録は、論拠を先へ運ぶ手段である。論拠は最も速く失われる部分である。
+設計の工程に属するが、読まれるのは数か月後のレビューである。
 
-The postmortem is how an incident's cost buys something.
-Skipping it when everyone is tired is how the same incident happens twice, and how the first postmortem's action items are discovered to have never been done.
+振り返りは、障害の代償を何かに換える手段である。
+全員が疲れているときに省くと、同じ障害が二度起きる。そして最初の振り返りの対策が一度も実行されていなかったことが、そこで分かる。
 
-## Where the order does not hold
+## この順序が当てはまらない場合
 
-A failed check returns to implementation, not forward.
-A reviewer asking "why is it built this way?" usually means a decision record is missing.
-Postmortem action items are requirements and belong in the same backlog as features.
-"We could not tell what was happening" is the most common postmortem finding, and its fix ships with the next change.
+検査の失敗は実装へ戻る。先へは進まない。
+レビュアーの「なぜこう作ったのか」は、たいてい決定記録が無いという意味である。
+振り返りで挙がった対策は要件であり、機能と同じ場所で管理する。
+「何が起きているのか分からなかった」は振り返りで最も多く挙がる指摘であり、その対策は次の変更と一緒に出る。

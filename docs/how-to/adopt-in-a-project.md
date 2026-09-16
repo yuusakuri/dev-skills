@@ -1,11 +1,11 @@
-# Adopt this in a project
+# プロジェクトへ定着させる方法
 
-Installing skills makes them available.
-Three things make them used.
+スキルをインストールすれば、使える状態にはなる。
+実際に使われるかどうかを決めるのは、次の3つである。
 
-## Point at the router from the project's agent instructions
+## エージェントへの指示からルーターを指す
 
-In `AGENTS.md`, or whichever instructions file your agent reads:
+`AGENTS.md`、または使っているエージェントが読む指示ファイルに次を置く。
 
 ```markdown
 ## Working in this repository
@@ -21,12 +21,12 @@ Project specifics that override general practice:
 - Decisions live in: docs/decisions/
 ```
 
-The last block matters most.
-The curated skills are deliberately general; this file is where the stack-specific truth goes, and it takes precedence.
+最後の段落が最も重要である。
+選定したスキルは意図的に汎用である。技術構成に固有の事実はこのファイルに書き、そちらが優先される。
 
-## Create the directories the skills write into
+## スキルが書き込む先のディレクトリを作る
 
-Several skills produce artifacts that belong in the repository rather than a chat log:
+いくつかのスキルは、会話ログではなくリポジトリに置くべき成果物を生む。
 
 ```
 docs/requirements/   prd-template
@@ -36,24 +36,24 @@ docs/postmortems/    incident-postmortem
 docs/runbooks/       runbook-generator
 ```
 
-A skill with nowhere to write its artifact produces a message that scrolls away.
+成果物の置き場がないスキルは、流れて消えるメッセージを出すだけになる。
 
-## Adopt incrementally
+## 段階的に導入する
 
-Mandating all ten phases on day one gets the whole thing abandoned.
-A workable order:
+初日から10工程すべてを義務づけると、全体が放棄される。
+現実的な順序は次のとおり。
 
-1. `superpowers:verification-before-completion` and `test-driven-development` — visible effect on quality, and no team agreement needed.
-2. `codebase-onboarding` and `superpowers:brainstorming` — cheap, and they cut the rework that comes from starting in the wrong place.
-3. `prd-template` and `architecture-decision-record` — the first two that need team agreement, because they produce artifacts other people must read.
-4. `ship-gate`, `observability-designer`, `incident-commander`, `incident-postmortem` — once the project has users whose downtime matters.
-5. `threat-model`, `senior-security`, `a11y-audit` — before the first release that handles real user data or faces the public.
+1. `superpowers:verification-before-completion`と`test-driven-development`。品質への効果が目に見え、チームの合意も要らない。
+2. `codebase-onboarding`と`superpowers:brainstorming`。負担が軽く、見当違いの場所から始めることによる手戻りを減らす。
+3. `prd-template`と`architecture-decision-record`。チームの合意が要る最初の2つである。他人が読む成果物を生むためである。
+4. `ship-gate`、`observability-designer`、`incident-commander`、`incident-postmortem`。停止時間が問題になる利用者がついた時点で。
+5. `threat-model`、`senior-security`、`a11y-audit`。実際の利用者データを扱う、あるいは公開する最初のリリースの前に。
 
-## Check that it worked
+## 動作を確認する
 
-Ask the agent:
+エージェントに次を尋ねる。
 
-> Which skill covers deciding whether to ship a release?
+> リリースするかどうかを判断するのはどのスキル？
 
-It should answer `ship-gate`, or `launch-readiness`.
-If it cannot, the skills are not loaded: check that the directory your agent reads is present, and restart the session.
+`ship-gate`または`launch-readiness`と答えるはずである。
+答えられない場合、スキルが読み込まれていない。エージェントが読むディレクトリが存在するかを確認し、セッションを再起動する。
