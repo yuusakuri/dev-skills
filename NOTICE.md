@@ -3,14 +3,16 @@
 ## このリポジトリ
 
 MIT（[LICENSE](LICENSE)）、(c) 2026 yuusakuri。
-対象はこのリポジトリ自身の内容に限る。`development-lifecycle`ルータースキル、`catalog.json`、各スクリプト、ドキュメント。
+
+対象はこのリポジトリ自身の内容に限ります。`development-lifecycle`ルータースキル、`catalog.json`、各スクリプト、ドキュメントです。
 
 ## 選定した上流のスキル
 
-このリポジトリは上流の内容を一切再配布しない。`catalog.json`は各上流リポジトリを固定したコミットで参照するだけで、`/plugin marketplace add`が導入時にそれぞれのリポジトリから取得する。
-したがって上流のライセンス、帰属、更新はそのまま直接適用され、各著者が自身の成果物の配布者であり続ける。
+このリポジトリは上流の内容を一切再配布しません。
 
-`python3 scripts/verify-catalog.py`でいつでも確認できる。参照している`SKILL.md`をすべて固定コミットから取得し、記載した導入コマンドが実在するマーケットプレイスとプラグインを指しているかを検査する。
+`catalog.json`は各上流リポジトリを固定したコミットで参照するだけで、`/plugin marketplace add`が導入時にそれぞれのリポジトリから取得します。上流のライセンス、帰属、更新はそのまま直接適用され、各著者が自身の成果物の配布者であり続けます。
+
+`python3 scripts/verify-catalog.py`でいつでも確認できます。参照している`SKILL.md`をすべて固定コミットから取得し、記載した導入コマンドが実在するマーケットプレイスとプラグインを指しているかを検査します。
 
 ### obra/superpowers
 
@@ -35,8 +37,7 @@ MIT（[LICENSE](LICENSE)）、(c) 2026 yuusakuri。
 - ライセンス: MIT
 - 固定コミット: `be4e44a9fbc5e8df0beaefadbb28bd22ee61cc39`
 - 選定数: 9
-- 備考: 実務水準のエンジニアリング用スキル。
-  ミラー経由ではなく上流のHEADを参照している。出回っている複製は既に数リビジョン遅れているためである。
+- 備考: 実務水準のエンジニアリング用スキル。ミラー経由ではなく上流のHEADを参照している
 
 ### alirezarezvani/claude-skills
 
@@ -57,32 +58,33 @@ MIT（[LICENSE](LICENSE)）、(c) 2026 yuusakuri。
 
 ## ミラーではなく本家を参照する理由
 
-スキルは、それを書いたリポジトリから参照する。複製を取り込んだカタログ経由では参照しない。
-取り込んだ複製はずれていく。本稿の執筆時点で、広く使われている`addyosmani/agent-skills`のミラーの1つは上流より数リビジョン遅れており、その`security-and-hardening`は上流に存在する約57行を欠いている。
+スキルは、それを書いたリポジトリから参照します。複製を取り込んだカタログ経由では参照しません。
 
-取り込むこと自体は正当な方式である。オフラインで動き、固定も厳密になる。ただし、最新に保つ責任が取り込む側のカタログに移る。
-このリポジトリはもう一方のトレードオフを選んだ。
+取り込んだ複製はずれていきます。広く使われている`addyosmani/agent-skills`のミラーの1つは上流より数リビジョン遅れていて、その`security-and-hardening`は上流に存在する約57行を欠いています。
 
-## プラグイン名を意図して保っている
+取り込むこと自体は正当な方式です。オフラインで動きますし、固定も厳密になります。ただし、最新に保つ責任が取り込む側のカタログに移ります。このリポジトリはもう一方のトレードオフを選んでいます。
 
-superpowersのスキルは互いを`superpowers:<skill-name>`の形で相互参照する。したがって`superpowers`というプラグイン名で導入し、その参照が解決するようにしている。
+## プラグイン名を保っている理由
 
-## 意図的に除外したもの
+superpowersのスキルは互いを`superpowers:<skill-name>`の形で相互参照します。そのため`superpowers`というプラグイン名で導入し、その参照が解決するようにしています。
 
-- **Anthropicの文書スキル**（`docx`、`pdf`、`pptx`、`xlsx`）はソース公開であってオープンソースではない。
-  "(c) 2025 Anthropic, PBC. All rights reserved." 必要ならAnthropic自身のマーケットプレイスから導入し、その条件に同意すること。
-- **`doc-coauthoring`**（`anthropics/skills`）にはライセンスファイルが同梱されていない。
-- **`rohitg00/awesome-claude-code-toolkit`**（2.6kスター、Apache-2.0）は一度選定したのち削除した。マーケットプレイスがコマンド型のプラグインしか公開しておらず、リポジトリ自身の`skills/`ディレクトリは導入可能なプラグインになっていない。そのため、そこから採った1件は、記載した方法では決して導入できなかった。
-- **`phuryn/pm-skills`**（26.3kスター、MIT）。`pre-mortem`（4.1 KB）と`retro`（2.8 KB）は、`ship-gate`と`launch-readiness`に対して足すものが少ない。
-- 規模を理由に見送った、品質ではない理由での小規模な専門コレクション。[`arozumenko/sdlc-skills`](https://github.com/arozumenko/sdlc-skills)と[`Security-Phoenix-demo/security-skills-claude-code`](https://github.com/Security-Phoenix-demo/security-skills-claude-code)。
+## 選定から外したもの
+
+| 対象 | 外した理由 |
+| --- | --- |
+| Anthropicの文書スキル（`docx`、`pdf`、`pptx`、`xlsx`） | ソース公開であってオープンソースではない。"(c) 2025 Anthropic, PBC. All rights reserved."<br>必要ならAnthropic自身のマーケットプレイスから導入し、その条件に同意すること |
+| `doc-coauthoring`（`anthropics/skills`） | ライセンスファイルが同梱されていない |
+| [`rohitg00/awesome-claude-code-toolkit`](https://github.com/rohitg00/awesome-claude-code-toolkit)（2.6kスター、Apache-2.0） | マーケットプレイスがコマンド型のプラグインしか公開しておらず、リポジトリ自身の`skills/`ディレクトリが導入可能なプラグインになっていない |
+| [`phuryn/pm-skills`](https://github.com/phuryn/pm-skills)（26.3kスター、MIT） | `pre-mortem`と`retro`が、`ship-gate`と`launch-readiness`に対して足すものが少ない |
+| [`arozumenko/sdlc-skills`](https://github.com/arozumenko/sdlc-skills)、[`Security-Phoenix-demo/security-skills-claude-code`](https://github.com/Security-Phoenix-demo/security-skills-claude-code) | 品質ではなく規模を理由に見送った |
 
 ## 固定先の更新
 
-`catalog.json`の`ref`を編集し、次を実行する。
+`catalog.json`の`ref`を編集し、次を実行します。
 
 ```bash
 python3 scripts/verify-catalog.py
 python3 scripts/validate-skills.py
 ```
 
-上流のスキル名とプラグイン名は、このリポジトリの割り当てと導入手順の一部である。したがって上流での改名は、設計どおり検証を失敗させる。
+上流のスキル名とプラグイン名は、このリポジトリの割り当てと導入手順の一部です。上流での改名は、設計どおり検証を失敗させます。
