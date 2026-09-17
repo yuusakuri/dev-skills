@@ -126,9 +126,6 @@ def validate(skill_dir: Path) -> list[str]:
             fail(f"description is {len(desc)} chars, max {DESC_MAX}")
         if len(desc) < DESC_MIN:
             fail(f"description is {len(desc)} chars; too short to route on (min {DESC_MIN})")
-        # description が起動条件を述べているかは判定しない。以前は "use when" などの
-        # 英語表現を含むかで見ていたが、それは英語の説明文しか通さない検査だった。
-        # 文章が要件を満たしているかは、文字列の照合で決められる種類のものではない。
 
     compat = data.get("compatibility")
     if isinstance(compat, str) and len(compat) > COMPAT_MAX:

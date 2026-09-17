@@ -1,9 +1,8 @@
 # エージェントのディレクトリ
 
-`.agents/skills/`が共通の置き場である。
-多くのエージェントがここを読む。
+`.agents/skills/`が共通の置き場所です。次のエージェントがここを読みます。
 
-| `.agents/skills/`を読む |
+| エージェント |
 | --- |
 | Codex |
 | Gemini CLI |
@@ -11,17 +10,16 @@
 | GitHub Copilot |
 | CommandCode |
 
-読まないものが2つあり、それぞれ専用のディレクトリが要る。
+読まないものが2つあり、それぞれ専用のディレクトリが要ります。
 
 | エージェント | ディレクトリ | `--agents`の名前 |
 | --- | --- | --- |
 | Claude Code | `.claude/skills/` | `claude` |
 | Cursor | `.cursor/skills/` | `cursor` |
 
-既定ではこの3つすべてに書き込む（`agents,claude,cursor`）。
+既定ではこの3つすべてに書き込みます（`agents,claude,cursor`）。
 
-エージェントによっては、より狭い範囲の置き場所も受け付ける。
-指定は任意である。共通のディレクトリで既に足りている。
+エージェントによっては、より狭い範囲の置き場所も受け付けます。共通のディレクトリで足りるので、指定は任意です。
 
 | ディレクトリ | `--agents`の名前 | エージェント |
 | --- | --- | --- |
@@ -29,5 +27,4 @@
 | `.opencode/skills/` | `opencode` | OpenCode |
 | `.github/skills/` | `copilot` | GitHub Copilot |
 
-`codex`と`commandcode`は`agents`の別名である。
-`all`はこのページにある全ディレクトリへ書き込む。
+`codex`と`commandcode`は`agents`の別名です。`all`はこのページにある全ディレクトリへ書き込みます。
