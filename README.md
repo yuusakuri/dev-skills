@@ -1,5 +1,12 @@
 # dev-skills
 
+> [!IMPORTANT]
+> このリポジトリは [yuusakuri/agent-skills](https://github.com/yuusakuri/agent-skills) に統合しました。新しく使う場合はそちらを使ってください。
+>
+> - 工程ルーターは、agent-skills の `development-lifecycle` スキルとして引き継いでいます。仕様とテストの規則を加え、Spec Kit と併用するときの役割分担も定めています。
+> - superpowers を中心とした開発スキルは、agent-skills に同梱しています。開発プロジェクトでは `--profiles engineering` で導入します。
+> - ここの内容は参照用に残します。今後は更新しません。
+
 要件定義から本番運用までのソフトウェア開発を対象に、公開されている[Agent Skills](https://agentskills.io/specification)を選んで整理したものです。
 
 スキルを複製はしません。それぞれのスキルは、保守しているリポジトリに置かれたままです。
